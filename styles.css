@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0e0e0e;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.card {
+  background: rgba(30, 30, 30, 0.9);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid gold;
+  margin-bottom: 15px;
+}
+
+.profile-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  color: gold;
+}
+
+.subtitle {
+  font-style: italic;
+  color: #ccc;
+  margin-bottom: 5px;
+}
+
+.bio {
+  font-size: 14px;
+  color: #aaa;
+  min-height: 45px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.info-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 15px;
+  border-radius: 12px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.info-row:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.02);
+}
+
+.info-row img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+
+.label {
+  font-weight: bold;
+  color: gold;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.quote {
+  margin-top: 20px;
+  font-style: italic;
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+}
+
+/* Wind animation */
+.wind {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./wind.svg') repeat;
+  background-size: cover;
+  opacity: 0.07;
+  z-index: 0;
+  animation: moveWind 60s linear infinite;
+}
+
+@keyframes moveWind {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -1000px 0;
+  }
+}
+
+/* Hiệu ứng xuất hiện */
+.fade-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
