@@ -45,7 +45,7 @@ function typeBio() {
 typeBio();
 
 // Fade in từng dòng
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   const fadeItems = document.querySelectorAll(".fade-item");
   fadeItems.forEach((item, idx) => {
     setTimeout(() => {
@@ -53,3 +53,4 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 300 + idx * 200);
   });
 });
+
