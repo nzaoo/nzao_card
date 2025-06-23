@@ -1,0 +1,5 @@
+D:                                      # Switch to D: drive
+cd nzaoo\nzao_card                      # Go into the 'nzao_card' project folder inside 'nzaoo'
+git add .                               # Stage all changed files (add everything in the folder to be committed)
+git commit -m "Cập nhật nội dung trang web"   # Commit the changes with the message "Update website content"
+git push origin main                    # Push the commit to the 'main' branch on GitHub (remote repository)
