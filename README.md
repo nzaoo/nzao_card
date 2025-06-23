@@ -31,7 +31,6 @@ This project is a stylish and animated digital business card created to showcase
 git clone https://github.com/nzaoo/nzao_card.git
 cd nzao_card
 # Open index.html in your browser
----
 
 
 👤 Author
