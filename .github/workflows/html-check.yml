@@ -1,0 +1,32 @@
+name: HTML & CSS Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lint-code:
+    name: Check HTML and CSS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install stylelint & htmlhint
+        run: |
+          npm install -g stylelint stylelint-config-standard htmlhint
+
+      - name: Run HTMLHint on index.html
+        run: htmlhint index.html
+
+      - name: Run Stylelint on CSS
+        run: stylelint "**/*.css"
