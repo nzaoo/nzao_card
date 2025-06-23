@@ -24,14 +24,7 @@ This project is a stylish and animated digital business card created to showcase
 👉 [https://nzaoo.github.io/nzao_card/](https://nzaoo.github.io/nzao_card/)
 
 ---
-
-## 🛠️ How to Run Locally
-
-```bash
-git clone https://github.com/nzaoo/nzao_card.git
-cd nzao_card
-# Open index.html in your browser
-
+.
 
 👤 Author
 Ngoc Giau (Zaoo)
@@ -39,3 +32,6 @@ Ngoc Giau (Zaoo)
 📧 Email: nzao1327@email.com
 
 "Build today, lead tomorrow."
+
+
+---
