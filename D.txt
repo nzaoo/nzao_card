@@ -1,5 +1,0 @@
-D:
-cd nzaoo\nzao_card
-git add .
-git commit -m "Cập nhật nội dung trang web"
-git push origin main
