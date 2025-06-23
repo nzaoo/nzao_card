@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background-color: #0e0e0e;
   color: white;
   display: flex;
@@ -24,14 +24,14 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("./wind.svg") repeat;
+  background: url('./wind.svg') repeat;
   background-size: cover;
   opacity: 0.07;
   z-index: 0;
-  animation: move-wind 60s linear infinite;
+  animation: moveWind 60s linear infinite;
 }
 
-@keyframes move-wind {
+@keyframes moveWind {
   from {
     background-position: 0 0;
   }
@@ -76,7 +76,7 @@ body {
   border-radius: 50%;
   background: radial-gradient(circle, gold 5%, transparent 60%);
   box-shadow: 0 0 30px gold;
-  animation: pulse-glow 3s infinite ease-in-out;
+  animation: pulseGlow 3s infinite ease-in-out;
   z-index: 0;
 }
 
@@ -90,19 +90,10 @@ body {
   z-index: 1;
 }
 
-@keyframes pulse-glow {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
+@keyframes pulseGlow {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.6; }
 }
 
 /* 📝 Profile section */
@@ -117,16 +108,12 @@ h2 {
   background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradient-move 6s linear infinite;
+  animation: gradientMove 6s linear infinite;
 }
 
-@keyframes gradient-move {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 .subtitle {
