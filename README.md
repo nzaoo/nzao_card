@@ -4,6 +4,8 @@
 
 This project is a stylish and animated digital business card created to showcase contact information and social media links with modern UI effects.
 
+---
+
 ## 🔥 Features
 
 - ⏱️ Time-based greeting (morning, afternoon, night)
@@ -13,21 +15,25 @@ This project is a stylish and animated digital business card created to showcase
 - 🌫️ Wind particle background animation
 - 🎯 Parallax card movement based on mouse
 - 📱 Fully responsive and mobile-friendly
+- 🧪 Auto code linting via GitHub Actions (HTML, CSS, JavaScript)
 
-## 📂 How to Run
+---
 
-You can view it live here:  
+## 🚀 Live Demo
+
 👉 [https://nzaoo.github.io/nzao_card/](https://nzaoo.github.io/nzao_card/)
 
-Or run locally:
+---
+
+## 🛠️ How to Run Locally
 
 ```bash
 git clone https://github.com/nzaoo/nzao_card.git
 cd nzao_card
-# Then open index.html in your browser
-📌 Author
+# Open index.html in your browser
+👤 Author
 Ngoc Giau (Zaoo)
-🔗 GitHub: nzaoo
+🔗 GitHub: @nzaoo
 📧 Email: nzao1327@email.com
 
 "Build today, lead tomorrow."
