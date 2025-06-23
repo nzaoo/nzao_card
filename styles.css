@@ -6,7 +6,7 @@
 }
 
 body {
-  ont-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   background-color: #0e0e0e;
   color: white;
   display: flex;
@@ -24,7 +24,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('./wind.svg') repeat;
+  background: url("./wind.svg") repeat;
   background-size: cover;
   opacity: 0.07;
   z-index: 0;
@@ -32,31 +32,31 @@ body {
 }
 
 @keyframes move-wind {
-   0% {
+  from {
     background-position: 0 0;
   }
-  100% {
+  to {
     background-position: -1000px 0;
   }
 }
 
 /* 🪪 Card with glass and glow */
 .card {
-   background: rgb(30 30 30 / 75%);
+  background: rgba(30, 30, 30, 0.75);
   backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 30px;
   max-width: 400px;
   width: 90%;
-   box-shadow: 0 0 20px rgb(255 215 0 / 20%);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   z-index: 2;
 }
 
 .card:hover {
-   transform: scale(1.01) rotateX(1deg) rotateY(-1deg);
-   box-shadow: 0 0 30px rgb(255 215 0 / 40%);
+  transform: scale(1.01) rotateX(1deg) rotateY(-1deg);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
 }
 
 /* 🖼 Avatar glow */
@@ -152,14 +152,14 @@ h2 {
   display: flex;
   gap: 12px;
   align-items: center;
-  background: rgb(255 255 255 / 5%);
+  background: rgba(255, 255, 255, 0.05);
   padding: 10px 15px;
   border-radius: 12px;
   transition: background 0.3s, transform 0.3s;
 }
 
 .info-row:hover {
-   background: rgb(255 255 255 / 15%);
+  background: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
 }
 
@@ -179,7 +179,7 @@ a {
   text-decoration: none;
 }
 
-a:hover { 
+a:hover {
   text-decoration: underline;
 }
 
@@ -212,8 +212,8 @@ a:hover {
   }
 
   .card {
-    background: rgb(255 255 255 / 80%);
-    box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
 
   .label {
