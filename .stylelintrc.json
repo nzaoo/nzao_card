@@ -1,7 +1,9 @@
 {
   "extends": "stylelint-config-standard",
   "rules": {
-    "indentation": 2,
-    "color-hex-case": "lower"
+    "property-no-vendor-prefix": null,
+    "rule-empty-line-before": "always-multi-line",
+    "color-function-notation": "modern",
+    "alpha-value-notation": "percentage"
   }
 }
