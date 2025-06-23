@@ -94,4 +94,8 @@ window.addEventListener("DOMContentLoaded", () => {
       item.classList.add("show");
     }, 300 + idx * 200);
   });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 264c67f (Cập nhật nội dung trang web)

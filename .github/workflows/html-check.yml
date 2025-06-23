@@ -1,32 +1,34 @@
-name: HTML & CSS Lint
+# .github/workflows/main.yml
+name: HTML, CSS, JS Linting
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-  workflow_dispatch:
 
 jobs:
-  lint-code:
-    name: Check HTML and CSS
+  lint:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18'
 
-      - name: Install stylelint & htmlhint
+      - name: Install linters
         run: |
-          npm install -g stylelint stylelint-config-standard htmlhint
+          npm install -g htmlhint stylelint eslint
 
-      - name: Run HTMLHint on index.html
+      - name: Lint HTML
         run: htmlhint index.html
 
-      - name: Run Stylelint on CSS
+      - name: Lint CSS
         run: stylelint "**/*.css"
+
+      - name: Lint JS
+        run: eslint script.js

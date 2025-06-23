@@ -6,7 +6,11 @@
 }
 
 body {
+<<<<<<< HEAD
   font-family: 'Segoe UI', sans-serif;
+=======
+  font-family: "Segoe UI", sans-serif;
+>>>>>>> 264c67f (Cập nhật nội dung trang web)
   background-color: #0e0e0e;
   color: white;
   display: flex;
@@ -24,7 +28,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('./wind.svg') repeat;
+  background: url("./wind.svg") repeat;
   background-size: cover;
   opacity: 0.07;
   z-index: 0;
@@ -32,23 +36,35 @@ body {
 }
 
 @keyframes move-wind {
+<<<<<<< HEAD
   0% {
+=======
+  from {
+>>>>>>> 264c67f (Cập nhật nội dung trang web)
     background-position: 0 0;
   }
-  100% {
+  to {
     background-position: -1000px 0;
   }
 }
 
 /* 🪪 Card with glass and glow */
 .card {
+<<<<<<< HEAD
   background: rgb(30 30 30 / 75%);
+=======
+  background: rgba(30, 30, 30, 0.75);
+>>>>>>> 264c67f (Cập nhật nội dung trang web)
   backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 30px;
   max-width: 400px;
   width: 90%;
+<<<<<<< HEAD
   box-shadow: 0 0 20px rgb(255 215 0 / 20%);
+=======
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+>>>>>>> 264c67f (Cập nhật nội dung trang web)
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   z-index: 2;
@@ -56,7 +72,11 @@ body {
 
 .card:hover {
   transform: scale(1.01) rotateX(1deg) rotateY(-1deg);
+<<<<<<< HEAD
   box-shadow: 0 0 30px rgb(255 215 0 / 40%);
+=======
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+>>>>>>> 264c67f (Cập nhật nội dung trang web)
 }
 
 /* 🖼 Avatar glow */
@@ -159,7 +179,11 @@ h2 {
 }
 
 .info-row:hover {
+<<<<<<< HEAD
   background: rgb(255 255 255 / 15%);
+=======
+  background: rgba(255, 255, 255, 0.15);
+>>>>>>> 264c67f (Cập nhật nội dung trang web)
   transform: translateY(-2px);
 }
 
@@ -212,8 +236,13 @@ a:hover {
   }
 
   .card {
+<<<<<<< HEAD
     background: rgb(255 255 255 / 80%);
     box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+=======
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+>>>>>>> 264c67f (Cập nhật nội dung trang web)
   }
 
   .label {
