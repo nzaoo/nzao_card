@@ -24,7 +24,7 @@ This project is a stylish and animated digital business card created to showcase
 👉 [https://nzaoo.github.io/nzao_card/](https://nzaoo.github.io/nzao_card/)
 
 ---
-.
+
 
 👤 Author
 Ngoc Giau (Zaoo)
@@ -34,4 +34,4 @@ Ngoc Giau (Zaoo)
 "Build today, lead tomorrow."
 
 
----
+
