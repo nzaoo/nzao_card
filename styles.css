@@ -1,4 +1,3 @@
-/* Reset và cơ bản */
 * {
   margin: 0;
   padding: 0;
@@ -7,17 +6,16 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #0e0e0e;
+  background: #0e0e0e;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   overflow-x: hidden;
-  transition: background 0.3s ease;
 }
 
-/* 🌬️ Wind background animation */
+/* Wind animation */
 .wind {
   position: fixed;
   top: 0;
@@ -32,34 +30,28 @@ body {
 }
 
 @keyframes moveWind {
-  from {
+  0% {
     background-position: 0 0;
   }
-  to {
+  100% {
     background-position: -1000px 0;
   }
 }
 
-/* 🪪 Card with glass and glow */
+/* Card */
 .card {
-  background: rgba(30, 30, 30, 0.75);
-  backdrop-filter: blur(12px);
+  background: rgba(30, 30, 30, 0.9);
   border-radius: 20px;
   padding: 30px;
   max-width: 400px;
   width: 90%;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   position: relative;
   z-index: 2;
 }
 
-.card:hover {
-  transform: scale(1.01) rotateX(1deg) rotateY(-1deg);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
-}
-
-/* 🖼 Avatar glow */
+/* Avatar với khung phát sáng */
 .avatar-wrapper {
   position: relative;
   width: 140px;
@@ -91,44 +83,44 @@ body {
 }
 
 @keyframes pulseGlow {
-  0% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.6; }
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
 }
 
-/* 📝 Profile section */
+/* Profile section */
 .profile-section {
   text-align: center;
   margin-bottom: 20px;
 }
 
 h2 {
-  font-size: 26px;
-  background: linear-gradient(90deg, gold, #ff8a00, #ff0080, gold);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 6s linear infinite;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+  font-size: 24px;
+  color: gold;
 }
 
 .subtitle {
   font-style: italic;
   color: #ccc;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
 .bio {
-  font-size: 15px;
-  color: #bbb;
-  min-height: 50px;
+  font-size: 14px;
+  color: #aaa;
+  min-height: 45px;
 }
 
-/* 📦 Info section */
+/* Info section */
 .info {
   display: flex;
   flex-direction: column;
@@ -147,7 +139,7 @@ h2 {
 
 .info-row:hover {
   background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+  transform: scale(1.02);
 }
 
 .info-row img {
@@ -157,7 +149,7 @@ h2 {
 }
 
 .label {
-  font-weight: 600;
+  font-weight: bold;
   color: gold;
 }
 
@@ -170,45 +162,23 @@ a:hover {
   text-decoration: underline;
 }
 
-/* 💬 Quote */
+/* Quote */
 .quote {
   margin-top: 20px;
   font-style: italic;
   text-align: center;
-  color: #aaa;
+  color: #999;
   font-size: 13px;
 }
 
-/* ✨ Fade-in animation */
+/* Hiệu ứng xuất hiện */
 .fade-item {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease-out;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
 }
 
 .fade-item.show {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* 🌗 Auto dark/light mode */
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #f3f3f3;
-    color: #222;
-  }
-
-  .card {
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .label {
-    color: #d35400;
-  }
-
-  h2 {
-    -webkit-text-fill-color: initial;
-    color: #d35400;
-  }
 }
