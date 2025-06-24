@@ -225,3 +225,78 @@ a:hover {
     color: #d35400;
   }
 }
+ .info-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: rgb(255 255 255 / 5%);
+  padding: 10px 15px;
+  border-radius: 12px;
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.info-row:hover {
+  background: rgb(255 255 255 / 15%);
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+ .avatar-wrapper {
+  margin-bottom: 20px;
+}
+
+ a[title] {
+  position: relative;
+}
+
+a[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  top: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+ @media (max-width: 480px) {
+  .card {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatar-border {
+    width: 120px;
+    height: 120px;
+    top: -5px;
+    left: -5px;
+  }
+
+  .info-row img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .quote {
+    font-size: 12px;
+  }
+}
+
+ a:active {
+  opacity: 0.6;
+  transform: scale(0.97);
+  transition: transform 0.1s, opacity 0.1s;
+}
