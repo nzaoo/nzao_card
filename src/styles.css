@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background-color: #0e0e0e;
   color: white;
   display: flex;
@@ -24,7 +24,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("./wind.svg") repeat;
+  background: url('./wind.svg') repeat;
   background-size: cover;
   opacity: 0.07;
   z-index: 0;
@@ -178,7 +178,6 @@ a {
   color: white;
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
