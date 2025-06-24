@@ -25,13 +25,9 @@ This project is a stylish and animated digital business card created to showcase
 
 ---
 
-
 👤 Author
 Ngoc Giau (Zaoo)
 🔗 GitHub: @nzaoo
 📧 Email: nzao1327@email.com
 
 "Build today, lead tomorrow."
-
-
-
