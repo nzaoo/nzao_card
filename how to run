@@ -1,5 +1,5 @@
 D:
 cd nzaoo\nzao_card
 git add .
-git commit -m "optimizatione style for mobile"
+git commit -m "optimizatione style for mobile animation"
 git push origin main
