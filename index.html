@@ -1,265 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" href="styles.css" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ngoc Giau Card</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(-45deg, #000000, #111111, #1a1a1a, #000000);
-      background-size: 400% 400%;
-      animation: gradientBG 10s ease infinite;
-      overflow-x: hidden;
-    }
-
-    @keyframes gradientBG {
-      0% {
-        background-position: 0% 50%;
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ngoc Giau Card</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(-45deg, #000000, #111111, #1a1a1a, #000000);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+        overflow-x: hidden;
       }
 
-      50% {
-        background-position: 100% 50%;
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
 
-      100% {
-        background-position: 0% 50%;
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+        border-radius: 20px;
+        max-width: 400px;
+        margin: 60px auto;
+        padding: 20px;
+        color: white;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.2s ease;
       }
-    }
 
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
-      border-radius: 20px;
-      max-width: 400px;
-      margin: 60px auto;
-      padding: 20px;
-      color: white;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.2s ease;
-    }
-
-    .fade-item {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-item.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .info-row img {
-      width: 24px;
-      height: 24px;
-      margin-right: 12px;
-      transition: transform 0.3s, filter 0.3s;
-    }
-
-    .info-row:hover img {
-      transform: scale(1.1);
-      filter: drop-shadow(0 0 10px gold);
-    }
-
-    .quote {
-      text-align: center;
-      color: gold;
-      font-style: italic;
-      margin-top: 20px;
-      opacity: 0;
-      animation: fadeIn 2s 2.5s forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    .wind {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: -1;
-    }
-
-    .particle {
-      position: absolute;
-      top: 0;
-      width: 2px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.1);
-      animation: windMove linear infinite;
-    }
-
-    @keyframes windMove {
-      0% {
-        transform: translateX(-10px) translateY(0);
+      .fade-item {
         opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
       }
-      50% {
+
+      .fade-item.show {
         opacity: 1;
+        transform: translateY(0);
       }
-      100% {
-        transform: translateX(100vw) translateY(100vh);
+
+      .info-row img {
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+        transition: transform 0.3s, filter 0.3s;
+      }
+
+      .info-row:hover img {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 10px gold);
+      }
+
+      .quote {
+        text-align: center;
+        color: gold;
+        font-style: italic;
+        margin-top: 20px;
         opacity: 0;
+        animation: fadeIn 2s 2.5s forwards;
       }
-    }
-  </style>
-</head>
-<body>
-  <div class="wind" id="wind-container"></div>
-  <div class="card">
-    <div class="profile-section fade-item">
-      <img src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-1/474792799_528805763542793_5513639134705768386_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=1d2534&_nc_ohc=8TuHY2WOhi8Q7kNvwHv5CMs&_nc_oc=AdlTP1RD_BxLuUfXwxX14mE8Dvcnhl89kXYLeZqkqXQq5Lay9JNRoSzEVCuOsNnAxGYp4AV5M64mbBQdMl8keOXY&_nc_zt=24&_nc_ht=scontent.fsgn5-5.fna&_nc_gid=aeMNm7rfqA_4uKXayx36JQ&oh=00_AfOxELED4ZKncStQ1rI9N083HqdsXgMCjz7xeu019aReMA&oe=68604232" alt="avatar" class="avatar" />
-      <h2>Ngoc Giau</h2>
-      <p class="subtitle">Loading...</p>
-      <p class="bio" id="bio-text"></p>
-    </div>
-    <div class="info">
-      <div class="info-row fade-item">
-        <img src="icon/phone.svg" alt="Phone icon" />
-        <div>
-          <div class="label">Contact</div>
-          <div>0359 511 473</div>
-        </div>
-      </div>
 
-      <div class="info-row fade-item">
-       <img src="icon/github.svg" alt="GitHub icon" />
-        <div>
-          <div class="label">GitHub</div>
-          <div><a href="https://github.com/nzaoo" target="_blank">github.com/nzaoo</a></div>
-        </div>
-      </div>
-
-      <div class="info-row fade-item">
-        <img src="icon/facebook.svg" alt="Facebook icon" />
-        <div>
-          <div class="label">Facebook</div>
-          <div><a href="https://www.facebook.com/nzao13" target="_blank">facebook.com/nzao13</a></div>
-        </div>
-      </div>
-
-      <div class="info-row fade-item">
-        <img src="icon/messenger.svg" alt="Messenger icon" />
-        <div>
-          <div class="label">Messenger</div>
-          <div><a href="https://m.me/nzao13" target="_blank">m.me/nzao13</a></div>
-        </div>
-      </div>
-
-      <div class="info-row fade-item">
-        <img src="icon/tiktok.svg" alt="TikTok icon" />
-        <div>
-          <div class="label">TikTok</div>
-          <div><a href="https://www.tiktok.com/@nzaoo103" target="_blank">nzao103</a></div>
-        </div>
-      </div>
-
-      <div class="info-row fade-item">
-        <img src="icon/instagram.svg" alt="Instagram icon" />
-        <div>
-          <div class="label">Instagram</div>
-          <div><a href="https://www.instagram.com/zn_zaoo/" target="_blank">zn_zaoo</a></div>
-        </div>
-      </div>
-
-      <div class="info-row fade-item">
-        <img src="icon/email.svg" alt="Gmail icon" />
-        <div>
-          <div class="label">Gmail</div>
-          <div><a href="mailto:nzao1327@mail.com">nzao1327@gmail.com</a></div>
-        </div>
-      </div>
-
-      <div class="info-row fade-item">
-        <img src="icon/zalo.svg" alt="Zalo icon" />
-        <div>
-          <div class="label">Zalo</div>
-          <div><a href="https://zalo.me/0359511473" target="_blank">zalo.me/0359511473</a></div>
-        </div>
-      </div>
-    </div>
-   </div>
- </body>
-
-
-  <script>
-    // Wind effect
-    const windContainer = document.getElementById("wind-container");
-    for (let i = 0; i < 40; i++) {
-      const dot = document.createElement("div");
-      dot.className = "particle";
-      dot.style.left = Math.random() * window.innerWidth + "px";
-      dot.style.top = Math.random() * window.innerHeight + "px";
-      dot.style.animationDuration = (5 + Math.random() * 10) + "s";
-      windContainer.appendChild(dot);
-    }
-
-    // Greet by hour
-    const subtitle = document.querySelector('.subtitle');
-    const hour = new Date().getHours();
-    subtitle.innerText = hour >= 5 && hour < 12 ? "Good morning ☀️" : hour < 18 ? "Good afternoon 🌤️" : "Good night 🌙";
-
-    // Bio typing effect
-    const bio = document.getElementById('bio-text');
-    const bioContent = "👋 Hey there, I’m Zaoo, a web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day.";
-    let i = 0;
-    function typeBio() {
-      if (i < bioContent.length) {
-        bio.textContent += bioContent.charAt(i);
-        i++;
-        setTimeout(typeBio, 30);
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
       }
-    }
-    typeBio();
 
-    // Copy phone
-    const phoneText = document.querySelector('.info-row .label + div');
-    phoneText.style.cursor = "pointer";
-    phoneText.title = "Click to copy";
-    phoneText.addEventListener('click', () => {
-      navigator.clipboard.writeText(phoneText.innerText).then(() => {
-        alert("📞 Số điện thoại đã được sao chép!");
-      });
-    });
+      .wind {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: -1;
+      }
 
-    // Hover sáng từng dòng
-    const rows = document.querySelectorAll(".info-row");
-    rows.forEach(row => {
-      row.addEventListener("mouseenter", () => row.classList.add("active"));
-      row.addEventListener("mouseleave", () => row.classList.remove("active"));
-    });
+      .particle {
+        position: absolute;
+        top: 0;
+        width: 2px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        animation: windMove linear infinite;
+      }
 
-    // Parallax effect
-    const card = document.querySelector(".card");
-    document.addEventListener("mousemove", e => {
-      const x = e.clientX - window.innerWidth / 2;
-      const y = e.clientY - window.innerHeight / 2;
-      card.style.transform = `rotateY(${x / 40}deg) rotateX(${-y / 40}deg)`;
-    });
+      @keyframes windMove {
+        0% {
+          transform: translateX(-10px) translateY(0);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(100vw) translateY(100vh);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wind" id="wind-container"></div>
+    <div class="card">
+      <div class="profile-section fade-item">
+        <img
+          src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-1/474792799_528805763542793_5513639134705768386_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=1d2534&_nc_ohc=8TuHY2WOhi8Q7kNvwHv5CMs&_nc_oc=AdlTP1RD_BxLuUfXwxX14mE8Dvcnhl89kXYLeZqkqXQq5Lay9JNRoSzEVCuOsNnAxGYp4AV5M64mbBQdMl8keOXY&_nc_zt=24&_nc_ht=scontent.fsgn5-5.fna&_nc_gid=aeMNm7rfqA_4uKXayx36JQ&oh=00_AfOxELED4ZKncStQ1rI9N083HqdsXgMCjz7xeu019aReMA&oe=68604232"
+          alt="avatar"
+          class="avatar"
+        />
+        <h2>Ngoc Giau</h2>
+        <p class="subtitle">Loading...</p>
+        <p class="bio" id="bio-text"></p>
+      </div>
 
-    // Stagger animation
-    window.addEventListener("DOMContentLoaded", () => {
-      document.querySelector(".profile-section").classList.add("show");
-      const items = document.querySelectorAll(".info-row");
-      items.forEach((item, idx) => {
-        setTimeout(() => item.classList.add("show"), 300 + idx * 250);
-      });
-    });
-  </script>
-</body>
+      <div class="info">
+        <!-- Contact rows -->
+        <div class="info-row fade-item">
+          <img src="icon/phone.svg" alt="Phone icon" />
+          <div>
+            <div class="label">Contact</div>
+            <div>0359 511 473</div>
+          </div>
+        </div>
+
+        <div class="info-row fade-item">
+          <img src="icon/github.svg" alt="GitHub icon" />
+          <div>
+            <div class="label">GitHub</div>
+            <div><a href="https://github.com/nzaoo" target="_blank">github.com/nzaoo</a></div>
+          </div>
+        </div>
+
+        <div class="info-row fade-item">
+          <img src="icon/facebook.svg" alt="Facebook icon" />
+          <div>
+            <div class="label">Facebook</div>
+            <div>
+              <a href="https://www.facebook.com/nzao13" target="_blank">facebook.com/nzao13</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-row fade-item">
+          <img src="icon/messenger.svg" alt="Messenger icon" />
+          <div>
+            <div class="label">Messenger</div>
+            <div><a href="https://m.me/nzao13" target="_blank">m.me/nzao13</a></div>
+          </div>
+        </div>
+
+        <div class="info-row fade-item">
+          <img src="icon/tiktok.svg" alt="TikTok icon" />
+          <div>
+            <div class="label">TikTok</div>
+            <div><a href="https://www.tiktok.com/@nzaoo103" target="_blank">nzao103</a></div>
+          </div>
+        </div>
+
+        <div class="info-row fade-item">
+          <img src="icon/instagram.svg" alt="Instagram icon" />
+          <div>
+            <div class="label">Instagram</div>
+            <div><a href="https://www.instagram.com/zn_zaoo/" target="_blank">zn_zaoo</a></div>
+          </div>
+        </div>
+
+        <div class="info-row fade-item">
+          <img src="icon/email.svg" alt="Gmail icon" />
+          <div>
+            <div class="label">Gmail</div>
+            <div><a href="mailto:nzao1327@mail.com">nzao1327@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="info-row fade-item">
+          <img src="icon/zalo.svg" alt="Zalo icon" />
+          <div>
+            <div class="label">Zalo</div>
+            <div><a href="https://zalo.me/0359511473" target="_blank">zalo.me/0359511473</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Wind effect
+      const windContainer = document.getElementById('wind-container')
+      for (let i = 0; i < 40; i++) {
+        const dot = document.createElement('div')
+        dot.className = 'particle'
+        dot.style.left = Math.random() * window.innerWidth + 'px'
+        dot.style.top = Math.random() * window.innerHeight + 'px'
+        dot.style.animationDuration = 5 + Math.random() * 10 + 's'
+        windContainer.appendChild(dot)
+      }
+
+      // Greet by hour
+      const subtitle = document.querySelector('.subtitle')
+      const hour = new Date().getHours()
+      subtitle.innerText =
+        hour >= 5 && hour < 12
+          ? 'Good morning ☀️'
+          : hour < 18
+          ? 'Good afternoon 🌤️'
+          : 'Good night 🌙'
+
+      // Bio typing effect
+      const bio = document.getElementById('bio-text')
+      const bioContent =
+        '👋 Hey there, I’m Zaoo, a web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day.'
+      let i = 0
+      function typeBio() {
+        if (i < bioContent.length) {
+          bio.textContent += bioContent.charAt(i)
+          i++
+          setTimeout(typeBio, 30)
+        }
+      }
+      typeBio()
+
+      // Copy phone
+      const phoneText = document.querySelector('.info-row .label + div')
+      phoneText.style.cursor = 'pointer'
+      phoneText.title = 'Click to copy'
+      phoneText.addEventListener('click', () => {
+        navigator.clipboard.writeText(phoneText.innerText).then(() => {
+          alert('📞 Số điện thoại đã được sao chép!')
+        })
+      })
+
+      // Hover effect
+      const rows = document.querySelectorAll('.info-row')
+      rows.forEach((row) => {
+        row.addEventListener('mouseenter', () => row.classList.add('active'))
+        row.addEventListener('mouseleave', () => row.classList.remove('active'))
+      })
+
+      // Parallax card tilt
+      const card = document.querySelector('.card')
+      document.addEventListener('mousemove', (e) => {
+        const x = e.clientX - window.innerWidth / 2
+        const y = e.clientY - window.innerHeight / 2
+        card.style.transform = `rotateY(${x / 40}deg) rotateX(${-y / 40}deg)`
+      })
+
+      // Stagger animation
+      window.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('.profile-section').classList.add('show')
+        const items = document.querySelectorAll('.info-row')
+        items.forEach((item, idx) => {
+          setTimeout(() => item.classList.add('show'), 300 + idx * 250)
+        })
+      })
+    </script>
+  </body>
 </html>
