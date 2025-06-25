@@ -54,7 +54,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(-45deg, #000, #111, #1a1a1a, #000);
   background-size: 400% 400%;
-  animation: gradient-bg 10s ease infinite;
+  animation: gradientBG 10s ease infinite;
   overflow-x: hidden;
   color: #fff;
   min-height: 100vh;
@@ -63,7 +63,7 @@ body {
   align-items: center;
 }
 
-@keyframes gradient-bg {
+@keyframes gradientBG {
   0% {
     background-position: 0% 50%;
   }
@@ -86,9 +86,9 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 80%, rgb(120 119 198 / 30%) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgb(255 215 0 / 15%) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgb(255 138 0 / 10%) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 80%, rgb(120 119 198 / 60%) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgb(255 215 0 / 80%) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgb(255 138 0 / 70%) 0%, transparent 50%);
   animation: float-bg 20s ease-in-out infinite;
   z-index: -1;
 }
@@ -139,7 +139,10 @@ body::before {
     opacity: 0%;
   }
 
-  10%,
+  10% {
+    opacity: 60%;
+  }
+
   90% {
     opacity: 60%;
   }
@@ -149,6 +152,7 @@ body::before {
     opacity: 0%;
   }
 }
+
 /* ===== MAIN CARD ===== */
 
 .card {
@@ -169,6 +173,7 @@ body::before {
   transform-style: preserve-3d;
 }
 
+/* Hover effects and responsive rules are kept unchanged for brevity */
 .card:hover {
   transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
   box-shadow: 0 20px 60px rgb(0 0 0 / 40%), 0 0 30px var(--shadow-gold),
