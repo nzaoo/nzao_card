@@ -191,6 +191,7 @@ body::before {
   display: flex;
   justify-content: center;
   align-items: center;
+  contain: layout style paint;
 }
 
 .avatar-border {
@@ -319,6 +320,7 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  contain: layout style;
 }
 
 .info-row {
@@ -518,6 +520,7 @@ a:hover {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
+
 @media (width <= 768px) {
   :root {
     --spacing-xl: 20px;
@@ -573,6 +576,7 @@ a:hover {
 }
 
 /* ===== ACCESSIBILITY ===== */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -582,14 +586,4 @@ a:hover {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* Contain layout shifts */
-
-.avatar-wrapper {
-  contain: layout style paint;
-}
-
-.info {
-  contain: layout style;
 }
