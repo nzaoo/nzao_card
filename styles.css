@@ -54,7 +54,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(-45deg, #000, #111, #1a1a1a, #000);
   background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
+  animation: gradient-bg 10s ease infinite;
   overflow-x: hidden;
   color: #fff;
   min-height: 100vh;
@@ -63,7 +63,7 @@ body {
   align-items: center;
 }
 
-@keyframes gradientBG {
+@keyframes gradient-bg {
   0% {
     background-position: 0% 50%;
   }
@@ -86,9 +86,9 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 80%, rgb(120 119 198 / 60%) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgb(255 215 0 / 80%) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgb(255 138 0 / 70%) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 80%, rgba(61, 60, 137, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(55, 52, 37, 0.8) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(171, 116, 55, 0.7) 0%, transparent 50%);
   animation: float-bg 20s ease-in-out infinite;
   z-index: -1;
 }
