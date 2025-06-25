@@ -1,5 +1,5 @@
 D:
 cd nzaoo\nzao_card
 git add .
-git commit -m "chance stylin"
+git commit -m "fix bug"
 git push origin main

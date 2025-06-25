@@ -587,3 +587,17 @@ a:hover {
     scroll-behavior: auto !important;
   }
 }
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+.card,
+.avatar,
+.info-row {
+  will-change: transform;
+}
+
+.avatar-wrapper {
+  contain: layout style paint;
+}
+
+.info {
+  contain: layout style;
+}
