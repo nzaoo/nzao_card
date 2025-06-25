@@ -158,7 +158,6 @@ body::before {
 .card {
   background: var(--card-bg-color, var(--card-bg));
   backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: var(--spacing-xl);
@@ -278,7 +277,6 @@ body::before {
     var(--primary-gold) 100%
   );
   background-size: 200% 200%;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 4s ease-in-out infinite;
