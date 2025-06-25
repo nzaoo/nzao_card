@@ -489,6 +489,7 @@ a:hover {
 .fade-item:nth-child(8) {
   transition-delay: 0.8s;
 }
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   :root {
