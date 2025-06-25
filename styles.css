@@ -64,7 +64,6 @@ body {
 }
 
 @keyframes gradient-bg {
-
   0% {
     background-position: 0% 50%;
   }
@@ -95,7 +94,6 @@ body::before {
 }
 
 @keyframes float-bg {
-
   0%,
   100% {
     transform: translate(0, 0) rotate(0deg);
@@ -136,7 +134,6 @@ body::before {
 }
 
 @keyframes float-particle {
-
   0% {
     transform: translateY(100vh) translateX(0);
     opacity: 0%;
@@ -175,7 +172,12 @@ body::before {
   transform-style: preserve-3d;
 }
 
-/* Hover effects and responsive rules are kept unchanged for brevity */
+/* ✅ will-change moved here */
+.card,
+.avatar,
+.info-row {
+  will-change: transform;
+}
 
 .card:hover {
   transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
@@ -187,6 +189,7 @@ body::before {
 /* ===== AVATAR SECTION ===== */
 
 .avatar-wrapper {
+  contain: layout style paint;
   position: relative;
   width: 160px;
   height: 160px;
@@ -240,7 +243,6 @@ body::before {
 }
 
 @keyframes rotate-border {
-
   0% {
     transform: rotate(0deg);
   }
@@ -251,7 +253,6 @@ body::before {
 }
 
 @keyframes pulse-glow {
-
   0%,
   100% {
     transform: scale(1);
@@ -290,7 +291,6 @@ body::before {
 }
 
 @keyframes gradient-shift {
-
   0%,
   100% {
     background-position: 0% 50%;
@@ -322,6 +322,7 @@ body::before {
 /* ===== INFO SECTION ===== */
 
 .info {
+  contain: layout style;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
@@ -450,7 +451,6 @@ a:hover {
 }
 
 @keyframes tooltip-fade-in {
-
   from {
     opacity: 0%;
     transform: translateX(-50%) translateY(5px);
@@ -495,38 +495,31 @@ a:hover {
 .fade-item:nth-child(1) {
   transition-delay: 0.1s;
 }
-
 .fade-item:nth-child(2) {
   transition-delay: 0.2s;
 }
-
 .fade-item:nth-child(3) {
   transition-delay: 0.3s;
 }
-
 .fade-item:nth-child(4) {
   transition-delay: 0.4s;
 }
-
 .fade-item:nth-child(5) {
   transition-delay: 0.5s;
 }
-
 .fade-item:nth-child(6) {
   transition-delay: 0.6s;
 }
-
 .fade-item:nth-child(7) {
   transition-delay: 0.7s;
 }
-
 .fade-item:nth-child(8) {
   transition-delay: 0.8s;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (width <= 768px) {
 
+@media (width <= 768px) {
   :root {
     --spacing-xl: 20px;
     --font-size-xl: 22px;
@@ -549,7 +542,6 @@ a:hover {
 }
 
 @media (width <= 480px) {
-
   :root {
     --spacing-xl: 16px;
     --font-size-xl: 20px;
@@ -583,7 +575,6 @@ a:hover {
 
 /* ===== ACCESSIBILITY ===== */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -595,26 +586,7 @@ a:hover {
 }
 
 /* Focus styles for accessibility */
-
 .info-row:focus-visible {
   outline: 2px solid var(--accent-color, var(--primary-gold));
   outline-offset: 2px;
-}
-
-/* ===== PERFORMANCE OPTIMIZATIONS ===== */
-
-.card,
-.avatar,
-.info-row {
-  will-change: transform;
-}
-
-/* Contain layout shifts */
-
-.avatar-wrapper {
-  contain: layout style paint;
-}
-
-.info {
-  contain: layout style;
 }
