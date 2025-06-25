@@ -172,12 +172,7 @@ body::before {
   transform-style: preserve-3d;
 }
 
-/* ✅ will-change moved here */
-.card,
-.avatar,
-.info-row {
-  will-change: transform;
-}
+/* Hover effects and responsive rules are kept unchanged for brevity */
 
 .card:hover {
   transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
@@ -189,7 +184,6 @@ body::before {
 /* ===== AVATAR SECTION ===== */
 
 .avatar-wrapper {
-  contain: layout style paint;
   position: relative;
   width: 160px;
   height: 160px;
@@ -322,7 +316,6 @@ body::before {
 /* ===== INFO SECTION ===== */
 
 .info {
-  contain: layout style;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
@@ -495,30 +488,36 @@ a:hover {
 .fade-item:nth-child(1) {
   transition-delay: 0.1s;
 }
+
 .fade-item:nth-child(2) {
   transition-delay: 0.2s;
 }
+
 .fade-item:nth-child(3) {
   transition-delay: 0.3s;
 }
+
 .fade-item:nth-child(4) {
   transition-delay: 0.4s;
 }
+
 .fade-item:nth-child(5) {
   transition-delay: 0.5s;
 }
+
 .fade-item:nth-child(6) {
   transition-delay: 0.6s;
 }
+
 .fade-item:nth-child(7) {
   transition-delay: 0.7s;
 }
+
 .fade-item:nth-child(8) {
   transition-delay: 0.8s;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-
 @media (width <= 768px) {
   :root {
     --spacing-xl: 20px;
@@ -586,7 +585,26 @@ a:hover {
 }
 
 /* Focus styles for accessibility */
+
 .info-row:focus-visible {
   outline: 2px solid var(--accent-color, var(--primary-gold));
   outline-offset: 2px;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+.card,
+.avatar,
+.info-row {
+  will-change: transform;
+}
+
+/* Contain layout shifts */
+
+.avatar-wrapper {
+  contain: layout style paint;
+}
+
+.info {
+  contain: layout style;
 }
