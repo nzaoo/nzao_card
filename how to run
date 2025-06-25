@@ -1,5 +1,5 @@
-D:                                      
-cd nzaoo\nzao_card                      
-git add .                               
-git commit -m "update web"    
-git push origin main                     
+D:
+cd nzaoo\nzao_card
+git add .
+git commit -m "optimizatione style for mobile"
+git push origin main
