@@ -1,9 +1,16 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-recommended"],
+  "extends": ["stylelint-config-standard"],
   "rules": {
-    "indentation": 2,
-    "number-leading-zero": "always",
-    "string-quotes": "double",
-    "color-hex-case": "lower"
+    "color-hex-length": "short",
+    "alpha-value-notation": "percentage",
+    "color-function-notation": "modern",
+    "length-zero-no-unit": true,
+    "rule-empty-line-before": "always",
+    "keyframes-name-pattern": "^[a-z][a-z0-9-]*$",
+    "property-no-vendor-prefix": true,
+    "declaration-property-value-keyword-no-deprecated": true,
+    "no-duplicate-selectors": true,
+    "no-descending-specificity": true,
+    "media-feature-range-notation": "context"
   }
 }
