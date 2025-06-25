@@ -584,21 +584,6 @@ a:hover {
   }
 }
 
-/* Focus styles for accessibility */
-
-.info-row:focus-visible {
-  outline: 2px solid var(--accent-color, var(--primary-gold));
-  outline-offset: 2px;
-}
-
-/* ===== PERFORMANCE OPTIMIZATIONS ===== */
-
-.card,
-.avatar,
-.info-row {
-  will-change: transform;
-}
-
 /* Contain layout shifts */
 
 .avatar-wrapper {
