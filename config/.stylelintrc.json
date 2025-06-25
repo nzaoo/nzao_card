@@ -1,14 +1,9 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": ["stylelint-config-standard", "stylelint-config-recommended"],
   "rules": {
-<<<<<<< HEAD
-    "property-no-vendor-prefix": null,
-    "rule-empty-line-before": "always-multi-line",
-    "color-function-notation": "modern",
-    "alpha-value-notation": "percentage"
-=======
-    "keyframes-name-pattern": "^[a-z-]+$",
-    "property-no-vendor-prefix": null
->>>>>>> 264c67f (Cập nhật nội dung trang web)
+    "indentation": 2,
+    "number-leading-zero": "always",
+    "string-quotes": "double",
+    "color-hex-case": "lower"
   }
 }
