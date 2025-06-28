@@ -51,7 +51,7 @@ Visit the live website: [https://nzaoo.github.io/nzao_card/](https://nzaoo.githu
 
 ## 📋 Contact Information
 
-- **Phone**: 0359 511 473 (Click to copy)
+- **Phone**: 0359 511 473 
 - **Email**: nzao1327@gmail.com
 - **GitHub**: [github.com/nzaoo](https://github.com/nzaoo)
 - **Facebook**: [facebook.com/nzao13](https://www.facebook.com/nzao13)
