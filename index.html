@@ -704,37 +704,37 @@
   </head>
   <body>
     <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
+    <div class="loading-screen" id="loading-screen">
       <div class="loading-text">Loading Zaoo's Card...</div>
     </div>
 
     <!-- Admin Mode Indicator -->
-    <div class="admin-mode-indicator" id="adminModeIndicator">🔧 Admin Mode Active</div>
+    <div class="admin-mode-indicator" id="admin-mode-indicator">🔧 Admin Mode Active</div>
 
     <!-- Live Status Indicator -->
-    <div class="status-indicator" id="statusIndicator">
-      <div class="status-dot available" id="statusDot"></div>
-      <div class="status-text" id="statusText">Available for work</div>
+    <div class="status-indicator" id="status-indicator">
+      <div class="status-dot available" id="status-dot"></div>
+      <div class="status-text" id="status-text">Available for work</div>
     </div>
 
     <!-- Theme Toggle -->
-    <div class="theme-toggle" id="themeToggle">
+    <div class="theme-toggle" id="theme-toggle">
       <div class="icon">🌙</div>
     </div>
 
     <!-- Sound Toggle -->
-    <div class="sound-toggle" id="soundToggle">
+    <div class="sound-toggle" id="sound-toggle">
       <div class="icon">🔊</div>
     </div>
 
     <!-- Scroll Progress -->
     <div class="scroll-indicator">
-      <div class="scroll-progress" id="scrollProgress"></div>
+      <div class="scroll-progress" id="scroll-progress"></div>
     </div>
 
     <!-- Interactive Background -->
-    <div class="stars" id="starsContainer"></div>
-    <div class="bubbles" id="bubblesContainer"></div>
+    <div class="stars" id="stars-container"></div>
+    <div class="bubbles" id="bubbles-container"></div>
 
     <!-- Enhanced Wind Effect -->
     <div class="wind" id="wind-container"></div>
@@ -753,7 +753,7 @@
 
       <!-- Skills Section -->
       <div class="skills-section fade-item">
-        <div class="skills-title">🚀 Skills & Technologies</div>
+        <div class="skills-title">🚀 Skills &amp; Technologies</div>
         <div class="skills-grid">
           <div class="skill-item">HTML</div>
           <div class="skill-item">CSS</div>
@@ -772,7 +772,7 @@
           <img src="icon/phone.svg" alt="Phone icon" />
           <div>
             <div class="label">Contact</div>
-            <div id="phoneNumber">0359 511 473</div>
+            <div id="phone-number">0359 511 473</div>
           </div>
         </div>
 
@@ -837,7 +837,7 @@
 
       <!-- Action Buttons -->
       <div class="action-buttons fade-item">
-        <a href="#" class="action-btn primary" id="downloadCV">📄 Download CV</a>
+        <a href="#" class="action-btn primary" id="download-cv">📄 Download CV</a>
         <a href="#" class="action-btn" id="portfolio">🎨 Portfolio</a>
       </div>
     </div>
@@ -877,15 +877,15 @@
       // Loading Screen
       window.addEventListener('load', () => {
         setTimeout(() => {
-          document.getElementById('loadingScreen').classList.add('hidden');
+          document.getElementById('loading-screen').classList.add('hidden');
           setTimeout(() => {
-            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('loading-screen').style.display = 'none';
           }, 500);
         }, 2000);
       });
 
       // Theme Toggle
-      const themeToggle = document.getElementById('themeToggle');
+      const themeToggle = document.getElementById('theme-toggle');
       const body = document.body;
       let isDark = true;
 
@@ -902,7 +902,7 @@
       });
 
       // Sound Toggle
-      const soundToggle = document.getElementById('soundToggle');
+      const soundToggle = document.getElementById('sound-toggle');
       soundToggle.addEventListener('click', () => {
         soundEnabled = !soundEnabled;
         soundToggle.querySelector('.icon').textContent = soundEnabled ? '🔊' : '🔇';
@@ -955,7 +955,7 @@
       setTimeout(typeBio, 1000);
 
       // Enhanced Copy phone with notification
-      const phoneNumber = document.getElementById('phoneNumber');
+      const phoneNumber = document.getElementById('phone-number');
       phoneNumber.style.cursor = 'pointer';
       phoneNumber.title = 'Click to copy';
       
@@ -1035,11 +1035,11 @@
         const scrollTop = window.pageYOffset;
         const docHeight = document.body.offsetHeight - window.innerHeight;
         const scrollPercent = (scrollTop / docHeight) * 100;
-        document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        document.getElementById('scroll-progress').style.width = scrollPercent + '%';
       });
 
       // Action Buttons
-      document.getElementById('downloadCV').addEventListener('click', (e) => {
+      document.getElementById('download-cv').addEventListener('click', (e) => {
         e.preventDefault();
         playSound(523, 0.2);
         showNotification('📄 CV download feature coming soon!', 'info');
@@ -1076,7 +1076,7 @@
       }, { once: true });
 
       // Interactive Background - Stars
-      const starsContainer = document.getElementById('starsContainer');
+      const starsContainer = document.getElementById('stars-container');
       for (let i = 0; i < 100; i++) {
         const star = document.createElement('div');
         star.className = 'star';
@@ -1088,7 +1088,7 @@
       }
 
       // Interactive Background - Bubbles
-      const bubblesContainer = document.getElementById('bubblesContainer');
+      const bubblesContainer = document.getElementById('bubbles-container');
       function createBubble() {
         const bubble = document.createElement('div');
         bubble.className = 'bubble';
@@ -1112,10 +1112,10 @@
       createBubble(); // Create first bubble
 
       // Live Status Management
-      const statusDot = document.getElementById('statusDot');
-      const statusText = document.getElementById('statusText');
-      const statusIndicator = document.getElementById('statusIndicator');
-      const adminModeIndicator = document.getElementById('adminModeIndicator');
+      const statusDot = document.getElementById('status-dot');
+      const statusText = document.getElementById('status-text');
+      const statusIndicator = document.getElementById('status-indicator');
+      const adminModeIndicator = document.getElementById('admin-mode-indicator');
 
       const statuses = [
         { class: 'available', text: 'Available for work', color: '#4CAF50' },
