@@ -129,10 +129,6 @@ git clone https://github.com/nzaoo/nzao_card.git
 
 3. Enjoy the interactive experience!
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ## 🤝 Contributing
 
 Feel free to contribute to this project by:
