@@ -1,5 +1,11 @@
 D:
-cd nzaoo\nzao_card
+cd nzaoo\linkcard_generator
 git add .
-git commit -m "fix bug"
+git commit -m "update more file"
 git push origin main
+
+npm run dev
+
+git grep "AIza" check key
+ggshield secret scan repo .
+  
