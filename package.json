@@ -1,0 +1,38 @@
+{
+  "name": "nzao-card",
+  "version": "1.0.0",
+  "description": "Interactive personal business card website",
+  "main": "index.html",
+  "scripts": {
+    "lint:js": "eslint *.js",
+    "lint:css": "stylelint *.css",
+    "lint:html": "htmlhint *.html",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "business-card",
+    "portfolio",
+    "interactive",
+    "web-development",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "nzaoo",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0",
+    "prettier": "^3.2.5",
+    "htmlhint": "^1.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nzaoo/nzao_card.git"
+  },
+  "homepage": "https://nzaoo.github.io/nzao_card/"
+} 
