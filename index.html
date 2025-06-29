@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <link rel="stylesheet" href="styles.css" />
@@ -16,7 +16,14 @@
         margin: 0;
         padding: 0;
         font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #1a1a1a 50%, #0d0d0d 75%, #000000 100%);
+        background: linear-gradient(
+          135deg,
+          #000000 0%,
+          #0a0a0a 25%,
+          #1a1a1a 50%,
+          #0d0d0d 75%,
+          #000000 100%
+        );
         background-size: 400% 400%;
         animation: gradientBG 15s ease infinite;
         overflow-x: hidden;
@@ -31,15 +38,31 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: 
+        background:
           radial-gradient(2px 2px at 20px 30px, #fff, transparent),
-          radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.9), transparent),
+          radial-gradient(
+            2px 2px at 40px 70px,
+            rgba(255, 255, 255, 0.9),
+            transparent
+          ),
           radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-          radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.7), transparent),
+          radial-gradient(
+            1px 1px at 130px 80px,
+            rgba(255, 255, 255, 0.7),
+            transparent
+          ),
           radial-gradient(2px 2px at 160px 30px, #ddd, transparent),
-          radial-gradient(1px 1px at 200px 60px, rgba(255,255,255,0.8), transparent),
+          radial-gradient(
+            1px 1px at 200px 60px,
+            rgba(255, 255, 255, 0.8),
+            transparent
+          ),
           radial-gradient(3px 3px at 250px 20px, #fff, transparent),
-          radial-gradient(1px 1px at 300px 90px, rgba(255,255,255,0.6), transparent);
+          radial-gradient(
+            1px 1px at 300px 90px,
+            rgba(255, 255, 255, 0.6),
+            transparent
+          );
         background-repeat: repeat;
         background-size: 350px 200px;
         animation: twinkleStars 6s ease-in-out infinite;
@@ -54,15 +77,51 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: 
-          linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.9) 50%, transparent 70%),
-          linear-gradient(-135deg, transparent 30%, rgba(255,215,0,0.7) 50%, transparent 70%),
-          linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.8) 50%, transparent 70%),
-          linear-gradient(-120deg, transparent 30%, rgba(255,215,0,0.6) 50%, transparent 70%),
-          linear-gradient(150deg, transparent 30%, rgba(255,255,255,0.7) 50%, transparent 70%),
-          linear-gradient(-150deg, transparent 30%, rgba(255,215,0,0.5) 50%, transparent 70%);
-        background-size: 300px 3px, 250px 2px, 280px 2.5px, 200px 1.5px, 320px 2px, 180px 1px;
-        background-position: 
+        background:
+          linear-gradient(
+            135deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.9) 50%,
+            transparent 70%
+          ),
+          linear-gradient(
+            -135deg,
+            transparent 30%,
+            rgba(255, 215, 0, 0.7) 50%,
+            transparent 70%
+          ),
+          linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.8) 50%,
+            transparent 70%
+          ),
+          linear-gradient(
+            -120deg,
+            transparent 30%,
+            rgba(255, 215, 0, 0.6) 50%,
+            transparent 70%
+          ),
+          linear-gradient(
+            150deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.7) 50%,
+            transparent 70%
+          ),
+          linear-gradient(
+            -150deg,
+            transparent 30%,
+            rgba(255, 215, 0, 0.5) 50%,
+            transparent 70%
+          );
+        background-size:
+          300px 3px,
+          250px 2px,
+          280px 2.5px,
+          200px 1.5px,
+          320px 2px,
+          180px 1px;
+        background-position:
           -300px 80px,
           -250px 200px,
           -280px 350px,
@@ -93,13 +152,18 @@
       }
 
       @keyframes twinkleStars {
-        0%, 100% { opacity: 0.2; }
-        50% { opacity: 1; }
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 1;
+        }
       }
 
       @keyframes shootingStars {
         0% {
-          background-position: 
+          background-position:
             -300px 80px,
             -250px 200px,
             -280px 350px,
@@ -108,7 +172,7 @@
             -180px 300px;
         }
         100% {
-          background-position: 
+          background-position:
             1200px 680px,
             1150px 800px,
             1180px 950px,
@@ -146,21 +210,35 @@
       }
 
       @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
       }
 
       /* Skeleton Loading */
       .skeleton {
-        background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.1) 25%,
+          rgba(255, 255, 255, 0.2) 50%,
+          rgba(255, 255, 255, 0.1) 75%
+        );
         background-size: 200% 100%;
         animation: skeleton-loading 1.5s infinite;
         border-radius: 4px;
       }
 
       @keyframes skeleton-loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
       }
 
       .skeleton-text {
@@ -392,7 +470,9 @@
         color: #fff;
         position: relative;
         transform-style: preserve-3d;
-        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.3s ease;
         overflow: hidden;
       }
 
@@ -403,7 +483,11 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.08) 0%,
+          rgba(255, 255, 255, 0.03) 100%
+        );
         border-radius: 20px;
         z-index: -1;
       }
@@ -414,13 +498,19 @@
       }
 
       .card:hover::before {
-        background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.12) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
       }
 
       .fade-item {
         opacity: 0;
         transform: translateY(10px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
       }
 
       .fade-item.show {
@@ -455,7 +545,12 @@
         left: -50%;
         width: 200%;
         height: 200%;
-        background: conic-gradient(from 0deg, transparent, rgba(255,215,0,0.3), transparent);
+        background: conic-gradient(
+          from 0deg,
+          transparent,
+          rgba(255, 215, 0, 0.3),
+          transparent
+        );
         animation: rotate 3s linear infinite;
         z-index: -1;
       }
@@ -467,17 +562,34 @@
       }
 
       @keyframes avatarGlow {
-        from { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
-        to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+        from {
+          box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        to {
+          box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+        }
       }
 
       @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       .name {
-        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+        background: linear-gradient(
+          45deg,
+          #ff6b6b,
+          #4ecdc4,
+          #45b7d1,
+          #96ceb4,
+          #feca57,
+          #ff9ff3,
+          #54a0ff
+        );
         background-size: 400% 400%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -492,10 +604,19 @@
       }
 
       @keyframes gradientText {
-        0%, 100% { background-position: 0% 50%; }
-        25% { background-position: 100% 50%; }
-        50% { background-position: 100% 100%; }
-        75% { background-position: 0% 100%; }
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        25% {
+          background-position: 100% 50%;
+        }
+        50% {
+          background-position: 100% 100%;
+        }
+        75% {
+          background-position: 0% 100%;
+        }
       }
 
       .subtitle {
@@ -523,8 +644,15 @@
       }
 
       @keyframes subtitleLine {
-        0%, 100% { width: 50px; opacity: 0.5; }
-        50% { width: 100px; opacity: 1; }
+        0%,
+        100% {
+          width: 50px;
+          opacity: 0.5;
+        }
+        50% {
+          width: 100px;
+          opacity: 1;
+        }
       }
 
       .bio {
@@ -554,7 +682,12 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 215, 0, 0.1),
+          transparent
+        );
         transition: left 0.5s ease;
       }
 
@@ -602,7 +735,12 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 215, 0, 0.2),
+          transparent
+        );
         transition: left 0.3s ease;
       }
 
@@ -640,7 +778,12 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 215, 0, 0.1),
+          transparent
+        );
         transition: left 0.4s ease;
       }
 
@@ -659,7 +802,9 @@
         width: 32px;
         height: 32px;
         margin-right: 18px;
-        transition: transform 0.3s, filter 0.3s;
+        transition:
+          transform 0.3s,
+          filter 0.3s;
         filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
       }
 
@@ -739,7 +884,12 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 215, 0, 0.2),
+          transparent
+        );
         transition: left 0.3s ease;
       }
 
@@ -783,7 +933,11 @@
         position: absolute;
         width: 2px;
         height: 2px;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 215, 0, 0.3));
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.9),
+          rgba(255, 215, 0, 0.3)
+        );
         border-radius: 50%;
         animation: windMove linear infinite;
         box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
@@ -791,17 +945,29 @@
       }
 
       .particle:nth-child(3n) {
-        background: radial-gradient(circle, rgba(255, 215, 0, 0.9), rgba(255, 255, 255, 0.4));
+        background: radial-gradient(
+          circle,
+          rgba(255, 215, 0, 0.9),
+          rgba(255, 255, 255, 0.4)
+        );
         box-shadow: 0 0 8px rgba(255, 215, 0, 0.9);
       }
 
       .particle:nth-child(5n) {
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 215, 0, 0.2));
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.8),
+          rgba(255, 215, 0, 0.2)
+        );
         box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
       }
 
       .particle:nth-child(7n) {
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.7), rgba(255, 215, 0, 0.1));
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.7),
+          rgba(255, 215, 0, 0.1)
+        );
         box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
       }
 
@@ -817,7 +983,12 @@
 
       .bubble {
         position: absolute;
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), rgba(255, 215, 0, 0.02), transparent);
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.05),
+          rgba(255, 215, 0, 0.02),
+          transparent
+        );
         border-radius: 50%;
         animation: float 15s ease-in-out infinite;
         border: 1px solid rgba(255, 255, 255, 0.05);
@@ -826,21 +997,22 @@
       }
 
       @keyframes float {
-        0%, 100% { 
-          transform: translateY(100vh) rotate(0deg) scale(0.8); 
-          opacity: 0; 
+        0%,
+        100% {
+          transform: translateY(100vh) rotate(0deg) scale(0.8);
+          opacity: 0;
         }
-        10% { 
-          opacity: 0.3; 
+        10% {
+          opacity: 0.3;
           transform: translateY(90vh) rotate(36deg) scale(1);
         }
-        90% { 
-          opacity: 0.3; 
+        90% {
+          opacity: 0.3;
           transform: translateY(10vh) rotate(324deg) scale(1);
         }
-        100% { 
-          transform: translateY(-100px) rotate(360deg) scale(0.8); 
-          opacity: 0; 
+        100% {
+          transform: translateY(-100px) rotate(360deg) scale(0.8);
+          opacity: 0;
         }
       }
 
@@ -868,15 +1040,15 @@
           margin: 20px;
           padding: 20px;
         }
-        
+
         .name {
           font-size: 2rem;
         }
-        
+
         .action-buttons {
           flex-direction: column;
         }
-        
+
         .skills-grid {
           grid-template-columns: repeat(3, 1fr);
         }
@@ -939,7 +1111,9 @@
         width: 3px;
         height: 3px;
         background: #fff;
-        box-shadow: 0 0 8px rgba(255, 255, 255, 1), 0 0 12px rgba(255, 255, 255, 0.5);
+        box-shadow:
+          0 0 8px rgba(255, 255, 255, 1),
+          0 0 12px rgba(255, 255, 255, 0.5);
         animation-duration: 5s;
       }
 
@@ -955,7 +1129,9 @@
         width: 4px;
         height: 4px;
         background: #fff;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 15px rgba(255, 215, 0, 0.6);
+        box-shadow:
+          0 0 10px rgba(255, 255, 255, 1),
+          0 0 15px rgba(255, 215, 0, 0.6);
         animation-duration: 6s;
       }
 
@@ -963,26 +1139,29 @@
         width: 2px;
         height: 2px;
         background: #fff;
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 8px rgba(255, 215, 0, 0.4);
+        box-shadow:
+          0 0 5px rgba(255, 255, 255, 0.7),
+          0 0 8px rgba(255, 215, 0, 0.4);
         animation-duration: 4s;
       }
 
       @keyframes twinkle {
-        0%, 100% { 
-          opacity: 0.2; 
-          transform: scale(1) rotate(0deg); 
+        0%,
+        100% {
+          opacity: 0.2;
+          transform: scale(1) rotate(0deg);
         }
-        25% { 
-          opacity: 0.9; 
-          transform: scale(1.3) rotate(90deg); 
+        25% {
+          opacity: 0.9;
+          transform: scale(1.3) rotate(90deg);
         }
-        50% { 
-          opacity: 1; 
-          transform: scale(1.6) rotate(180deg); 
+        50% {
+          opacity: 1;
+          transform: scale(1.6) rotate(180deg);
         }
-        75% { 
-          opacity: 0.7; 
-          transform: scale(1.4) rotate(270deg); 
+        75% {
+          opacity: 0.7;
+          transform: scale(1.4) rotate(270deg);
         }
       }
 
@@ -1018,18 +1197,18 @@
       }
 
       .status-dot.available {
-        background: #4CAF50;
-        box-shadow: 0 0 10px #4CAF50;
+        background: #4caf50;
+        box-shadow: 0 0 10px #4caf50;
       }
 
       .status-dot.busy {
-        background: #FF9800;
-        box-shadow: 0 0 10px #FF9800;
+        background: #ff9800;
+        box-shadow: 0 0 10px #ff9800;
       }
 
       .status-dot.away {
-        background: #FFC107;
-        box-shadow: 0 0 10px #FFC107;
+        background: #ffc107;
+        box-shadow: 0 0 10px #ffc107;
       }
 
       .status-text {
@@ -1058,7 +1237,12 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 215, 0, 0.1),
+          transparent
+        );
         transition: left 0.6s ease;
       }
 
@@ -1101,7 +1285,12 @@
         left: -50%;
         width: 200%;
         height: 200%;
-        background: conic-gradient(from 0deg, transparent, rgba(255,215,0,0.2), transparent);
+        background: conic-gradient(
+          from 0deg,
+          transparent,
+          rgba(255, 215, 0, 0.2),
+          transparent
+        );
         animation: rotate 4s linear infinite;
         z-index: -1;
       }
@@ -1150,7 +1339,9 @@
     </div>
 
     <!-- Admin Mode Indicator -->
-    <div class="admin-mode-indicator" id="admin-mode-indicator">🔧 Admin Mode Active</div>
+    <div class="admin-mode-indicator" id="admin-mode-indicator">
+      🔧 Admin Mode Active
+    </div>
 
     <!-- Live Status Indicator -->
     <div class="status-indicator" id="status-indicator">
@@ -1159,12 +1350,24 @@
     </div>
 
     <!-- Theme Toggle -->
-    <div class="theme-toggle" id="theme-toggle" role="button" tabindex="0" aria-label="Toggle dark/light theme">
+    <div
+      class="theme-toggle"
+      id="theme-toggle"
+      role="button"
+      tabindex="0"
+      aria-label="Toggle dark/light theme"
+    >
       <div class="icon">🌙</div>
     </div>
 
     <!-- Sound Toggle -->
-    <div class="sound-toggle" id="sound-toggle" role="button" tabindex="0" aria-label="Toggle sound effects">
+    <div
+      class="sound-toggle"
+      id="sound-toggle"
+      role="button"
+      tabindex="0"
+      aria-label="Toggle sound effects"
+    >
       <div class="icon">🔊</div>
     </div>
 
@@ -1222,7 +1425,11 @@
           <img src="icon/github.svg" alt="GitHub icon" />
           <div>
             <div class="label">GitHub</div>
-            <div><a href="https://github.com/nzaoo" target="_blank">github.com/nzaoo</a></div>
+            <div>
+              <a href="https://github.com/nzaoo" target="_blank"
+                >github.com/nzaoo</a
+              >
+            </div>
           </div>
         </div>
 
@@ -1231,7 +1438,9 @@
           <div>
             <div class="label">Facebook</div>
             <div>
-              <a href="https://www.facebook.com/nzao13" target="_blank">facebook.com/nzao13</a>
+              <a href="https://www.facebook.com/nzao13" target="_blank"
+                >facebook.com/nzao13</a
+              >
             </div>
           </div>
         </div>
@@ -1240,7 +1449,9 @@
           <img src="icon/messenger.svg" alt="Messenger icon" />
           <div>
             <div class="label">Messenger</div>
-            <div><a href="https://m.me/nzao13" target="_blank">m.me/nzao13</a></div>
+            <div>
+              <a href="https://m.me/nzao13" target="_blank">m.me/nzao13</a>
+            </div>
           </div>
         </div>
 
@@ -1248,7 +1459,11 @@
           <img src="icon/tiktok.svg" alt="TikTok icon" />
           <div>
             <div class="label">TikTok</div>
-            <div><a href="https://www.tiktok.com/@nzaoo103" target="_blank">nzao103</a></div>
+            <div>
+              <a href="https://www.tiktok.com/@nzaoo103" target="_blank"
+                >nzao103</a
+              >
+            </div>
           </div>
         </div>
 
@@ -1256,7 +1471,11 @@
           <img src="icon/instagram.svg" alt="Instagram icon" />
           <div>
             <div class="label">Instagram</div>
-            <div><a href="https://www.instagram.com/zn_zaoo/" target="_blank">zn_zaoo</a></div>
+            <div>
+              <a href="https://www.instagram.com/zn_zaoo/" target="_blank"
+                >zn_zaoo</a
+              >
+            </div>
           </div>
         </div>
 
@@ -1264,7 +1483,9 @@
           <img src="icon/email.svg" alt="Gmail icon" />
           <div>
             <div class="label">Gmail</div>
-            <div><a href="mailto:nzao1327@gmail.com">nzao1327@gmail.com</a></div>
+            <div>
+              <a href="mailto:nzao1327@gmail.com">nzao1327@gmail.com</a>
+            </div>
           </div>
         </div>
 
@@ -1272,14 +1493,20 @@
           <img src="icon/zalo.svg" alt="Zalo icon" />
           <div>
             <div class="label">Zalo</div>
-            <div><a href="https://zalo.me/0359511473" target="_blank">zalo.me/0359511473</a></div>
+            <div>
+              <a href="https://zalo.me/0359511473" target="_blank"
+                >zalo.me/0359511473</a
+              >
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Action Buttons -->
       <div class="action-buttons fade-item">
-        <a href="#" class="action-btn primary" id="download-cv">📄 Download CV</a>
+        <a href="#" class="action-btn primary" id="download-cv"
+          >📄 Download CV</a
+        >
         <a href="#" class="action-btn" id="portfolio">🎨 Portfolio</a>
         <a href="#" class="action-btn" id="share-card">📤 Share Card</a>
       </div>

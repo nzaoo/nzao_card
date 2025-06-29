@@ -23,7 +23,10 @@ function playSound(frequency = 440, duration = 0.1) {
   oscillator.type = 'sine';
 
   gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+  gainNode.gain.exponentialRampToValueAtTime(
+    0.01,
+    audioContext.currentTime + duration
+  );
 
   oscillator.start(audioContext.currentTime);
   oscillator.stop(audioContext.currentTime + duration);
@@ -85,7 +88,7 @@ if (themeToggle && soundToggle) {
 
   // Keyboard navigation for toggles
   [themeToggle, soundToggle].forEach(toggle => {
-    toggle.addEventListener('keydown', (e) => {
+    toggle.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         toggle.click();
@@ -116,7 +119,7 @@ if (subtitle) {
     morning: 'Good morning ☀️',
     afternoon: 'Good afternoon 🌤️',
     evening: 'Good evening 🌅',
-    night: 'Good night 🌙'
+    night: 'Good night 🌙',
   };
 
   let greeting;
@@ -131,7 +134,8 @@ if (subtitle) {
 // Enhanced Bio typing effect
 const bio = document.getElementById('bio-text');
 if (bio) {
-  const bioContent = '👋 Hey there, I\'m Zaoo, a passionate web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day. Always excited to learn new technologies! 🚀';
+  const bioContent =
+    "👋 Hey there, I'm Zaoo, a passionate web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day. Always excited to learn new technologies! 🚀";
   let i = 0;
 
   setTimeout(() => {
@@ -201,7 +205,7 @@ document.head.appendChild(style);
 
 // Enhanced Hover effects with sound
 const rows = document.querySelectorAll('.info-row');
-rows.forEach((row) => {
+rows.forEach(row => {
   row.addEventListener('mouseenter', () => {
     row.classList.add('active');
     if (row.dataset.sound === 'hover') {
@@ -221,7 +225,7 @@ const card = document.querySelector('.card');
 if (card) {
   let tiltTimeout;
 
-  document.addEventListener('mousemove', (e) => {
+  document.addEventListener('mousemove', e => {
     clearTimeout(tiltTimeout);
 
     tiltTimeout = setTimeout(() => {
@@ -257,7 +261,7 @@ window.addEventListener('scroll', () => {
 // Action Buttons
 const downloadCvBtn = document.getElementById('download-cv');
 if (downloadCvBtn) {
-  downloadCvBtn.addEventListener('click', (e) => {
+  downloadCvBtn.addEventListener('click', e => {
     e.preventDefault();
     playSound(523, 0.2);
     showNotification('📄 CV download feature coming soon!', 'info');
@@ -266,7 +270,7 @@ if (downloadCvBtn) {
 
 const portfolioBtn = document.getElementById('portfolio');
 if (portfolioBtn) {
-  portfolioBtn.addEventListener('click', (e) => {
+  portfolioBtn.addEventListener('click', e => {
     e.preventDefault();
     playSound(659, 0.2);
     showNotification('🎨 Portfolio feature coming soon!', 'info');
@@ -276,20 +280,23 @@ if (portfolioBtn) {
 // Share Card functionality
 const shareCardBtn = document.getElementById('share-card');
 if (shareCardBtn) {
-  shareCardBtn.addEventListener('click', (e) => {
+  shareCardBtn.addEventListener('click', e => {
     e.preventDefault();
     playSound(659, 0.2);
 
     if (navigator.share) {
-      navigator.share({
-        title: 'nzaoo - Web Developer',
-        text: 'Check out my digital business card!',
-        url: window.location.href
-      }).then(() => {
-        showNotification('📤 Card shared successfully!', 'success');
-      }).catch(() => {
-        copyToClipboard();
-      });
+      navigator
+        .share({
+          title: 'nzaoo - Web Developer',
+          text: 'Check out my digital business card!',
+          url: window.location.href,
+        })
+        .then(() => {
+          showNotification('📤 Card shared successfully!', 'success');
+        })
+        .catch(() => {
+          copyToClipboard();
+        });
     } else {
       copyToClipboard();
     }
@@ -297,11 +304,14 @@ if (shareCardBtn) {
 }
 
 function copyToClipboard() {
-  navigator.clipboard.writeText(window.location.href).then(() => {
-    showNotification('📋 Card link copied to clipboard!', 'success');
-  }).catch(() => {
-    showNotification('📤 Share feature not available', 'info');
-  });
+  navigator.clipboard
+    .writeText(window.location.href)
+    .then(() => {
+      showNotification('📋 Card link copied to clipboard!', 'success');
+    })
+    .catch(() => {
+      showNotification('📤 Share feature not available', 'info');
+    });
 }
 
 // Skills hover effect
@@ -327,11 +337,15 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // Initialize audio on first interaction
-document.addEventListener('click', () => {
-  if (!audioContext) {
-    initAudio();
-  }
-}, { once: true });
+document.addEventListener(
+  'click',
+  () => {
+    if (!audioContext) {
+      initAudio();
+    }
+  },
+  { once: true }
+);
 
 // Interactive Background - Stars
 const starsContainer = document.getElementById('stars-container');
@@ -342,7 +356,7 @@ if (starsContainer) {
     star.style.left = Math.random() * window.innerWidth + 'px';
     star.style.top = Math.random() * window.innerHeight + 'px';
     star.style.animationDelay = Math.random() * 3 + 's';
-    star.style.animationDuration = (2 + Math.random() * 2) + 's';
+    star.style.animationDuration = 2 + Math.random() * 2 + 's';
     starsContainer.appendChild(star);
   }
 }
@@ -357,9 +371,9 @@ const createBubble = () => {
   const bubble = document.createElement('div');
   bubble.className = 'bubble';
   bubble.style.left = Math.random() * window.innerWidth + 'px';
-  bubble.style.width = (20 + Math.random() * 40) + 'px';
+  bubble.style.width = 20 + Math.random() * 40 + 'px';
   bubble.style.height = bubble.style.width;
-  bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
+  bubble.style.animationDuration = 6 + Math.random() * 4 + 's';
   bubble.style.animationDelay = Math.random() * 2 + 's';
   bubblesContainer.appendChild(bubble);
 
@@ -392,7 +406,7 @@ function createShootingStar() {
     'linear-gradient(90deg, transparent, rgba(255,255,255,0.9), rgba(255,215,0,0.8), transparent)',
     'linear-gradient(90deg, transparent, rgba(255,215,0,0.9), rgba(255,255,255,0.7), transparent)',
     'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), rgba(255,107,107,0.6), transparent)',
-    'linear-gradient(90deg, transparent, rgba(255,215,0,0.7), rgba(255,255,255,0.9), transparent)'
+    'linear-gradient(90deg, transparent, rgba(255,215,0,0.7), rgba(255,255,255,0.9), transparent)',
   ];
 
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -402,7 +416,8 @@ function createShootingStar() {
   // Create diagonal trajectory
   const startY = Math.random() * 60 + 10; // Start from 10% to 70% of viewport height
   const endY = startY + (Math.random() * 40 - 20); // End 20px above or below start
-  const angle = Math.atan2(endY - startY, window.innerWidth + 200) * 180 / Math.PI;
+  const angle =
+    (Math.atan2(endY - startY, window.innerWidth + 200) * 180) / Math.PI;
 
   shootingStar.style.cssText = `
     position: fixed;
@@ -527,7 +542,8 @@ function generateQRCode() {
     };
 
     qrImage.onerror = () => {
-      qrContainer.innerHTML = '<div class="qr-placeholder">QR Code unavailable</div>';
+      qrContainer.innerHTML =
+        '<div class="qr-placeholder">QR Code unavailable</div>';
     };
   }
 }
@@ -544,7 +560,7 @@ const adminModeIndicator = document.getElementById('admin-mode-indicator');
 const statuses = [
   { class: 'available', text: 'Available for work', color: '#4CAF50' },
   { class: 'busy', text: 'Currently busy', color: '#FF9800' },
-  { class: 'away', text: 'Away from keyboard', color: '#FFC107' }
+  { class: 'away', text: 'Away from keyboard', color: '#FFC107' },
 ];
 
 let currentStatusIndex = 0;
@@ -566,7 +582,10 @@ const toggleAdminMode = () => {
   if (adminMode) {
     statusIndicator.classList.add('admin-mode');
     adminModeIndicator.classList.add('show');
-    showNotification('🔧 Admin mode activated! You can now change status.', 'success');
+    showNotification(
+      '🔧 Admin mode activated! You can now change status.',
+      'success'
+    );
     playSound(523, 0.2);
 
     // Add click to change status only in admin mode
@@ -574,7 +593,10 @@ const toggleAdminMode = () => {
       currentStatusIndex = (currentStatusIndex + 1) % statuses.length;
       updateStatus();
       playSound(523, 0.1);
-      showNotification(`Status changed to: ${statuses[currentStatusIndex].text}`, 'info');
+      showNotification(
+        `Status changed to: ${statuses[currentStatusIndex].text}`,
+        'info'
+      );
     };
   } else {
     statusIndicator.classList.remove('admin-mode');
@@ -617,7 +639,7 @@ if (nameElement) {
   nameElement.addEventListener('click', () => {
     clickCount++;
     if (clickCount === 5) {
-      showNotification('🎉 You found the secret! You\'re awesome!', 'success');
+      showNotification("🎉 You found the secret! You're awesome!", 'success');
       playSound(523, 0.3);
       setTimeout(() => playSound(659, 0.3), 300);
       setTimeout(() => playSound(784, 0.3), 600);
@@ -700,21 +722,21 @@ function stopRainbowMode() {
 }
 
 // Add keyboard shortcuts
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
   if (e.ctrlKey || e.metaKey) {
-    switch(e.key) {
-    case 't':
-      e.preventDefault();
-      if (themeToggle) themeToggle.click();
-      break;
-    case 'm':
-      e.preventDefault();
-      if (soundToggle) soundToggle.click();
-      break;
-    case 'r':
-      e.preventDefault();
-      toggleRainbowMode();
-      break;
+    switch (e.key) {
+      case 't':
+        e.preventDefault();
+        if (themeToggle) themeToggle.click();
+        break;
+      case 'm':
+        e.preventDefault();
+        if (soundToggle) soundToggle.click();
+        break;
+      case 'r':
+        e.preventDefault();
+        toggleRainbowMode();
+        break;
     }
   }
   // Performance mode: Ctrl+Shift+X
@@ -741,7 +763,8 @@ function trackEvent(eventName) {
   if (eventName === 'visit') {
     analytics[today].visits++;
   } else {
-    analytics[today].interactions[eventName] = (analytics[today].interactions[eventName] || 0) + 1;
+    analytics[today].interactions[eventName] =
+      (analytics[today].interactions[eventName] || 0) + 1;
   }
 
   localStorage.setItem('cardAnalytics', JSON.stringify(analytics));
@@ -806,13 +829,17 @@ function enablePerformanceMode() {
   // Reduce shooting star frequency
   if (window.shootingStarInterval) {
     clearInterval(window.shootingStarInterval);
-    window.shootingStarInterval = setInterval(createShootingStar, 4000 + Math.random() * 3000);
+    window.shootingStarInterval = setInterval(
+      createShootingStar,
+      4000 + Math.random() * 3000
+    );
   }
 
   // Reduce particle count
   const particles = document.querySelectorAll('.particle');
   particles.forEach((particle, index) => {
-    if (index > 20) { // Keep only first 20 particles
+    if (index > 20) {
+      // Keep only first 20 particles
       particle.style.display = 'none';
     }
   });
@@ -820,7 +847,10 @@ function enablePerformanceMode() {
   // Reduce bubble frequency
   if (window.bubbleInterval) {
     clearInterval(window.bubbleInterval);
-    window.bubbleInterval = setInterval(createBubble, 3000 + Math.random() * 2000);
+    window.bubbleInterval = setInterval(
+      createBubble,
+      3000 + Math.random() * 2000
+    );
   }
 
   // Simplify rainbow mode if active
@@ -837,12 +867,18 @@ function enablePerformanceMode() {
 
 function disablePerformanceMode() {
   performanceMode = false;
-  showNotification('🎨 Full effects restored (performance improved)', 'success');
+  showNotification(
+    '🎨 Full effects restored (performance improved)',
+    'success'
+  );
 
   // Restore shooting star frequency
   if (window.shootingStarInterval) {
     clearInterval(window.shootingStarInterval);
-    window.shootingStarInterval = setInterval(createShootingStar, 1500 + Math.random() * 4000);
+    window.shootingStarInterval = setInterval(
+      createShootingStar,
+      1500 + Math.random() * 4000
+    );
   }
 
   // Restore all particles
@@ -854,7 +890,10 @@ function disablePerformanceMode() {
   // Restore bubble frequency
   if (window.bubbleInterval) {
     clearInterval(window.bubbleInterval);
-    window.bubbleInterval = setInterval(createBubble, 1500 + Math.random() * 2000);
+    window.bubbleInterval = setInterval(
+      createBubble,
+      1500 + Math.random() * 2000
+    );
   }
 
   // Restore rainbow mode if active
