@@ -678,3 +678,69 @@ if (skillItemsForTracking.length > 0) {
     });
   });
 }
+
+// Mouse Trail Effects
+let mouseTrail = [];
+const maxTrailLength = 20;
+
+function createMouseTrail() {
+  const trail = document.createElement('div');
+  trail.className = 'mouse-trail';
+  trail.style.cssText = `
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, rgba(255,215,0,0.8), rgba(255,255,255,0.4));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s ease;
+    box-shadow: 0 0 10px rgba(255,215,0,0.6);
+  `;
+  return trail;
+}
+
+function updateMouseTrail(e) {
+  const trail = createMouseTrail();
+  trail.style.left = e.clientX - 4 + 'px';
+  trail.style.top = e.clientY - 4 + 'px';
+  
+  // Random color for variety
+  const colors = [
+    'rgba(255,215,0,0.8)', // Gold
+    'rgba(255,255,255,0.6)', // White
+    'rgba(255,107,107,0.7)', // Pink
+    'rgba(100,200,255,0.7)', // Blue
+    'rgba(255,200,100,0.7)'  // Orange
+  ];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  trail.style.background = `radial-gradient(circle, ${randomColor}, rgba(255,255,255,0.3))`;
+  
+  document.body.appendChild(trail);
+  mouseTrail.push(trail);
+  
+  // Remove old trail elements
+  if (mouseTrail.length > maxTrailLength) {
+    const oldTrail = mouseTrail.shift();
+    if (oldTrail && oldTrail.parentNode) {
+      oldTrail.style.opacity = '0';
+      oldTrail.style.transform = 'scale(0.5)';
+      setTimeout(() => {
+        if (oldTrail.parentNode) {
+          oldTrail.parentNode.removeChild(oldTrail);
+        }
+      }, 100);
+    }
+  }
+  
+  // Fade out trail elements
+  mouseTrail.forEach((element, index) => {
+    const opacity = 1 - (index / maxTrailLength);
+    const scale = 1 - (index / maxTrailLength) * 0.5;
+    element.style.opacity = opacity;
+    element.style.transform = `scale(${scale})`;
+  });
+}
+
+// Add mouse trail event listener
+document.addEventListener('mousemove', updateMouseTrail);
