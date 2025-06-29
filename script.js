@@ -377,29 +377,36 @@ if (bubblesContainer) {
 function createShootingStar() {
   const shootingStar = document.createElement('div');
   const colors = [
-    'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), rgba(255,215,0,0.6), transparent)',
-    'linear-gradient(90deg, transparent, rgba(255,215,0,0.7), rgba(255,255,255,0.5), transparent)',
-    'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), rgba(255,107,107,0.4), transparent)',
-    'linear-gradient(90deg, transparent, rgba(255,215,0,0.5), rgba(255,255,255,0.7), transparent)'
+    'linear-gradient(90deg, transparent, rgba(255,255,255,0.9), rgba(255,215,0,0.8), transparent)',
+    'linear-gradient(90deg, transparent, rgba(255,215,0,0.9), rgba(255,255,255,0.7), transparent)',
+    'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), rgba(255,107,107,0.6), transparent)',
+    'linear-gradient(90deg, transparent, rgba(255,215,0,0.7), rgba(255,255,255,0.9), transparent)'
   ];
   
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
-  const randomRotation = Math.random() * 60 - 30;
   const randomDuration = 3 + Math.random() * 4;
-  const randomWidth = 100 + Math.random() * 200;
+  const randomWidth = 150 + Math.random() * 250; // Larger width
+  
+  // Create diagonal trajectory
+  const startY = Math.random() * 60 + 10; // Start from 10% to 70% of viewport height
+  const endY = startY + (Math.random() * 40 - 20); // End 20px above or below start
+  const angle = Math.atan2(endY - startY, window.innerWidth + 200) * 180 / Math.PI;
   
   shootingStar.style.cssText = `
     position: fixed;
-    top: ${Math.random() * 100}vh;
+    top: ${startY}vh;
     left: -100px;
     width: ${randomWidth}px;
-    height: 2px;
+    height: 3px;
     background: ${randomColor};
-    transform: rotate(${randomRotation}deg);
+    transform: rotate(${angle}deg);
     animation: shootingStarMove ${randomDuration}s linear forwards;
     z-index: -1;
     pointer-events: none;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+    --angle: ${angle}deg;
+    --end-y: ${endY - startY}vh;
+    --original-width: ${randomWidth}px;
   `;
   
   // Add trail effect
@@ -411,8 +418,8 @@ function createShootingStar() {
     width: 100%;
     height: 100%;
     background: ${randomColor};
-    filter: blur(1px);
-    opacity: 0.3;
+    filter: blur(2px);
+    opacity: 0.5;
   `;
   shootingStar.appendChild(trail);
   
@@ -443,17 +450,43 @@ const shootingStarStyle = document.createElement('style');
 shootingStarStyle.textContent = `
   @keyframes shootingStarMove {
     0% {
-      transform: translateX(-100px) rotate(var(--rotation, 0deg));
+      transform: translateX(-100px) translateY(0px) rotate(var(--angle, 0deg)) scale(1.2);
       opacity: 0;
+      width: calc(var(--original-width, 200px) * 1.2);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 215, 0, 0.8);
     }
-    10% {
+    5% {
       opacity: 1;
+      transform: translateX(-50px) translateY(calc(var(--end-y, 0px) * 0.05)) rotate(var(--angle, 0deg)) scale(1.1);
+      width: calc(var(--original-width, 200px) * 1.1);
+      box-shadow: 0 0 18px rgba(255, 255, 255, 0.8), 0 0 35px rgba(255, 215, 0, 0.7);
     }
-    90% {
-      opacity: 1;
+    20% {
+      transform: translateX(calc(20vw - 50px)) translateY(calc(var(--end-y, 0px) * 0.2)) rotate(var(--angle, 0deg)) scale(1);
+      width: var(--original-width, 200px);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 215, 0, 0.6);
+    }
+    50% {
+      transform: translateX(calc(50vw - 50px)) translateY(calc(var(--end-y, 0px) * 0.5)) rotate(var(--angle, 0deg)) scale(0.9);
+      width: calc(var(--original-width, 200px) * 0.9);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 215, 0, 0.5);
+    }
+    80% {
+      transform: translateX(calc(80vw - 50px)) translateY(calc(var(--end-y, 0px) * 0.8)) rotate(var(--angle, 0deg)) scale(0.7);
+      width: calc(var(--original-width, 200px) * 0.7);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 215, 0, 0.3);
+      opacity: 0.8;
+    }
+    95% {
+      transform: translateX(calc(95vw - 50px)) translateY(calc(var(--end-y, 0px) * 0.95)) rotate(var(--angle, 0deg)) scale(0.5);
+      width: calc(var(--original-width, 200px) * 0.5);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 215, 0, 0.2);
+      opacity: 0.3;
     }
     100% {
-      transform: translateX(calc(100vw + 100px)) rotate(var(--rotation, 0deg));
+      transform: translateX(calc(100vw + 100px)) translateY(var(--end-y, 0px)) rotate(var(--angle, 0deg)) scale(0.3);
+      width: calc(var(--original-width, 200px) * 0.3);
+      box-shadow: 0 0 2px rgba(255, 255, 255, 0.1), 0 0 5px rgba(255, 215, 0, 0.1);
       opacity: 0;
     }
   }
