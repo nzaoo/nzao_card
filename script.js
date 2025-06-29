@@ -713,8 +713,8 @@ document.addEventListener('keydown', (e) => {
       break;
     }
   }
-  // Performance mode: Ctrl+Shift+P
-  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'p') {
+  // Performance mode: Ctrl+Shift+X
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'x') {
     e.preventDefault();
     togglePerformanceMode();
   }

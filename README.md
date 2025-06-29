@@ -49,7 +49,7 @@
 - **Sound Control** with toggle functionality `Ctrl+M`
 - **Live Status Indicator** with automatic time-based updates
 - **Scroll Progress Visualization** for enhanced UX
-- **Performance Mode**: Auto-detects lag and reduces effects, or toggle manually with `Ctrl+Shift+P`
+- **Performance Mode**: Auto-detects lag and reduces effects, or toggle manually with `Ctrl+Shift+X`
 
 ### 📱 **Professional Features**
 
@@ -153,13 +153,13 @@ _Experience the full interactive digital business card_
 | -------------- | -------------------------------- |
 | `Ctrl+T`       | Toggle theme (Dark/Light)        |
 | `Ctrl+M`       | Toggle sound effects             |
-| `Ctrl+Shift+P` | Toggle performance mode (manual) |
+| `Ctrl+Shift+X` | Toggle performance mode (manual) |
 | `Ctrl+Shift+Z` | Toggle admin mode                |
 
 ### **Performance Mode**
 
 - **Auto**: Nếu phát hiện FPS thấp, hiệu ứng sẽ tự động giảm để web mượt hơn.
-- **Thủ công**: Nhấn `Ctrl+Shift+P` để bật/tắt chế độ hiệu suất cao bất cứ lúc nào.
+- **Thủ công**: Nhấn `Ctrl+Shift+X` để bật/tắt chế độ hiệu suất cao bất cứ lúc nào.
 - **Tối ưu**: Giảm số lượng particle, shooting star, bubble, đơn giản hóa hiệu ứng động khi cần thiết.
 
 ### **Live Status System**
