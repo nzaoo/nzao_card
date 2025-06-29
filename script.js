@@ -713,7 +713,11 @@ document.addEventListener('keydown', (e) => {
       break;
     }
   }
-  
+  // Performance mode: Ctrl+Shift+P
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'p') {
+    e.preventDefault();
+    togglePerformanceMode();
+  }
   // Admin mode toggle
   if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'z') {
     e.preventDefault();
@@ -866,36 +870,6 @@ function togglePerformanceMode() {
     enablePerformanceMode();
   }
 }
-
-// Add performance mode to keyboard shortcuts
-document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey || e.metaKey) {
-    switch(e.key) {
-    case 't':
-      e.preventDefault();
-      if (themeToggle) themeToggle.click();
-      break;
-    case 'm':
-      e.preventDefault();
-      if (soundToggle) soundToggle.click();
-      break;
-    case 'r':
-      e.preventDefault();
-      toggleRainbowMode();
-      break;
-    case 'p':
-      e.preventDefault();
-      togglePerformanceMode();
-      break;
-    }
-  }
-  
-  // Admin mode toggle
-  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'z') {
-    e.preventDefault();
-    toggleAdminMode();
-  }
-});
 
 // Start FPS monitoring
 updateFPS();
