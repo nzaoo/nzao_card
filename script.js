@@ -119,7 +119,7 @@ if (subtitle) {
     morning: 'Good morning ☀️',
     afternoon: 'Good afternoon 🌤️',
     evening: 'Good evening 🌅',
-    night: 'Good night 🌙',
+    night: 'Good night 🌙'
   };
 
   let greeting;
@@ -636,7 +636,7 @@ if (nameElement) {
   nameElement.addEventListener('click', () => {
     clickCount++;
     if (clickCount === 5) {
-      showNotification("🎉 You found the secret! You're awesome!", 'success');
+      showNotification('🎉 You found the secret! You\'re awesome!', 'success');
       playSound(523, 0.3);
       setTimeout(() => playSound(659, 0.3), 300);
       setTimeout(() => playSound(784, 0.3), 600);
@@ -722,18 +722,18 @@ function stopRainbowMode() {
 document.addEventListener('keydown', e => {
   if (e.ctrlKey || e.metaKey) {
     switch (e.key) {
-      case 't':
-        e.preventDefault();
-        if (themeToggle) themeToggle.click();
-        break;
-      case 'm':
-        e.preventDefault();
-        if (soundToggle) soundToggle.click();
-        break;
-      case 'r':
-        e.preventDefault();
-        toggleRainbowMode();
-        break;
+    case 't':
+      e.preventDefault();
+      if (themeToggle) themeToggle.click();
+      break;
+    case 'm':
+      e.preventDefault();
+      if (soundToggle) soundToggle.click();
+      break;
+    case 'r':
+      e.preventDefault();
+      toggleRainbowMode();
+      break;
     }
   }
   // Performance mode: Ctrl+Shift+X
