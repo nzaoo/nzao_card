@@ -614,6 +614,79 @@ if (nameElement) {
   });
 }
 
+// Rainbow Mode
+let rainbowMode = false;
+let rainbowInterval;
+
+function toggleRainbowMode() {
+  rainbowMode = !rainbowMode;
+  
+  if (rainbowMode) {
+    startRainbowMode();
+    showNotification('🌈 Rainbow mode activated!', 'success');
+    playSound(523, 0.2);
+  } else {
+    stopRainbowMode();
+    showNotification('🌙 Rainbow mode deactivated', 'info');
+    playSound(659, 0.2);
+  }
+}
+
+function startRainbowMode() {
+  let hue = 0;
+  rainbowInterval = setInterval(() => {
+    hue = (hue + 1) % 360;
+    
+    // Update background gradient
+    document.body.style.background = `
+      linear-gradient(-45deg, 
+        hsl(${hue}, 70%, 10%), 
+        hsl(${(hue + 60) % 360}, 70%, 15%), 
+        hsl(${(hue + 120) % 360}, 70%, 12%), 
+        hsl(${(hue + 180) % 360}, 70%, 8%)
+      )
+    `;
+    
+    // Update card glow
+    const card = document.querySelector('.card');
+    if (card) {
+      card.style.boxShadow = `
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 30px hsl(${hue}, 80%, 60%)
+      `;
+    }
+    
+    // Update shooting stars colors
+    const shootingStars = document.querySelectorAll('.shooting-star');
+    shootingStars.forEach(star => {
+      star.style.background = `
+        linear-gradient(90deg, 
+          transparent, 
+          hsl(${hue}, 80%, 70%), 
+          hsl(${(hue + 30) % 360}, 80%, 60%), 
+          transparent
+        )
+      `;
+    });
+  }, 50); // Update every 50ms for smooth animation
+}
+
+function stopRainbowMode() {
+  if (rainbowInterval) {
+    clearInterval(rainbowInterval);
+    rainbowInterval = null;
+  }
+  
+  // Reset to original colors
+  document.body.style.background = '';
+  const card = document.querySelector('.card');
+  if (card) {
+    card.style.boxShadow = '';
+  }
+}
+
 // Add keyboard shortcuts
 document.addEventListener('keydown', (e) => {
   if (e.ctrlKey || e.metaKey) {
@@ -626,9 +699,13 @@ document.addEventListener('keydown', (e) => {
       e.preventDefault();
       if (soundToggle) soundToggle.click();
       break;
+    case 'r':
+      e.preventDefault();
+      toggleRainbowMode();
+      break;
     }
   }
-
+  
   // Admin mode toggle
   if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'z') {
     e.preventDefault();
