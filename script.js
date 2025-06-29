@@ -12,19 +12,19 @@ function initAudio() {
 
 function playSound(frequency = 440, duration = 0.1) {
   if (!soundEnabled || !audioContext) return;
-  
+
   const oscillator = audioContext.createOscillator();
   const gainNode = audioContext.createGain();
-  
+
   oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
-  
+
   oscillator.frequency.value = frequency;
   oscillator.type = 'sine';
-  
+
   gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
   gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-  
+
   oscillator.start(audioContext.currentTime);
   oscillator.stop(audioContext.currentTime + duration);
 }
@@ -178,7 +178,7 @@ function showNotification(message, type = 'info') {
   `;
   notification.textContent = message;
   document.body.appendChild(notification);
-  
+
   setTimeout(() => {
     notification.style.animation = 'slideUp 0.3s ease';
     setTimeout(() => notification.remove(), 300);
@@ -223,7 +223,7 @@ if (card) {
 
   document.addEventListener('mousemove', (e) => {
     clearTimeout(tiltTimeout);
-    
+
     tiltTimeout = setTimeout(() => {
       const x = e.clientX - window.innerWidth / 2;
       const y = e.clientY - window.innerHeight / 2;
@@ -279,7 +279,7 @@ if (shareCardBtn) {
   shareCardBtn.addEventListener('click', (e) => {
     e.preventDefault();
     playSound(659, 0.2);
-    
+
     if (navigator.share) {
       navigator.share({
         title: 'nzaoo - Web Developer',
@@ -359,7 +359,7 @@ if (bubblesContainer) {
     bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
     bubble.style.animationDelay = Math.random() * 2 + 's';
     bubblesContainer.appendChild(bubble);
-    
+
     // Remove bubble after animation
     setTimeout(() => {
       if (bubble.parentNode) {
@@ -382,16 +382,16 @@ function createShootingStar() {
     'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), rgba(255,107,107,0.6), transparent)',
     'linear-gradient(90deg, transparent, rgba(255,215,0,0.7), rgba(255,255,255,0.9), transparent)'
   ];
-  
+
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   const randomDuration = 3 + Math.random() * 4;
   const randomWidth = 150 + Math.random() * 250; // Larger width
-  
+
   // Create diagonal trajectory
   const startY = Math.random() * 60 + 10; // Start from 10% to 70% of viewport height
   const endY = startY + (Math.random() * 40 - 20); // End 20px above or below start
   const angle = Math.atan2(endY - startY, window.innerWidth + 200) * 180 / Math.PI;
-  
+
   shootingStar.style.cssText = `
     position: fixed;
     top: ${startY}vh;
@@ -408,7 +408,7 @@ function createShootingStar() {
     --end-y: ${endY - startY}vh;
     --original-width: ${randomWidth}px;
   `;
-  
+
   // Add trail effect
   const trail = document.createElement('div');
   trail.style.cssText = `
@@ -422,9 +422,9 @@ function createShootingStar() {
     opacity: 0.5;
   `;
   shootingStar.appendChild(trail);
-  
+
   document.body.appendChild(shootingStar);
-  
+
   // Remove shooting star after animation
   setTimeout(() => {
     if (shootingStar.parentNode) {
@@ -498,22 +498,22 @@ function generateQRCode() {
   const qrContainer = document.getElementById('qr-container');
   if (qrContainer) {
     const currentUrl = window.location.href;
-    
+
     // Use a free QR code API
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(currentUrl)}`;
-    
+
     const qrImage = document.createElement('img');
     qrImage.src = qrUrl;
     qrImage.alt = 'QR Code';
     qrImage.style.width = '100%';
     qrImage.style.height = '100%';
     qrImage.style.borderRadius = '8px';
-    
+
     qrImage.onload = () => {
       qrContainer.innerHTML = '';
       qrContainer.appendChild(qrImage);
     };
-    
+
     qrImage.onerror = () => {
       qrContainer.innerHTML = '<div class="qr-placeholder">QR Code unavailable</div>';
     };
@@ -548,15 +548,15 @@ const updateStatus = () => {
 
 const toggleAdminMode = () => {
   if (!statusIndicator || !adminModeIndicator) return;
-  
+
   adminMode = !adminMode;
-  
+
   if (adminMode) {
     statusIndicator.classList.add('admin-mode');
     adminModeIndicator.classList.add('show');
     showNotification('🔧 Admin mode activated! You can now change status.', 'success');
     playSound(523, 0.2);
-    
+
     // Add click to change status only in admin mode
     statusIndicator.onclick = () => {
       currentStatusIndex = (currentStatusIndex + 1) % statuses.length;
@@ -569,7 +569,7 @@ const toggleAdminMode = () => {
     adminModeIndicator.classList.remove('show');
     showNotification('🔒 Admin mode deactivated.', 'info');
     playSound(659, 0.2);
-    
+
     // Remove click functionality
     statusIndicator.onclick = null;
   }
@@ -628,7 +628,7 @@ document.addEventListener('keydown', (e) => {
       break;
     }
   }
-  
+
   // Admin mode toggle
   if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'z') {
     e.preventDefault();
@@ -640,17 +640,17 @@ document.addEventListener('keydown', (e) => {
 function trackEvent(eventName, data = {}) {
   const analytics = JSON.parse(localStorage.getItem('cardAnalytics') || '{}');
   const today = new Date().toDateString();
-  
+
   if (!analytics[today]) {
     analytics[today] = { visits: 0, interactions: {} };
   }
-  
+
   if (eventName === 'visit') {
     analytics[today].visits++;
   } else {
     analytics[today].interactions[eventName] = (analytics[today].interactions[eventName] || 0) + 1;
   }
-  
+
   localStorage.setItem('cardAnalytics', JSON.stringify(analytics));
 }
 
@@ -677,4 +677,4 @@ if (skillItemsForTracking.length > 0) {
       trackEvent(`click_skill_${skill.textContent.toLowerCase()}`);
     });
   });
-} 
+}
