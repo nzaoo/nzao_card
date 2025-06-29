@@ -373,6 +373,93 @@ if (bubblesContainer) {
   createBubble(); // Create first bubble
 }
 
+// Create Shooting Stars
+function createShootingStar() {
+  const shootingStar = document.createElement('div');
+  const colors = [
+    'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), rgba(255,215,0,0.6), transparent)',
+    'linear-gradient(90deg, transparent, rgba(255,215,0,0.7), rgba(255,255,255,0.5), transparent)',
+    'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), rgba(255,107,107,0.4), transparent)',
+    'linear-gradient(90deg, transparent, rgba(255,215,0,0.5), rgba(255,255,255,0.7), transparent)'
+  ];
+  
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  const randomRotation = Math.random() * 60 - 30;
+  const randomDuration = 3 + Math.random() * 4;
+  const randomWidth = 100 + Math.random() * 200;
+  
+  shootingStar.style.cssText = `
+    position: fixed;
+    top: ${Math.random() * 100}vh;
+    left: -100px;
+    width: ${randomWidth}px;
+    height: 2px;
+    background: ${randomColor};
+    transform: rotate(${randomRotation}deg);
+    animation: shootingStarMove ${randomDuration}s linear forwards;
+    z-index: -1;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  `;
+  
+  // Add trail effect
+  const trail = document.createElement('div');
+  trail.style.cssText = `
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: ${randomColor};
+    filter: blur(1px);
+    opacity: 0.3;
+  `;
+  shootingStar.appendChild(trail);
+  
+  document.body.appendChild(shootingStar);
+  
+  // Remove shooting star after animation
+  setTimeout(() => {
+    if (shootingStar.parentNode) {
+      shootingStar.parentNode.removeChild(shootingStar);
+    }
+  }, 8000);
+}
+
+// Create shooting stars periodically with random intervals
+function scheduleShootingStar() {
+  const delay = 1500 + Math.random() * 4000; // 1.5s to 5.5s
+  setTimeout(() => {
+    createShootingStar();
+    scheduleShootingStar();
+  }, delay);
+}
+
+scheduleShootingStar(); // Start the shooting star schedule
+createShootingStar(); // Create first shooting star
+
+// Add CSS for shooting star animation
+const shootingStarStyle = document.createElement('style');
+shootingStarStyle.textContent = `
+  @keyframes shootingStarMove {
+    0% {
+      transform: translateX(-100px) rotate(var(--rotation, 0deg));
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(calc(100vw + 100px)) rotate(var(--rotation, 0deg));
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(shootingStarStyle);
+
 // Generate QR Code
 function generateQRCode() {
   const qrContainer = document.getElementById('qr-container');
