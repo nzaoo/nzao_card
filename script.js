@@ -821,3 +821,58 @@ function updateMouseTrail(e) {
 
 // Add mouse trail event listener
 document.addEventListener('mousemove', updateMouseTrail);
+
+// Aurora Borealis Effect
+function drawAurora() {
+  const canvas = document.getElementById('aurora-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  canvas.width = w;
+  canvas.height = h;
+
+  ctx.clearRect(0, 0, w, h);
+
+  // Aurora parameters
+  const auroraBands = 3;
+  const baseY = h * 0.18;
+  const bandHeight = h * 0.18;
+  const time = Date.now() * 0.0003;
+
+  for (let band = 0; band < auroraBands; band++) {
+    ctx.save();
+    const grad = ctx.createLinearGradient(0, baseY, w, baseY + bandHeight);
+    const hue = (120 + band * 40 + Math.sin(time + band) * 40) % 360;
+    grad.addColorStop(0, `hsla(${hue}, 90%, 70%, 0.0)`);
+    grad.addColorStop(0.2, `hsla(${hue}, 100%, 80%, 0.18)`);
+    grad.addColorStop(0.5, `hsla(${(hue + 40) % 360}, 100%, 90%, 0.22)`);
+    grad.addColorStop(0.8, `hsla(${hue}, 100%, 80%, 0.18)`);
+    grad.addColorStop(1, `hsla(${hue}, 90%, 70%, 0.0)`);
+    ctx.globalAlpha = 0.7 - band * 0.18;
+    ctx.beginPath();
+    ctx.moveTo(0, baseY + band * bandHeight * 0.7);
+    for (let x = 0; x <= w; x += 8) {
+      const y = baseY + band * bandHeight * 0.7 +
+        Math.sin((x / w) * Math.PI * 2 + time * 2 + band) * 18 +
+        Math.sin((x / w) * Math.PI * 6 + time * 3 + band * 2) * 10;
+      ctx.lineTo(x, y + band * 18);
+    }
+    ctx.lineTo(w, h);
+    ctx.lineTo(0, h);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.shadowColor = `hsla(${hue}, 100%, 80%, 0.5)`;
+    ctx.shadowBlur = 40;
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function animateAurora() {
+  drawAurora();
+  requestAnimationFrame(animateAurora);
+}
+
+window.addEventListener('resize', drawAurora);
+setTimeout(animateAurora, 500);
