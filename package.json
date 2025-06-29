@@ -2,6 +2,7 @@
   "name": "nzao-card",
   "version": "1.0.0",
   "description": "Interactive personal business card website",
+  "type": "module",
   "main": "index.html",
   "scripts": {
     "lint:js": "eslint *.js",
@@ -24,15 +25,17 @@
   "author": "nzaoo",
   "license": "MIT",
   "devDependencies": {
+    "@eslint/js": "^9.30.0",
     "eslint": "^8.57.0",
-    "stylelint": "^16.2.1",
-    "stylelint-config-standard": "^36.0.0",
+    "globals": "^16.2.0",
+    "htmlhint": "^1.1.4",
     "prettier": "^3.2.5",
-    "htmlhint": "^1.1.4"
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/nzaoo/nzao_card.git"
   },
   "homepage": "https://nzaoo.github.io/nzao_card/"
-} 
+}

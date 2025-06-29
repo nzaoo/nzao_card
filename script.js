@@ -349,35 +349,39 @@ if (starsContainer) {
 
 // Interactive Background - Bubbles
 const bubblesContainer = document.getElementById('bubbles-container');
+
+// Create bubble function (moved to global scope)
+const createBubble = () => {
+  if (!bubblesContainer) return;
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.style.left = Math.random() * window.innerWidth + 'px';
+  bubble.style.width = (20 + Math.random() * 40) + 'px';
+  bubble.style.height = bubble.style.width;
+  bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
+  bubble.style.animationDelay = Math.random() * 2 + 's';
+  bubblesContainer.appendChild(bubble);
+
+  // Remove bubble after animation
+  setTimeout(() => {
+    if (bubble.parentNode) {
+      bubble.parentNode.removeChild(bubble);
+    }
+  }, 10000);
+};
+
+// Create bubbles periodically (moved to global scope)
+function createBubbles() {
+  const delay = 1500 + Math.random() * 2000; // 1.5s to 3.5s
+  window.bubbleInterval = setTimeout(() => {
+    createBubble();
+    createBubbles();
+  }, delay);
+}
+
+// Start bubble creation if container exists
 if (bubblesContainer) {
-  const createBubble = () => {
-    const bubble = document.createElement('div');
-    bubble.className = 'bubble';
-    bubble.style.left = Math.random() * window.innerWidth + 'px';
-    bubble.style.width = (20 + Math.random() * 40) + 'px';
-    bubble.style.height = bubble.style.width;
-    bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
-    bubble.style.animationDelay = Math.random() * 2 + 's';
-    bubblesContainer.appendChild(bubble);
-
-    // Remove bubble after animation
-    setTimeout(() => {
-      if (bubble.parentNode) {
-        bubble.parentNode.removeChild(bubble);
-      }
-    }, 10000);
-  };
-
-  // Create bubbles periodically
-  function createBubbles() {
-    const delay = 1500 + Math.random() * 2000; // 1.5s to 3.5s
-    window.bubbleInterval = setTimeout(() => {
-      createBubble();
-      createBubbles();
-    }, delay);
-  }
-
-  // Start bubble creation
   createBubbles();
 }
 
@@ -628,7 +632,7 @@ let rainbowInterval;
 
 function toggleRainbowMode() {
   rainbowMode = !rainbowMode;
-  
+
   if (rainbowMode) {
     startRainbowMode();
     showNotification('🌈 Rainbow mode activated!', 'success');
@@ -644,7 +648,7 @@ function startRainbowMode() {
   let hue = 0;
   rainbowInterval = setInterval(() => {
     hue = (hue + 1) % 360;
-    
+
     // Update background gradient
     document.body.style.background = `
       linear-gradient(-45deg, 
@@ -654,7 +658,7 @@ function startRainbowMode() {
         hsl(${(hue + 180) % 360}, 70%, 8%)
       )
     `;
-    
+
     // Update card glow
     const card = document.querySelector('.card');
     if (card) {
@@ -665,7 +669,7 @@ function startRainbowMode() {
         0 0 30px hsl(${hue}, 80%, 60%)
       `;
     }
-    
+
     // Update shooting stars colors
     const shootingStars = document.querySelectorAll('.shooting-star');
     shootingStars.forEach(star => {
@@ -686,7 +690,7 @@ function stopRainbowMode() {
     clearInterval(rainbowInterval);
     rainbowInterval = null;
   }
-  
+
   // Reset to original colors
   document.body.style.background = '';
   const card = document.querySelector('.card');
@@ -726,7 +730,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Simple Analytics
-function trackEvent(eventName, data = {}) {
+function trackEvent(eventName) {
   const analytics = JSON.parse(localStorage.getItem('cardAnalytics') || '{}');
   const today = new Date().toDateString();
 
@@ -773,17 +777,17 @@ let performanceMode = false;
 let fpsCounter = 0;
 let lastFpsTime = 0;
 let currentFps = 60;
-let lowPerformanceThreshold = 30; // FPS threshold for low performance
+const lowPerformanceThreshold = 30; // FPS threshold for low performance
 
 function updateFPS() {
   fpsCounter++;
   const now = performance.now();
-  
+
   if (now - lastFpsTime >= 1000) {
     currentFps = fpsCounter;
     fpsCounter = 0;
     lastFpsTime = now;
-    
+
     // Auto-adjust performance mode based on FPS
     if (currentFps < lowPerformanceThreshold && !performanceMode) {
       enablePerformanceMode();
@@ -791,20 +795,20 @@ function updateFPS() {
       disablePerformanceMode();
     }
   }
-  
+
   requestAnimationFrame(updateFPS);
 }
 
 function enablePerformanceMode() {
   performanceMode = true;
   showNotification('⚡ Performance mode activated (low FPS detected)', 'info');
-  
+
   // Reduce shooting star frequency
   if (window.shootingStarInterval) {
     clearInterval(window.shootingStarInterval);
     window.shootingStarInterval = setInterval(createShootingStar, 4000 + Math.random() * 3000);
   }
-  
+
   // Reduce particle count
   const particles = document.querySelectorAll('.particle');
   particles.forEach((particle, index) => {
@@ -812,13 +816,13 @@ function enablePerformanceMode() {
       particle.style.display = 'none';
     }
   });
-  
+
   // Reduce bubble frequency
   if (window.bubbleInterval) {
     clearInterval(window.bubbleInterval);
     window.bubbleInterval = setInterval(createBubble, 3000 + Math.random() * 2000);
   }
-  
+
   // Simplify rainbow mode if active
   if (rainbowMode) {
     if (rainbowInterval) {
@@ -834,25 +838,25 @@ function enablePerformanceMode() {
 function disablePerformanceMode() {
   performanceMode = false;
   showNotification('🎨 Full effects restored (performance improved)', 'success');
-  
+
   // Restore shooting star frequency
   if (window.shootingStarInterval) {
     clearInterval(window.shootingStarInterval);
     window.shootingStarInterval = setInterval(createShootingStar, 1500 + Math.random() * 4000);
   }
-  
+
   // Restore all particles
   const particles = document.querySelectorAll('.particle');
   particles.forEach(particle => {
     particle.style.display = 'block';
   });
-  
+
   // Restore bubble frequency
   if (window.bubbleInterval) {
     clearInterval(window.bubbleInterval);
     window.bubbleInterval = setInterval(createBubble, 1500 + Math.random() * 2000);
   }
-  
+
   // Restore rainbow mode if active
   if (rainbowMode) {
     if (rainbowInterval) {
