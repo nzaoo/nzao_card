@@ -31,95 +31,134 @@ function playSound(frequency = 440, duration = 0.1) {
 
 // Loading Screen
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loading-screen').classList.add('hidden');
+  const loadingScreen = document.getElementById('loading-screen');
+  if (loadingScreen) {
     setTimeout(() => {
-      document.getElementById('loading-screen').style.display = 'none';
-    }, 500);
-  }, 2000);
+      loadingScreen.classList.add('hidden');
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+      }, 500);
+    }, 2000);
+  }
 });
 
 // Theme Toggle
 const themeToggle = document.getElementById('theme-toggle');
+const soundToggle = document.getElementById('sound-toggle');
 const body = document.body;
-let isDark = true;
 
-themeToggle.addEventListener('click', () => {
-  isDark = !isDark;
-  if (isDark) {
-    body.classList.remove('light-theme');
-    themeToggle.querySelector('.icon').textContent = '🌙';
-  } else {
+if (themeToggle && soundToggle) {
+  let isDark = localStorage.getItem('theme') !== 'light';
+
+  // Initialize theme from localStorage
+  if (!isDark) {
     body.classList.add('light-theme');
     themeToggle.querySelector('.icon').textContent = '☀️';
+  } else {
+    themeToggle.querySelector('.icon').textContent = '🌙';
   }
-  playSound(523, 0.1);
-});
 
-// Sound Toggle
-const soundToggle = document.getElementById('sound-toggle');
-soundToggle.addEventListener('click', () => {
-  soundEnabled = !soundEnabled;
+  themeToggle.addEventListener('click', () => {
+    isDark = !isDark;
+    if (isDark) {
+      body.classList.remove('light-theme');
+      themeToggle.querySelector('.icon').textContent = '🌙';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      body.classList.add('light-theme');
+      themeToggle.querySelector('.icon').textContent = '☀️';
+      localStorage.setItem('theme', 'light');
+    }
+    playSound(523, 0.1);
+  });
+
+  // Sound Toggle
+  soundEnabled = localStorage.getItem('sound') !== 'disabled';
   soundToggle.querySelector('.icon').textContent = soundEnabled ? '🔊' : '🔇';
-  playSound(659, 0.1);
-});
+
+  soundToggle.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    soundToggle.querySelector('.icon').textContent = soundEnabled ? '🔊' : '🔇';
+    localStorage.setItem('sound', soundEnabled ? 'enabled' : 'disabled');
+    playSound(659, 0.1);
+  });
+
+  // Keyboard navigation for toggles
+  [themeToggle, soundToggle].forEach(toggle => {
+    toggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle.click();
+      }
+    });
+  });
+}
 
 // Enhanced Wind Effect
 const windContainer = document.getElementById('wind-container');
-for (let i = 0; i < 60; i++) {
-  const dot = document.createElement('div');
-  dot.className = 'particle';
-  dot.style.left = Math.random() * window.innerWidth + 'px';
-  dot.style.top = Math.random() * window.innerHeight + 'px';
-  dot.style.animationDuration = 5 + Math.random() * 15 + 's';
-  dot.style.animationDelay = Math.random() * 5 + 's';
-  windContainer.appendChild(dot);
+if (windContainer) {
+  for (let i = 0; i < 60; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'particle';
+    dot.style.left = Math.random() * window.innerWidth + 'px';
+    dot.style.top = Math.random() * window.innerHeight + 'px';
+    dot.style.animationDuration = 5 + Math.random() * 15 + 's';
+    dot.style.animationDelay = Math.random() * 5 + 's';
+    windContainer.appendChild(dot);
+  }
 }
 
 // Greet by hour with enhanced animation
 const subtitle = document.getElementById('subtitle');
-const hour = new Date().getHours();
-const greetings = {
-  morning: 'Good morning ☀️',
-  afternoon: 'Good afternoon 🌤️',
-  evening: 'Good evening 🌅',
-  night: 'Good night 🌙'
-};
+if (subtitle) {
+  const hour = new Date().getHours();
+  const greetings = {
+    morning: 'Good morning ☀️',
+    afternoon: 'Good afternoon 🌤️',
+    evening: 'Good evening 🌅',
+    night: 'Good night 🌙'
+  };
 
-let greeting;
-if (hour >= 5 && hour < 12) greeting = greetings.morning;
-else if (hour < 18) greeting = greetings.afternoon;
-else if (hour < 22) greeting = greetings.evening;
-else greeting = greetings.night;
+  let greeting;
+  if (hour >= 5 && hour < 12) greeting = greetings.morning;
+  else if (hour < 18) greeting = greetings.afternoon;
+  else if (hour < 22) greeting = greetings.evening;
+  else greeting = greetings.night;
 
-subtitle.innerText = greeting;
+  subtitle.innerText = greeting;
+}
 
 // Enhanced Bio typing effect
 const bio = document.getElementById('bio-text');
-const bioContent = '👋 Hey there, I\'m Zaoo, a passionate web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day. Always excited to learn new technologies! 🚀';
-let i = 0;
+if (bio) {
+  const bioContent = '👋 Hey there, I\'m Zaoo, a passionate web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day. Always excited to learn new technologies! 🚀';
+  let i = 0;
 
-function typeBio() {
-  if (i < bioContent.length) {
-    bio.textContent += bioContent.charAt(i);
-    i++;
-    setTimeout(typeBio, 30);
-  }
+  setTimeout(() => {
+    function typeBio() {
+      if (i < bioContent.length) {
+        bio.textContent += bioContent.charAt(i);
+        i++;
+        setTimeout(typeBio, 30);
+      }
+    }
+    typeBio();
+  }, 1000);
 }
-
-setTimeout(typeBio, 1000);
 
 // Enhanced Copy phone with notification
 const phoneNumber = document.getElementById('phone-number');
-phoneNumber.style.cursor = 'pointer';
-phoneNumber.title = 'Click to copy';
+if (phoneNumber) {
+  phoneNumber.style.cursor = 'pointer';
+  phoneNumber.title = 'Click to copy';
 
-phoneNumber.addEventListener('click', () => {
-  navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
-    playSound(523, 0.2);
-    showNotification('📞 Phone number copied!', 'success');
+  phoneNumber.addEventListener('click', () => {
+    navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
+      playSound(523, 0.2);
+      showNotification('📞 Phone number copied!', 'success');
+    });
   });
-});
+}
 
 // Notification System
 function showNotification(message, type = 'info') {
@@ -177,46 +216,110 @@ rows.forEach((row) => {
   });
 });
 
-// Enhanced Parallax card tilt
+// Enhanced Parallax card tilt with debouncing
 const card = document.querySelector('.card');
-document.addEventListener('mousemove', (e) => {
-  const x = e.clientX - window.innerWidth / 2;
-  const y = e.clientY - window.innerHeight / 2;
-  card.style.transform = `rotateY(${x / 30}deg) rotateX(${-y / 30}deg)`;
-});
+if (card) {
+  let tiltTimeout;
 
-// Scroll Progress
+  document.addEventListener('mousemove', (e) => {
+    clearTimeout(tiltTimeout);
+    
+    tiltTimeout = setTimeout(() => {
+      const x = e.clientX - window.innerWidth / 2;
+      const y = e.clientY - window.innerHeight / 2;
+      card.style.transform = `rotateY(${x / 30}deg) rotateX(${-y / 30}deg)`;
+    }, 16); // ~60fps
+  });
+
+  // Reset card position when mouse leaves
+  document.addEventListener('mouseleave', () => {
+    card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+  });
+}
+
+// Optimized scroll progress with throttling
+let scrollTimeout;
 window.addEventListener('scroll', () => {
-  const scrollTop = window.pageYOffset;
-  const docHeight = document.body.offsetHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+  if (!scrollTimeout) {
+    scrollTimeout = setTimeout(() => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      const scrollProgress = document.getElementById('scroll-progress');
+      if (scrollProgress) {
+        scrollProgress.style.width = scrollPercent + '%';
+      }
+      scrollTimeout = null;
+    }, 16);
+  }
 });
 
 // Action Buttons
-document.getElementById('download-cv').addEventListener('click', (e) => {
-  e.preventDefault();
-  playSound(523, 0.2);
-  showNotification('📄 CV download feature coming soon!', 'info');
-});
+const downloadCvBtn = document.getElementById('download-cv');
+if (downloadCvBtn) {
+  downloadCvBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    playSound(523, 0.2);
+    showNotification('📄 CV download feature coming soon!', 'info');
+  });
+}
 
-document.getElementById('portfolio').addEventListener('click', (e) => {
-  e.preventDefault();
-  playSound(659, 0.2);
-  showNotification('🎨 Portfolio feature coming soon!', 'info');
-});
+const portfolioBtn = document.getElementById('portfolio');
+if (portfolioBtn) {
+  portfolioBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    playSound(659, 0.2);
+    showNotification('🎨 Portfolio feature coming soon!', 'info');
+  });
+}
+
+// Share Card functionality
+const shareCardBtn = document.getElementById('share-card');
+if (shareCardBtn) {
+  shareCardBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    playSound(659, 0.2);
+    
+    if (navigator.share) {
+      navigator.share({
+        title: 'nzaoo - Web Developer',
+        text: 'Check out my digital business card!',
+        url: window.location.href
+      }).then(() => {
+        showNotification('📤 Card shared successfully!', 'success');
+      }).catch(() => {
+        copyToClipboard();
+      });
+    } else {
+      copyToClipboard();
+    }
+  });
+}
+
+function copyToClipboard() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    showNotification('📋 Card link copied to clipboard!', 'success');
+  }).catch(() => {
+    showNotification('📤 Share feature not available', 'info');
+  });
+}
 
 // Skills hover effect
 const skillItems = document.querySelectorAll('.skill-item');
-skillItems.forEach((skill, index) => {
-  skill.addEventListener('mouseenter', () => {
-    playSound(440 + index * 20, 0.1);
+if (skillItems.length > 0) {
+  skillItems.forEach((skill, index) => {
+    skill.addEventListener('mouseenter', () => {
+      playSound(440 + index * 20, 0.1);
+    });
   });
-});
+}
 
 // Stagger animation with enhanced timing
 window.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('.profile-section').classList.add('show');
+  const profileSection = document.querySelector('.profile-section');
+  if (profileSection) {
+    profileSection.classList.add('show');
+  }
   const items = document.querySelectorAll('.fade-item');
   items.forEach((item, idx) => {
     setTimeout(() => item.classList.add('show'), 500 + idx * 200);
@@ -232,39 +335,73 @@ document.addEventListener('click', () => {
 
 // Interactive Background - Stars
 const starsContainer = document.getElementById('stars-container');
-for (let i = 0; i < 100; i++) {
-  const star = document.createElement('div');
-  star.className = 'star';
-  star.style.left = Math.random() * window.innerWidth + 'px';
-  star.style.top = Math.random() * window.innerHeight + 'px';
-  star.style.animationDelay = Math.random() * 3 + 's';
-  star.style.animationDuration = (2 + Math.random() * 2) + 's';
-  starsContainer.appendChild(star);
+if (starsContainer) {
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * window.innerWidth + 'px';
+    star.style.top = Math.random() * window.innerHeight + 'px';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    star.style.animationDuration = (2 + Math.random() * 2) + 's';
+    starsContainer.appendChild(star);
+  }
 }
 
 // Interactive Background - Bubbles
 const bubblesContainer = document.getElementById('bubbles-container');
-function createBubble() {
-  const bubble = document.createElement('div');
-  bubble.className = 'bubble';
-  bubble.style.left = Math.random() * window.innerWidth + 'px';
-  bubble.style.width = (20 + Math.random() * 40) + 'px';
-  bubble.style.height = bubble.style.width;
-  bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
-  bubble.style.animationDelay = Math.random() * 2 + 's';
-  bubblesContainer.appendChild(bubble);
-  
-  // Remove bubble after animation
-  setTimeout(() => {
-    if (bubble.parentNode) {
-      bubble.parentNode.removeChild(bubble);
-    }
-  }, 10000);
+if (bubblesContainer) {
+  const createBubble = () => {
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.style.left = Math.random() * window.innerWidth + 'px';
+    bubble.style.width = (20 + Math.random() * 40) + 'px';
+    bubble.style.height = bubble.style.width;
+    bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
+    bubble.style.animationDelay = Math.random() * 2 + 's';
+    bubblesContainer.appendChild(bubble);
+    
+    // Remove bubble after animation
+    setTimeout(() => {
+      if (bubble.parentNode) {
+        bubble.parentNode.removeChild(bubble);
+      }
+    }, 10000);
+  };
+
+  // Create bubbles periodically
+  setInterval(createBubble, 2000);
+  createBubble(); // Create first bubble
 }
 
-// Create bubbles periodically
-setInterval(createBubble, 2000);
-createBubble(); // Create first bubble
+// Generate QR Code
+function generateQRCode() {
+  const qrContainer = document.getElementById('qr-container');
+  if (qrContainer) {
+    const currentUrl = window.location.href;
+    
+    // Use a free QR code API
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(currentUrl)}`;
+    
+    const qrImage = document.createElement('img');
+    qrImage.src = qrUrl;
+    qrImage.alt = 'QR Code';
+    qrImage.style.width = '100%';
+    qrImage.style.height = '100%';
+    qrImage.style.borderRadius = '8px';
+    
+    qrImage.onload = () => {
+      qrContainer.innerHTML = '';
+      qrContainer.appendChild(qrImage);
+    };
+    
+    qrImage.onerror = () => {
+      qrContainer.innerHTML = '<div class="qr-placeholder">QR Code unavailable</div>';
+    };
+  }
+}
+
+// Generate QR code after page loads
+setTimeout(generateQRCode, 1000);
 
 // Live Status Management
 const statusDot = document.getElementById('status-dot');
@@ -281,13 +418,17 @@ const statuses = [
 let currentStatusIndex = 0;
 let adminMode = false;
 
-function updateStatus() {
-  const status = statuses[currentStatusIndex];
-  statusDot.className = `status-dot ${status.class}`;
-  statusText.textContent = status.text;
-}
+const updateStatus = () => {
+  if (statusDot && statusText) {
+    const status = statuses[currentStatusIndex];
+    statusDot.className = `status-dot ${status.class}`;
+    statusText.textContent = status.text;
+  }
+};
 
-function toggleAdminMode() {
+const toggleAdminMode = () => {
+  if (!statusIndicator || !adminModeIndicator) return;
+  
   adminMode = !adminMode;
   
   if (adminMode) {
@@ -312,10 +453,10 @@ function toggleAdminMode() {
     // Remove click functionality
     statusIndicator.onclick = null;
   }
-}
+};
 
 // Auto change status based on time (only when not in admin mode)
-function autoUpdateStatus() {
+const autoUpdateStatus = () => {
   if (!adminMode) {
     const hour = new Date().getHours();
     if (hour >= 9 && hour < 18) {
@@ -327,26 +468,31 @@ function autoUpdateStatus() {
     }
     updateStatus();
   }
+};
+
+if (statusDot && statusText && statusIndicator && adminModeIndicator) {
+  updateStatus();
+  autoUpdateStatus();
+
+  // Update status every hour (only when not in admin mode)
+  setInterval(autoUpdateStatus, 3600000);
 }
-
-updateStatus();
-autoUpdateStatus();
-
-// Update status every hour (only when not in admin mode)
-setInterval(autoUpdateStatus, 3600000);
 
 // Add some fun Easter eggs
 let clickCount = 0;
-document.querySelector('.name').addEventListener('click', () => {
-  clickCount++;
-  if (clickCount === 5) {
-    showNotification('🎉 You found the secret! You\'re awesome!', 'success');
-    playSound(523, 0.3);
-    setTimeout(() => playSound(659, 0.3), 300);
-    setTimeout(() => playSound(784, 0.3), 600);
-    clickCount = 0;
-  }
-});
+const nameElement = document.querySelector('.name');
+if (nameElement) {
+  nameElement.addEventListener('click', () => {
+    clickCount++;
+    if (clickCount === 5) {
+      showNotification('🎉 You found the secret! You\'re awesome!', 'success');
+      playSound(523, 0.3);
+      setTimeout(() => playSound(659, 0.3), 300);
+      setTimeout(() => playSound(784, 0.3), 600);
+      clickCount = 0;
+    }
+  });
+}
 
 // Add keyboard shortcuts
 document.addEventListener('keydown', (e) => {
@@ -354,11 +500,11 @@ document.addEventListener('keydown', (e) => {
     switch(e.key) {
     case 't':
       e.preventDefault();
-      themeToggle.click();
+      if (themeToggle) themeToggle.click();
       break;
     case 'm':
       e.preventDefault();
-      soundToggle.click();
+      if (soundToggle) soundToggle.click();
       break;
     }
   }
@@ -368,4 +514,47 @@ document.addEventListener('keydown', (e) => {
     e.preventDefault();
     toggleAdminMode();
   }
-}); 
+});
+
+// Simple Analytics
+function trackEvent(eventName, data = {}) {
+  const analytics = JSON.parse(localStorage.getItem('cardAnalytics') || '{}');
+  const today = new Date().toDateString();
+  
+  if (!analytics[today]) {
+    analytics[today] = { visits: 0, interactions: {} };
+  }
+  
+  if (eventName === 'visit') {
+    analytics[today].visits++;
+  } else {
+    analytics[today].interactions[eventName] = (analytics[today].interactions[eventName] || 0) + 1;
+  }
+  
+  localStorage.setItem('cardAnalytics', JSON.stringify(analytics));
+}
+
+// Track initial visit
+trackEvent('visit');
+
+// Track various interactions
+const infoRows = document.querySelectorAll('.info-row');
+if (infoRows.length > 0) {
+  infoRows.forEach(row => {
+    row.addEventListener('click', () => {
+      const label = row.querySelector('.label');
+      if (label) {
+        trackEvent(`click_${label.textContent.toLowerCase()}`);
+      }
+    });
+  });
+}
+
+const skillItemsForTracking = document.querySelectorAll('.skill-item');
+if (skillItemsForTracking.length > 0) {
+  skillItemsForTracking.forEach(skill => {
+    skill.addEventListener('click', () => {
+      trackEvent(`click_skill_${skill.textContent.toLowerCase()}`);
+    });
+  });
+} 

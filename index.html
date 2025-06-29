@@ -67,6 +67,31 @@
         50% { opacity: 0.5; }
       }
 
+      /* Skeleton Loading */
+      .skeleton {
+        background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+        background-size: 200% 100%;
+        animation: skeleton-loading 1.5s infinite;
+        border-radius: 4px;
+      }
+
+      @keyframes skeleton-loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+
+      .skeleton-text {
+        height: 1em;
+        margin: 0.5em 0;
+      }
+
+      .skeleton-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+      }
+
       /* Theme Toggle */
       .theme-toggle {
         position: fixed;
@@ -696,9 +721,60 @@
         font-weight: 500;
       }
 
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+      /* QR Code Section */
+      .qr-section {
+        margin-top: 25px;
+        text-align: center;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .qr-title {
+        color: gold;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        font-weight: bold;
+      }
+
+      .qr-container {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 15px;
+        background: white;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid gold;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      }
+
+      .qr-placeholder {
+        color: #666;
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      .qr-text {
+        color: #ccc;
+        font-size: 0.9rem;
+        font-style: italic;
+      }
+
+      /* Light theme QR styles */
+      body.light-theme .qr-section {
+        background: rgba(148, 163, 184, 0.05);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+      }
+
+      body.light-theme .qr-title {
+        color: #1e293b;
+      }
+
+      body.light-theme .qr-text {
+        color: #475569;
       }
     </style>
   </head>
@@ -718,12 +794,12 @@
     </div>
 
     <!-- Theme Toggle -->
-    <div class="theme-toggle" id="theme-toggle">
+    <div class="theme-toggle" id="theme-toggle" role="button" tabindex="0" aria-label="Toggle dark/light theme">
       <div class="icon">🌙</div>
     </div>
 
     <!-- Sound Toggle -->
-    <div class="sound-toggle" id="sound-toggle">
+    <div class="sound-toggle" id="sound-toggle" role="button" tabindex="0" aria-label="Toggle sound effects">
       <div class="icon">🔊</div>
     </div>
 
@@ -840,6 +916,16 @@
       <div class="action-buttons fade-item">
         <a href="#" class="action-btn primary" id="download-cv">📄 Download CV</a>
         <a href="#" class="action-btn" id="portfolio">🎨 Portfolio</a>
+        <a href="#" class="action-btn" id="share-card">📤 Share Card</a>
+      </div>
+
+      <!-- QR Code Section -->
+      <div class="qr-section fade-item">
+        <div class="qr-title">📱 Scan to connect</div>
+        <div class="qr-container" id="qr-container">
+          <div class="qr-placeholder">Loading QR Code...</div>
+        </div>
+        <div class="qr-text">Scan this QR code to save my contact info</div>
       </div>
     </div>
 
