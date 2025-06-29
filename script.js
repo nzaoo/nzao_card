@@ -369,8 +369,16 @@ if (bubblesContainer) {
   };
 
   // Create bubbles periodically
-  setInterval(createBubble, 2000);
-  createBubble(); // Create first bubble
+  function createBubbles() {
+    const delay = 1500 + Math.random() * 2000; // 1.5s to 3.5s
+    window.bubbleInterval = setTimeout(() => {
+      createBubble();
+      createBubbles();
+    }, delay);
+  }
+
+  // Start bubble creation
+  createBubbles();
 }
 
 // Create Shooting Stars
@@ -436,7 +444,7 @@ function createShootingStar() {
 // Create shooting stars periodically with random intervals
 function scheduleShootingStar() {
   const delay = 1500 + Math.random() * 4000; // 1.5s to 5.5s
-  setTimeout(() => {
+  window.shootingStarInterval = setTimeout(() => {
     createShootingStar();
     scheduleShootingStar();
   }, delay);
@@ -755,3 +763,139 @@ if (skillItemsForTracking.length > 0) {
     });
   });
 }
+
+// Performance Monitoring System
+let performanceMode = false;
+let fpsCounter = 0;
+let lastFpsTime = 0;
+let currentFps = 60;
+let lowPerformanceThreshold = 30; // FPS threshold for low performance
+
+function updateFPS() {
+  fpsCounter++;
+  const now = performance.now();
+  
+  if (now - lastFpsTime >= 1000) {
+    currentFps = fpsCounter;
+    fpsCounter = 0;
+    lastFpsTime = now;
+    
+    // Auto-adjust performance mode based on FPS
+    if (currentFps < lowPerformanceThreshold && !performanceMode) {
+      enablePerformanceMode();
+    } else if (currentFps > lowPerformanceThreshold + 10 && performanceMode) {
+      disablePerformanceMode();
+    }
+  }
+  
+  requestAnimationFrame(updateFPS);
+}
+
+function enablePerformanceMode() {
+  performanceMode = true;
+  showNotification('⚡ Performance mode activated (low FPS detected)', 'info');
+  
+  // Reduce shooting star frequency
+  if (window.shootingStarInterval) {
+    clearInterval(window.shootingStarInterval);
+    window.shootingStarInterval = setInterval(createShootingStar, 4000 + Math.random() * 3000);
+  }
+  
+  // Reduce particle count
+  const particles = document.querySelectorAll('.particle');
+  particles.forEach((particle, index) => {
+    if (index > 20) { // Keep only first 20 particles
+      particle.style.display = 'none';
+    }
+  });
+  
+  // Reduce bubble frequency
+  if (window.bubbleInterval) {
+    clearInterval(window.bubbleInterval);
+    window.bubbleInterval = setInterval(createBubble, 3000 + Math.random() * 2000);
+  }
+  
+  // Simplify rainbow mode if active
+  if (rainbowMode) {
+    if (rainbowInterval) {
+      clearInterval(rainbowInterval);
+      rainbowInterval = setInterval(() => {
+        const hue = (Date.now() * 0.05) % 360;
+        document.body.style.background = `linear-gradient(-45deg, hsl(${hue}, 70%, 10%), hsl(${(hue + 60) % 360}, 70%, 15%))`;
+      }, 100); // Slower update
+    }
+  }
+}
+
+function disablePerformanceMode() {
+  performanceMode = false;
+  showNotification('🎨 Full effects restored (performance improved)', 'success');
+  
+  // Restore shooting star frequency
+  if (window.shootingStarInterval) {
+    clearInterval(window.shootingStarInterval);
+    window.shootingStarInterval = setInterval(createShootingStar, 1500 + Math.random() * 4000);
+  }
+  
+  // Restore all particles
+  const particles = document.querySelectorAll('.particle');
+  particles.forEach(particle => {
+    particle.style.display = 'block';
+  });
+  
+  // Restore bubble frequency
+  if (window.bubbleInterval) {
+    clearInterval(window.bubbleInterval);
+    window.bubbleInterval = setInterval(createBubble, 1500 + Math.random() * 2000);
+  }
+  
+  // Restore rainbow mode if active
+  if (rainbowMode) {
+    if (rainbowInterval) {
+      clearInterval(rainbowInterval);
+      startRainbowMode(); // Restore original rainbow mode
+    }
+  }
+}
+
+// Manual performance mode toggle
+function togglePerformanceMode() {
+  if (performanceMode) {
+    disablePerformanceMode();
+  } else {
+    enablePerformanceMode();
+  }
+}
+
+// Add performance mode to keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey || e.metaKey) {
+    switch(e.key) {
+    case 't':
+      e.preventDefault();
+      if (themeToggle) themeToggle.click();
+      break;
+    case 'm':
+      e.preventDefault();
+      if (soundToggle) soundToggle.click();
+      break;
+    case 'r':
+      e.preventDefault();
+      toggleRainbowMode();
+      break;
+    case 'p':
+      e.preventDefault();
+      togglePerformanceMode();
+      break;
+    }
+  }
+  
+  // Admin mode toggle
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'z') {
+    e.preventDefault();
+    toggleAdminMode();
+  }
+});
+
+// Start FPS monitoring
+updateFPS();
