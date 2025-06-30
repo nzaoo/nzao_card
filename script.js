@@ -135,9 +135,9 @@ if (subtitle) {
 const bio = document.getElementById('bio-text');
 if (bio) {
   const bioContent =
-    "👋 Hey there, I'm Zaoo, a passionate web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day. Always excited to learn new technologies! 🚀";
+    '👋 Hey there, I\'m Zaoo, a passionate web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day. Always excited to learn new technologies! 🚀';
   let i = 0;
-  bio.textContent = ""; // Fix: clear previous content before typing
+  bio.textContent = '';
 
   setTimeout(() => {
     function typeBio() {
@@ -151,22 +151,15 @@ if (bio) {
   }, 1000);
 }
 
-  setTimeout(() => {
-    function typeBio() {
-      if (i < bioContent.length) {
-        bio.textContent += bioContent.charAt(i);
-        i++;
-        setTimeout(typeBio, 30);
-      }
-    }
-    // (Fixed: removed duplicate setTimeout/typeBio block)
+const phoneNumber = document.getElementById('phone-number');
+if (phoneNumber) {
   phoneNumber.style.cursor = 'pointer';
   phoneNumber.title = 'Click to copy';
 
   phoneNumber.addEventListener('click', () => {
     navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
       playSound(523, 0.2);
-      showNotification('\ud83d\udcde Phone number copied!', 'success');
+      showNotification('📞 Phone number copied!', 'success');
     });
   });
 }
@@ -410,7 +403,7 @@ function createShootingStar() {
     'linear-gradient(90deg, transparent, rgba(255,255,255,0.9), rgba(255,215,0,0.8), transparent)',
     'linear-gradient(90deg, transparent, rgba(255,215,0,0.9), rgba(255,255,255,0.7), transparent)',
     'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), rgba(255,107,107,0.6), transparent)',
-    'linear-gradient(90deg, transparent, rgba(255,215,0,0.7), rgba(255,255,255,0.9), transparent)',
+    'linear-gradient(90deg, transparent, rgba(255,215,0,0.7), rgba(255,255,255,0.9), transparent)'
   ];
 
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -564,7 +557,7 @@ const adminModeIndicator = document.getElementById('admin-mode-indicator');
 const statuses = [
   { class: 'available', text: 'Available for work', color: '#4CAF50' },
   { class: 'busy', text: 'Currently busy', color: '#FF9800' },
-  { class: 'away', text: 'Away from keyboard', color: '#FFC107' },
+  { class: 'away', text: 'Away from keyboard', color: '#FFC107' }
 ];
 
 let currentStatusIndex = 0;
@@ -729,18 +722,18 @@ function stopRainbowMode() {
 document.addEventListener('keydown', e => {
   if (e.ctrlKey || e.metaKey) {
     switch (e.key) {
-      case 't':
-        e.preventDefault();
-        if (themeToggle) themeToggle.click();
-        break;
-      case 'm':
-        e.preventDefault();
-        if (soundToggle) soundToggle.click();
-        break;
-      case 'r':
-        e.preventDefault();
-        toggleRainbowMode();
-        break;
+    case 't':
+      e.preventDefault();
+      if (themeToggle) themeToggle.click();
+      break;
+    case 'm':
+      e.preventDefault();
+      if (soundToggle) soundToggle.click();
+      break;
+    case 'r':
+      e.preventDefault();
+      toggleRainbowMode();
+      break;
     }
   }
   // Performance mode: Ctrl+Shift+X
