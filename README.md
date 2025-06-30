@@ -1,4 +1,4 @@
-# 🌟 Ngoc Giau - Interactive Digital Business Card
+# 🌟 Nzaoo - Interactive Digital Business Card
 
 <div align="center">
 
