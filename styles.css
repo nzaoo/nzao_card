@@ -48,6 +48,23 @@
   --transition-slow: 0.6s ease-out;
 }
 
+/* Force dark mode on all devices */
+html {
+  color-scheme: dark;
+}
+
+/* Ensure mobile status bar is dark */
+@media screen and (max-width: 768px) {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background: linear-gradient(-45deg, #000, #111, #1a1a1a, #000) !important;
+    color: #fff !important;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -61,6 +78,57 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Override light mode preferences */
+@media (prefers-color-scheme: light) {
+  body {
+    background: linear-gradient(-45deg, #000, #111, #1a1a1a, #000) !important;
+    color: #fff !important;
+  }
+
+  .card {
+    background: var(--card-bg) !important;
+    color: #fff !important;
+  }
+
+  .text-primary,
+  .text-secondary,
+  .text-muted {
+    color: #fff !important;
+  }
+
+  /* Ensure all text elements are white */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  div,
+  a,
+  label,
+  input,
+  textarea {
+    color: #fff !important;
+  }
+
+  /* Ensure form elements have dark backgrounds */
+  input,
+  textarea,
+  select {
+    background: var(--card-bg) !important;
+    border-color: var(--glass-border) !important;
+  }
+
+  /* Ensure buttons maintain dark theme */
+  button {
+    background: var(--card-bg) !important;
+    color: #fff !important;
+    border-color: var(--glass-border) !important;
+  }
 }
 
 @keyframes gradient-bg {
