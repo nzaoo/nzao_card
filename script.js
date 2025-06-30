@@ -119,7 +119,7 @@ if (subtitle) {
     morning: 'Good morning ☀️',
     afternoon: 'Good afternoon 🌤️',
     evening: 'Good evening 🌅',
-    night: 'Good night 🌙',
+    night: 'Good night 🌙'
   };
 
   let greeting;
@@ -286,7 +286,7 @@ if (shareCardBtn) {
         .share({
           title: 'nzaoo - Web Developer',
           text: 'Check out my digital business card!',
-          url: window.location.href,
+          url: window.location.href
         })
         .then(() => {
           showNotification('📤 Card shared successfully!', 'success');
@@ -403,7 +403,7 @@ function createShootingStar() {
     'linear-gradient(90deg, transparent, rgba(255,255,255,0.9), rgba(255,215,0,0.8), transparent)',
     'linear-gradient(90deg, transparent, rgba(255,215,0,0.9), rgba(255,255,255,0.7), transparent)',
     'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), rgba(255,107,107,0.6), transparent)',
-    'linear-gradient(90deg, transparent, rgba(255,215,0,0.7), rgba(255,255,255,0.9), transparent)',
+    'linear-gradient(90deg, transparent, rgba(255,215,0,0.7), rgba(255,255,255,0.9), transparent)'
   ];
 
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -557,7 +557,7 @@ const adminModeIndicator = document.getElementById('admin-mode-indicator');
 const statuses = [
   { class: 'available', text: 'Available for work', color: '#4CAF50' },
   { class: 'busy', text: 'Currently busy', color: '#FF9800' },
-  { class: 'away', text: 'Away from keyboard', color: '#FFC107' },
+  { class: 'away', text: 'Away from keyboard', color: '#FFC107' }
 ];
 
 let currentStatusIndex = 0;
