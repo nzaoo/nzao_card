@@ -202,8 +202,8 @@ _Experience the full interactive digital business card_
 
 | Platform         | Link                                                        | Username   |
 | ---------------- | ----------------------------------------------------------- | ---------- |
-| **📧 Email**     | [nzao1327@gmail.com](mailto:nzao1327@gmail.com)             | Ngoc Giauu |
-| **📱 Phone**     | [0359 511 473](tel:+84359511473)                            | Ngoc Giauu |
+| **📧 Email**     | [nzao1327@gmail.com](mailto:nzao1327@gmail.com)             | nzaoo      |
+| **📱 Phone**     | [0359 511 473](tel:+84359511473)                            | nzaoo      |
 | **💻 GitHub**    | [github.com/nzaoo](https://github.com/nzaoo)                | @nzaoo     |
 | **📘 Facebook**  | [facebook.com/nzao13](https://www.facebook.com/nzao13)      | @nzao13    |
 | **📷 Instagram** | [instagram.com/zn_zaoo](https://www.instagram.com/zn_zaoo/) | @zn_zaoo   |
@@ -329,7 +329,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **⭐ Star this repository if you find it helpful! ⭐**
 
-**Made with ❤️ by [Ngoc Giau](https://github.com/nzaoo)**
+**Made with ❤️ by [nzaoo](https://github.com/nzaoo)**
 
 </div>
 
