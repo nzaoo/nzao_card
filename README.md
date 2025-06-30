@@ -329,7 +329,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **⭐ Star this repository if you find it helpful! ⭐**
 
-**Made with ❤️ by [nzaoo](https://github.com/nzaoo)**
+**Made with ❤️ by [Ngoc Giau](https://github.com/nzaoo)**
 
 </div>
 
