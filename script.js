@@ -119,7 +119,7 @@ if (subtitle) {
     morning: 'Good morning ☀️',
     afternoon: 'Good afternoon 🌤️',
     evening: 'Good evening 🌅',
-    night: 'Good night 🌙',
+    night: 'Good night 🌙'
   };
 
   let greeting;
@@ -137,6 +137,7 @@ if (bio) {
   const bioContent =
     "👋 Hey there, I'm Zaoo, a passionate web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day. Always excited to learn new technologies! 🚀";
   let i = 0;
+  bio.textContent = ""; // Fix: clear previous content before typing
 
   setTimeout(() => {
     function typeBio() {
@@ -150,16 +151,22 @@ if (bio) {
   }, 1000);
 }
 
-// Enhanced Copy phone with notification
-const phoneNumber = document.getElementById('phone-number');
-if (phoneNumber) {
+  setTimeout(() => {
+    function typeBio() {
+      if (i < bioContent.length) {
+        bio.textContent += bioContent.charAt(i);
+        i++;
+        setTimeout(typeBio, 30);
+      }
+    }
+    // (Fixed: removed duplicate setTimeout/typeBio block)
   phoneNumber.style.cursor = 'pointer';
   phoneNumber.title = 'Click to copy';
 
   phoneNumber.addEventListener('click', () => {
     navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
       playSound(523, 0.2);
-      showNotification('📞 Phone number copied!', 'success');
+      showNotification('\ud83d\udcde Phone number copied!', 'success');
     });
   });
 }
@@ -286,7 +293,7 @@ if (shareCardBtn) {
         .share({
           title: 'nzaoo - Web Developer',
           text: 'Check out my digital business card!',
-          url: window.location.href,
+          url: window.location.href
         })
         .then(() => {
           showNotification('📤 Card shared successfully!', 'success');
@@ -636,7 +643,7 @@ if (nameElement) {
   nameElement.addEventListener('click', () => {
     clickCount++;
     if (clickCount === 5) {
-      showNotification("🎉 You found the secret! You're awesome!", 'success');
+      showNotification('\ud83c\udf89 You found the secret! You\'re awesome!', 'success');
       playSound(523, 0.3);
       setTimeout(() => playSound(659, 0.3), 300);
       setTimeout(() => playSound(784, 0.3), 600);
