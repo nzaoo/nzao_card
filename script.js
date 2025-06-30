@@ -135,9 +135,8 @@ if (subtitle) {
 const bio = document.getElementById('bio-text');
 if (bio) {
   const bioContent =
-    "👋 Hey there, I'm Zaoo, a passionate web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day. Always excited to learn new technologies! 🚀";
+    '👋 Hey there, I\'m Zaoo, a passionate web developer in the learning phase, seeking knowledge and gaining experience to develop myself day by day. Always excited to learn new technologies! 🚀';
   let i = 0;
-  bio.textContent = '';
 
   setTimeout(() => {
     function typeBio() {
@@ -151,6 +150,7 @@ if (bio) {
   }, 1000);
 }
 
+// Enhanced Copy phone with notification
 const phoneNumber = document.getElementById('phone-number');
 if (phoneNumber) {
   phoneNumber.style.cursor = 'pointer';
@@ -636,10 +636,7 @@ if (nameElement) {
   nameElement.addEventListener('click', () => {
     clickCount++;
     if (clickCount === 5) {
-      showNotification(
-        "\ud83c\udf89 You found the secret! You're awesome!",
-        'success'
-      );
+      showNotification('🎉 You found the secret! You\'re awesome!', 'success');
       playSound(523, 0.3);
       setTimeout(() => playSound(659, 0.3), 300);
       setTimeout(() => playSound(784, 0.3), 600);
@@ -725,18 +722,18 @@ function stopRainbowMode() {
 document.addEventListener('keydown', e => {
   if (e.ctrlKey || e.metaKey) {
     switch (e.key) {
-      case 't':
-        e.preventDefault();
-        if (themeToggle) themeToggle.click();
-        break;
-      case 'm':
-        e.preventDefault();
-        if (soundToggle) soundToggle.click();
-        break;
-      case 'r':
-        e.preventDefault();
-        toggleRainbowMode();
-        break;
+    case 't':
+      e.preventDefault();
+      if (themeToggle) themeToggle.click();
+      break;
+    case 'm':
+      e.preventDefault();
+      if (soundToggle) soundToggle.click();
+      break;
+    case 'r':
+      e.preventDefault();
+      toggleRainbowMode();
+      break;
     }
   }
   // Performance mode: Ctrl+Shift+X
