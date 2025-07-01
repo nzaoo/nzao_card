@@ -49,6 +49,10 @@ function initLoadingScreen() {
         loadingScreen.classList.add('hidden');
         setTimeout(() => {
           loadingScreen.style.display = 'none';
+          // Hiển thị nội dung sau khi loading
+          document.querySelectorAll('.fade-item').forEach(el => {
+            el.classList.add('show');
+          });
         }, 500);
       }, 2000);
     }
