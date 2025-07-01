@@ -2,7 +2,7 @@
 let audioContext;
 let soundEnabled = true;
 
-function initAudio() {
+export function initAudio() {
   try {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
   } catch (e) {
@@ -10,30 +10,29 @@ function initAudio() {
   }
 }
 
-function playSound(frequency = 440, duration = 0.1) {
-  if (!soundEnabled || !audioContext) return;
-
-  const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
-
-  oscillator.connect(gainNode);
-  gainNode.connect(audioContext.destination);
-
-  oscillator.frequency.value = frequency;
-  oscillator.type = 'sine';
-
-  gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-  gainNode.gain.exponentialRampToValueAtTime(
-    0.01,
-    audioContext.currentTime + duration
-  );
-
-  oscillator.start(audioContext.currentTime);
-  oscillator.stop(audioContext.currentTime + duration);
+export function playSound(frequency = 440, duration = 0.1) {
+  try {
+    const ctx = window.audioCtx || (window.audioCtx = new (window.AudioContext || window.webkitAudioContext)());
+    const oscillator = ctx.createOscillator();
+    const gain = ctx.createGain();
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+    gain.gain.value = 0.08;
+    oscillator.connect(gain);
+    gain.connect(ctx.destination);
+    oscillator.start();
+    oscillator.stop(ctx.currentTime + duration);
+    oscillator.onended = () => {
+      oscillator.disconnect();
+      gain.disconnect();
+    };
+  } catch (e) {
+    // ignore
+  }
 }
 
 // Sound Toggle functionality
-function initSoundToggle() {
+export function initSoundToggle() {
   const soundToggle = document.getElementById('sound-toggle');
   if (soundToggle) {
     soundEnabled = localStorage.getItem('sound') !== 'disabled';
@@ -58,4 +57,4 @@ function initSoundToggle() {
   }
 }
 
-export { initAudio, playSound, initSoundToggle, soundEnabled };
+export { soundEnabled };
