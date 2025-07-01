@@ -12,7 +12,10 @@ export function initAudio() {
 
 export function playSound(frequency = 440, duration = 0.1) {
   try {
-    const ctx = window.audioCtx || (window.audioCtx = new (window.AudioContext || window.webkitAudioContext)());
+    const ctx =
+      window.audioCtx ||
+      (window.audioCtx = new (window.AudioContext ||
+        window.webkitAudioContext)());
     const oscillator = ctx.createOscillator();
     const gain = ctx.createGain();
     oscillator.type = 'sine';

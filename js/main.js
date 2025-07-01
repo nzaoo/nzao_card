@@ -86,7 +86,9 @@ let performanceMode = false;
 function togglePerformanceMode() {
   performanceMode = !performanceMode;
   document.body.classList.toggle('performance-mode', performanceMode);
-  window.alert(performanceMode ? 'Performance mode ON' : 'Performance mode OFF');
+  window.alert(
+    performanceMode ? 'Performance mode ON' : 'Performance mode OFF'
+  );
 }
 
 // Easter egg: click name 5 lần để hiện secret
@@ -124,9 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Phát âm thanh phím đàn khi hover/click các mục có data-sound
   // Các tần số nốt nhạc piano (C4, D4, E4, F4, G4, A4, B4, C5)
-  const pianoNotes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25];
+  const pianoNotes = [
+    261.63, 293.66, 329.63, 349.23, 392.0, 440.0, 493.88, 523.25,
+  ];
   // Gán cho skill-item và info-row
-  const hoverEls = Array.from(document.querySelectorAll('[data-sound="hover"]'));
+  const hoverEls = Array.from(
+    document.querySelectorAll('[data-sound="hover"]')
+  );
   hoverEls.forEach((el, i) => {
     const freq = pianoNotes[i % pianoNotes.length];
     el.addEventListener('mouseenter', () => playSound(freq, 0.13));
