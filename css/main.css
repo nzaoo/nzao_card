@@ -768,3 +768,29 @@ a:hover {
     transform: scaleX(1.2) translateY(100px) translateX(400px);
   }
 }
+
+.info-row.pending,
+a.info-row.pending {
+  background: rgb(255 215 0 / 0.18);
+  border-color: var(--accent-color, var(--primary-gold));
+  box-shadow: 0 0 0 2px var(--accent-color, var(--primary-gold)) inset;
+  animation: pending-shake 0.2s 2;
+}
+
+@keyframes pending-shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
