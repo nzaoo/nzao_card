@@ -64,60 +64,73 @@ if (document.readyState === 'loading') {
 // Export for potential external use
 export { initApp };
 
-// Download CV
-const downloadCVBtn = document.getElementById('download-cv');
-if (downloadCVBtn) {
-  downloadCVBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    // Đường dẫn file CV, bạn có thể thay đổi nếu cần
-    const cvUrl = 'assets/cv.pdf';
-    // Tạo thẻ a ẩn để tải file
-    const link = document.createElement('a');
-    link.href = cvUrl;
-    link.download = 'nzaoo-cv.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    if (typeof showNotification === 'function') {
-      showNotification('📄 Đã bắt đầu tải CV!', 'success');
-    }
-  });
-}
+document.addEventListener('DOMContentLoaded', () => {
+  // Download CV
+  const downloadCVBtn = document.getElementById('download-cv');
+  if (downloadCVBtn) {
+    downloadCVBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cvUrl = 'assets/cv.pdf';
+      fetch(cvUrl)
+        .then(response => {
+          if (!response.ok) throw new Error('File not found');
+          return response.blob();
+        })
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'nzaoo-cv.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+          if (typeof showNotification === 'function') {
+            showNotification('📄 CV download started!', 'success');
+          }
+        })
+        .catch(() => {
+          if (typeof showNotification === 'function') {
+            showNotification('❌ CV file not found!', 'error');
+          }
+        });
+    });
+  }
 
-// Share Card
-const shareCardBtn = document.getElementById('share-card');
-if (shareCardBtn) {
-  shareCardBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    const shareData = {
-      title: 'nzaoo Card',
-      text: 'Xem card cá nhân của nzaoo!',
-      url: window.location.href
-    };
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-        if (typeof showNotification === 'function') {
-          showNotification('📤 Đã chia sẻ thành công!', 'success');
+  // Share Card
+  const shareCardBtn = document.getElementById('share-card');
+  if (shareCardBtn) {
+    shareCardBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const shareData = {
+        title: 'nzaoo Card',
+        text: 'Check out nzaoo personal card!',
+        url: window.location.href
+      };
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          if (typeof showNotification === 'function') {
+            showNotification('📤 Card shared successfully!', 'success');
+          }
+        } catch (err) {
+          if (typeof showNotification === 'function') {
+            showNotification('❌ Share cancelled or failed!', 'error');
+          }
         }
-      } catch (err) {
-        if (typeof showNotification === 'function') {
-          showNotification('❌ Chia sẻ bị huỷ hoặc lỗi!', 'error');
+      } else {
+        // Always fallback to copy link
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          if (typeof showNotification === 'function') {
+            showNotification('🔗 Card link copied to clipboard!', 'success');
+          }
+        } catch (err) {
+          if (typeof showNotification === 'function') {
+            showNotification('❌ Could not copy link!', 'error');
+          }
         }
       }
-    } else if (navigator.clipboard) {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        if (typeof showNotification === 'function') {
-          showNotification('🔗 Đã copy link card vào clipboard!', 'success');
-        }
-      } catch (err) {
-        if (typeof showNotification === 'function') {
-          showNotification('❌ Không copy được link!', 'error');
-        }
-      }
-    } else {
-      alert('Trình duyệt của bạn không hỗ trợ chia sẻ hoặc copy link!');
-    }
-  });
-}
+    });
+  }
+});
