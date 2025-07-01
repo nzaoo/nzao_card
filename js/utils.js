@@ -61,6 +61,8 @@ function copyToClipboard() {
 function generateQRCode() {
   const qrContainer = document.getElementById('qr-container');
   if (qrContainer) {
+    // Xóa placeholder hoặc QR code cũ nếu có
+    qrContainer.innerHTML = '';
     const qrCode = document.createElement('div');
     qrCode.className = 'qr-code';
     qrCode.innerHTML = `
