@@ -1,5 +1,6 @@
 import js from '@eslint/js';
 import globals from 'globals';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
   js.configs.recommended,
@@ -9,8 +10,8 @@ export default [
       sourceType: 'module',
       globals: {
         ...globals.browser,
-        ...globals.es2022
-      }
+        ...globals.es2022,
+      },
     },
     rules: {
       // Possible errors
@@ -39,11 +40,13 @@ export default [
       'prefer-const': 'error',
       'no-var': 'error',
       'arrow-spacing': 'error',
-      'template-curly-spacing': 'error'
-    }
+      'template-curly-spacing': 'error',
+    },
   },
   {
     files: ['**/*.js'],
-    ignores: ['node_modules/**', 'dist/**', 'build/**']
-  }
+    ignores: ['node_modules/**', 'dist/**', 'build/**'],
+  },
+  // Thêm cấu hình để tắt các rule xung đột với Prettier
+  eslintConfigPrettier,
 ];
