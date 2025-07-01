@@ -18,6 +18,7 @@ import {
   generateQRCode,
   updateFPS,
   trackEvent,
+  showNotification,
 } from './utils.js';
 
 // Initialize all modules
