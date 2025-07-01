@@ -273,13 +273,13 @@ _Experience the full interactive digital business card_
 
    ```bash
    # On Windows
-   start index.html
+   start src/index.html
 
    # On macOS
-   open index.html
+   open src/index.html
 
    # On Linux
-   xdg-open index.html
+   xdg-open src/index.html
    ```
 
 ### **Usage**

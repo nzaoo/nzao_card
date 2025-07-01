@@ -22,7 +22,8 @@ cd my-card
 
 ```
 my-card/
-├── index.html    # Trang chính
+├── src/
+│   ├── index.html    # Trang chính
 ├── styles.css    # CSS styles
 ├── script.js     # JavaScript
 └── README.md     # Mô tả
@@ -30,7 +31,7 @@ my-card/
 
 ## ✏️ Bước 4: Tùy Chỉnh Nội Dung
 
-### **Thay đổi thông tin cá nhân trong `index.html`:**
+### **Thay đổi thông tin cá nhân trong `src/index.html`:**
 
 - Tên của bạn
 - Email, phone, social media

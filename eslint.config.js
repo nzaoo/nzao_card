@@ -44,7 +44,7 @@ export default [
     },
   },
   {
-    files: ['**/*.js'],
+    files: ['**/*.js', 'src/**/*.js'],
     ignores: ['node_modules/**', 'dist/**', 'build/**'],
   },
   // Thêm cấu hình để tắt các rule xung đột với Prettier
