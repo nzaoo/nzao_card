@@ -1,5 +1,5 @@
 // Main application entry point
-import { initAudio, initSoundToggle } from './audio.js';
+import { initAudio, initSoundToggle, playSound } from './audio.js';
 import {
   initThemeToggle,
   initLoadingScreen,
@@ -121,4 +121,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (nameEl) {
     nameEl.addEventListener('click', handleNameClick);
   }
+
+  // Phát âm thanh phím đàn khi hover/click các mục có data-sound
+  // Các tần số nốt nhạc piano (C4, D4, E4, F4, G4, A4, B4, C5)
+  const pianoNotes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25];
+  // Gán cho skill-item và info-row
+  const hoverEls = Array.from(document.querySelectorAll('[data-sound="hover"]'));
+  hoverEls.forEach((el, i) => {
+    const freq = pianoNotes[i % pianoNotes.length];
+    el.addEventListener('mouseenter', () => playSound(freq, 0.13));
+  });
+  // Click vẫn giữ nguyên
+  document.querySelectorAll('[data-sound="click"]').forEach(el => {
+    el.addEventListener('click', () => playSound(523, 0.12));
+  });
 });
