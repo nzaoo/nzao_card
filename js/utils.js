@@ -61,20 +61,21 @@ function copyToClipboard() {
 function generateQRCode() {
   const qrContainer = document.getElementById('qr-container');
   if (qrContainer) {
-    // Xóa placeholder hoặc QR code cũ nếu có
     qrContainer.innerHTML = '';
-    const qrCode = document.createElement('div');
-    qrCode.className = 'qr-code';
-    qrCode.innerHTML = `
-      <div class="qr-grid">
-        ${Array.from(
-          { length: 25 },
-          () =>
-            `<div class="qr-cell ${Math.random() > 0.5 ? 'filled' : ''}"></div>`
-        ).join('')}
-      </div>
+    // SVG QR code tĩnh (ví dụ: mã hóa số điện thoại)
+    qrContainer.innerHTML = `
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <rect x="10" y="10" width="20" height="20" fill="#000"/>
+        <rect x="50" y="10" width="20" height="20" fill="#000"/>
+        <rect x="90" y="10" width="20" height="20" fill="#000"/>
+        <rect x="10" y="50" width="20" height="20" fill="#000"/>
+        <rect x="50" y="50" width="20" height="20" fill="#000"/>
+        <rect x="90" y="50" width="20" height="20" fill="#000"/>
+        <rect x="10" y="90" width="20" height="20" fill="#000"/>
+        <rect x="50" y="90" width="20" height="20" fill="#000"/>
+        <rect x="90" y="90" width="20" height="20" fill="#000"/>
+      </svg>
     `;
-    qrContainer.appendChild(qrCode);
   }
 }
 
