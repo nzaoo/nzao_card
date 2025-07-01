@@ -180,10 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Nếu nhấn ra ngoài, reset trạng thái
   document.addEventListener('click', e => {
-    if (
-      pendingInfoRow &&
-      !e.target.closest('a.info-row')
-    ) {
+    if (pendingInfoRow && !e.target.closest('a.info-row')) {
       pendingInfoRow.classList.remove('pending');
       pendingInfoRow = null;
       clearTimeout(pendingTimeout);

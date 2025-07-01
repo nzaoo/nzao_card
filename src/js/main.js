@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Download CV
   const downloadCVBtn = document.getElementById('download-cv');
   if (downloadCVBtn) {
-    downloadCVBtn.addEventListener('click', (e) => {
+    downloadCVBtn.addEventListener('click', e => {
       e.preventDefault();
       const cvUrl = 'assets/cv.pdf';
       fetch(cvUrl)
@@ -101,12 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Share Card
   const shareCardBtn = document.getElementById('share-card');
   if (shareCardBtn) {
-    shareCardBtn.addEventListener('click', async (e) => {
+    shareCardBtn.addEventListener('click', async e => {
       e.preventDefault();
       const shareData = {
         title: 'nzaoo Card',
         text: 'Check out nzaoo personal card!',
-        url: window.location.href
+        url: window.location.href,
       };
       if (navigator.share) {
         try {
