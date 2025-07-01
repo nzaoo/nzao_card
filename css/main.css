@@ -411,7 +411,8 @@ body::before {
   contain: layout style;
 }
 
-.info-row {
+.info-row,
+a.info-row {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
@@ -425,6 +426,9 @@ body::before {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  min-height: 48px;
 }
 
 .info-row::before {
@@ -456,7 +460,8 @@ body::before {
     0 0 20px rgb(255 215 0 / 0.1);
 }
 
-.info-row:active {
+.info-row:active,
+a.info-row:active {
   transform: translateY(0) scale(0.98);
   transition: transform var(--transition-fast);
 }
@@ -671,6 +676,45 @@ a:hover {
 
   .quote {
     font-size: 11px;
+  }
+}
+
+@media (max-width: 430px) {
+  .info-row,
+  a.info-row {
+    padding: 16px 12px;
+    gap: 12px;
+    min-height: 44px;
+  }
+  .info-icon,
+  .info-row img {
+    width: 28px;
+    height: 28px;
+  }
+  .label {
+    font-size: 15px;
+  }
+  .value {
+    font-size: 15px;
+  }
+}
+@media (max-width: 375px) {
+  .info-row,
+  a.info-row {
+    padding: 12px 8px;
+    gap: 8px;
+    min-height: 40px;
+  }
+  .info-icon,
+  .info-row img {
+    width: 24px;
+    height: 24px;
+  }
+  .label {
+    font-size: 14px;
+  }
+  .value {
+    font-size: 14px;
   }
 }
 
