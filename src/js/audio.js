@@ -58,4 +58,15 @@ function initSoundToggle() {
   }
 }
 
+// Đảm bảo AudioContext được resume khi người dùng tương tác lần đầu trên mobile
+if (typeof window !== 'undefined') {
+  const resumeAudioContext = () => {
+    if (audioContext && audioContext.state === 'suspended') {
+      audioContext.resume();
+    }
+  };
+  window.addEventListener('touchstart', resumeAudioContext, { once: true });
+  window.addEventListener('click', resumeAudioContext, { once: true });
+}
+
 export { initAudio, playSound, initSoundToggle, soundEnabled };
