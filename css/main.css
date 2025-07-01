@@ -686,3 +686,38 @@ a:hover {
     scroll-behavior: auto !important;
   }
 }
+
+.shooting-star {
+  position: fixed;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    #fff,
+    rgba(255, 255, 255, 0),
+    rgba(255, 215, 0, 0.5)
+  );
+  opacity: 0.7;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100;
+  filter: blur(1px);
+  animation: shooting-star-move 2s linear forwards;
+}
+
+@keyframes shooting-star-move {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.5) translateY(0) translateX(0);
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1.2) translateY(100px) translateX(400px);
+  }
+}
