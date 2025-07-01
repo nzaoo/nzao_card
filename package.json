@@ -5,8 +5,8 @@
   "type": "module",
   "main": "src/index.html",
   "scripts": {
-    "lint:js": "eslint *.js src/**/*.js",
-    "lint:css": "stylelint *.css src/**/*.css",
+    "lint:js": "eslint js/*.js",
+    "lint:css": "stylelint css/*.css",
     "lint:html": "htmlhint *.html src/**/*.html",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
     "format": "prettier --write .",
