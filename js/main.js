@@ -141,4 +141,52 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-sound="click"]').forEach(el => {
     el.addEventListener('click', () => playSound(523, 0.12));
   });
+
+  // --- Info-row double click to open link logic ---
+  let pendingInfoRow = null;
+  let pendingTimeout = null;
+
+  // Double-tap/click to open info-row links
+  document.querySelectorAll('a.info-row').forEach(row => {
+    row.addEventListener('click', function (e) {
+      if (pendingInfoRow === row) {
+        // Lần nhấn thứ 2, mở link
+        pendingInfoRow = null;
+        clearTimeout(pendingTimeout);
+        row.classList.remove('pending');
+        // Mở link theo target
+        if (row.target === '_blank') {
+          window.open(row.href, '_blank');
+        } else {
+          window.location.href = row.href;
+        }
+      } else {
+        // Lần nhấn đầu, chỉ hiệu ứng
+        e.preventDefault();
+        if (pendingInfoRow) {
+          pendingInfoRow.classList.remove('pending');
+        }
+        pendingInfoRow = row;
+        row.classList.add('pending');
+        pendingTimeout = setTimeout(() => {
+          if (pendingInfoRow) {
+            pendingInfoRow.classList.remove('pending');
+            pendingInfoRow = null;
+          }
+        }, 2000);
+      }
+    });
+  });
+
+  // Nếu nhấn ra ngoài, reset trạng thái
+  document.addEventListener('click', e => {
+    if (
+      pendingInfoRow &&
+      !e.target.closest('a.info-row')
+    ) {
+      pendingInfoRow.classList.remove('pending');
+      pendingInfoRow = null;
+      clearTimeout(pendingTimeout);
+    }
+  });
 });
