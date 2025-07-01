@@ -694,8 +694,8 @@ a:hover {
   background: linear-gradient(
     90deg,
     #fff,
-    rgba(255, 255, 255, 0),
-    rgba(255, 215, 0, 0.5)
+    rgb(255 255 255 / 0),
+    rgb(255 215 0 / 0.5)
   );
   opacity: 0.7;
   border-radius: 2px;
@@ -710,12 +710,15 @@ a:hover {
     opacity: 0;
     transform: scaleX(0.5) translateY(0) translateX(0);
   }
+
   10% {
     opacity: 1;
   }
+
   80% {
     opacity: 0.7;
   }
+
   100% {
     opacity: 0;
     transform: scaleX(1.2) translateY(100px) translateX(400px);
