@@ -1,4 +1,5 @@
 import { playSound } from './audio.js';
+import QRious from 'qrious';
 
 // Notification System
 function showNotification(message, type = 'info') {
@@ -62,20 +63,20 @@ function generateQRCode() {
   const qrContainer = document.getElementById('qr-container');
   if (qrContainer) {
     qrContainer.innerHTML = '';
-    // SVG QR code tĩnh (ví dụ: mã hóa số điện thoại)
-    qrContainer.innerHTML = `
-      <svg width="120" height="120" viewBox="0 0 120 120">
-        <rect x="10" y="10" width="20" height="20" fill="#000"/>
-        <rect x="50" y="10" width="20" height="20" fill="#000"/>
-        <rect x="90" y="10" width="20" height="20" fill="#000"/>
-        <rect x="10" y="50" width="20" height="20" fill="#000"/>
-        <rect x="50" y="50" width="20" height="20" fill="#000"/>
-        <rect x="90" y="50" width="20" height="20" fill="#000"/>
-        <rect x="10" y="90" width="20" height="20" fill="#000"/>
-        <rect x="50" y="90" width="20" height="20" fill="#000"/>
-        <rect x="90" y="90" width="20" height="20" fill="#000"/>
-      </svg>
-    `;
+    // Tạo QR code động cho link card cá nhân
+    const qr = new QRious({
+      value: window.location.origin + window.location.pathname,
+      size: 120,
+      background: 'white',
+      foreground: 'black',
+      level: 'H',
+    });
+    const img = document.createElement('img');
+    img.src = qr.toDataURL();
+    img.alt = 'QR code';
+    img.width = 120;
+    img.height = 120;
+    qrContainer.appendChild(img);
   }
 }
 

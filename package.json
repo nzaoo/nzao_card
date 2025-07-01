@@ -38,5 +38,8 @@
     "type": "git",
     "url": "https://github.com/nzaoo/nzao_card.git"
   },
-  "homepage": "https://nzaoo.github.io/nzao_card/"
+  "homepage": "https://nzaoo.github.io/nzao_card/",
+  "dependencies": {
+    "qrious": "^4.0.2"
+  }
 }
