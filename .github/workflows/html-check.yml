@@ -31,4 +31,4 @@ jobs:
         run: stylelint "**/*.css"
 
       - name: Lint JS
-        run: eslint script.js
+        run: eslint js/*.js src/js/*.js
