@@ -1,5 +1,5 @@
 import { playSound } from './audio.js';
-import QRious from 'qrious';
+// import QRious from 'qrious';
 
 // Notification System
 function showNotification(message, type = 'info') {
@@ -64,7 +64,7 @@ function generateQRCode() {
   if (qrContainer) {
     qrContainer.innerHTML = '';
     // Tạo QR code động cho link card cá nhân
-    const qr = new QRious({
+    const qr = new window.QRious({
       value: window.location.origin + window.location.pathname,
       size: 120,
       background: 'white',
