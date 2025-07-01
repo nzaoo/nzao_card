@@ -66,38 +66,6 @@ if (document.readyState === 'loading') {
 export { initApp };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Download CV
-  const downloadCVBtn = document.getElementById('download-cv');
-  if (downloadCVBtn) {
-    downloadCVBtn.addEventListener('click', e => {
-      e.preventDefault();
-      const cvUrl = 'assets/cv.pdf';
-      fetch(cvUrl)
-        .then(response => {
-          if (!response.ok) throw new Error('File not found');
-          return response.blob();
-        })
-        .then(blob => {
-          const url = window.URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = 'nzaoo-cv.pdf';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          window.URL.revokeObjectURL(url);
-          if (typeof showNotification === 'function') {
-            showNotification('📄 CV download started!', 'success');
-          }
-        })
-        .catch(() => {
-          if (typeof showNotification === 'function') {
-            showNotification('❌ CV file not found!', 'error');
-          }
-        });
-    });
-  }
-
   // Share Card
   const shareCardBtn = document.getElementById('share-card');
   if (shareCardBtn) {
