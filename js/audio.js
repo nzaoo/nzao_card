@@ -1,10 +1,10 @@
 // Audio Context for Sound Effects
-let audioContext;
+// let audioContext; // Removed unused variable
 let soundEnabled = true;
 
 export function initAudio() {
   try {
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    window.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   } catch (e) {
     // Audio not supported
   }
