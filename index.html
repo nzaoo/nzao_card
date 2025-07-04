@@ -1393,7 +1393,7 @@
     </div>
 
     <!-- Live Status Indicator -->
-    <div class="status-indicator" id="status-indicator" data-sound="click">
+    <div class="status-indicator" id="status-indicator" data-sound="click" aria-live="polite">
       <div class="status-dot available" id="status-dot"></div>
       <div class="status-text" id="status-text">Available for work</div>
     </div>
@@ -1406,8 +1406,9 @@
       tabindex="0"
       aria-label="Toggle dark/light theme"
       data-sound="click"
+      aria-pressed="false"
     >
-      <div class="icon">🌙</div>
+      <div class="icon" aria-hidden="true">🌙</div>
     </div>
 
     <!-- Sound Toggle -->
@@ -1418,8 +1419,9 @@
       tabindex="0"
       aria-label="Toggle sound effects"
       data-sound="click"
+      aria-pressed="false"
     >
-      <div class="icon">🔊</div>
+      <div class="icon" aria-hidden="true">🔊</div>
     </div>
 
     <!-- Scroll Progress -->
@@ -1438,7 +1440,7 @@
       <div class="profile-section fade-item">
         <img
           src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-1/474792799_528805763542793_5513639134705768386_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=1d2534&_nc_ohc=0AN_4nS0ySoQ7kNvwHMUN2U&_nc_oc=Adl4WJ-IRiGGQyesuEHL_K2xADvRNXwVZZdZzUN5DafzVqCVNr9La3L95M3iFy3djbw&_nc_zt=24&_nc_ht=scontent.fsgn5-5.fna&_nc_gid=IHDiV7hqSVK9txl2XGTM_Q&oh=00_AfPY3OXuiLX6ut_rQci4Gyx9ACUnU_KNs8HDPY7hs2l25Q&oe=686711F2"
-          alt="avatar"
+          alt="Profile avatar of nzaoo"
           class="avatar"
           onerror="this.src='https://via.placeholder.com/150x150/4a90e2/ffffff?text=nzaoo'"
         />
@@ -1477,6 +1479,9 @@
           data-sound="hover"
           href="https://github.com/nzaoo"
           target="_blank"
+          role="link"
+          tabindex="0"
+          aria-label="Visit nzaoo's GitHub profile"
         >
           <img src="assets/icon/github.svg" alt="GitHub icon" />
           <div>
@@ -1565,8 +1570,8 @@
 
       <!-- Action Buttons -->
       <div class="action-buttons fade-item">
-        <a href="#" class="action-btn" id="portfolio">🎨 Portfolio</a>
-        <a href="#" class="action-btn" id="share-card">📤 Share Card</a>
+        <a href="#" class="action-btn" id="portfolio" role="button" tabindex="0" aria-label="View portfolio">🎨 Portfolio</a>
+        <a href="#" class="action-btn" id="share-card" role="button" tabindex="0" aria-label="Share this card">📤 Share Card</a>
       </div>
 
       <!-- QR Code Section -->
