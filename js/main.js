@@ -142,6 +142,20 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('click', () => playSound(523, 0.12));
   });
 
+  // Hiệu ứng ripple cho .action-btn
+  document.querySelectorAll('.action-btn').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      const rect = btn.getBoundingClientRect();
+      ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+      ripple.style.left = e.clientX - rect.left - rect.width / 2 + 'px';
+      ripple.style.top = e.clientY - rect.top - rect.height / 2 + 'px';
+      btn.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 500);
+    });
+  });
+
   // --- Info-row double click to open link logic ---
   let pendingInfoRow = null;
   let pendingTimeout = null;

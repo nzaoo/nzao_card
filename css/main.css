@@ -805,3 +805,49 @@ a.info-row.pending {
     transform: translateX(0);
   }
 }
+
+.action-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, var(--primary-gold), var(--accent-pink));
+  color: #222;
+  box-shadow: 0 2px 12px rgb(255 215 0 / 0.15);
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.18s cubic-bezier(0.4, 2, 0.6, 1),
+    box-shadow 0.25s,
+    background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.action-btn:hover {
+  transform: scale(1.07) translateY(-2px);
+  box-shadow:
+    0 6px 24px rgb(255 215 0 / 0.25),
+    0 0 0 2px var(--accent-pink);
+  background: linear-gradient(90deg, var(--accent-pink), var(--primary-gold));
+}
+.action-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgb(255 215 0 / 0.12);
+}
+/* Ripple effect for .action-btn */
+.action-btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-effect 0.5s linear;
+  background: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  z-index: 2;
+}
+@keyframes ripple-effect {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
