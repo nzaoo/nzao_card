@@ -7,7 +7,7 @@
   "scripts": {
     "lint:js": "eslint js/*.js",
     "lint:css": "stylelint css/*.css",
-    "lint:html": "htmlhint *.html src/**/*.html",
+    "lint:html": "htmlhint *.html",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

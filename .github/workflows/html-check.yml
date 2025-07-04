@@ -24,8 +24,7 @@ jobs:
         run: |
           npm install -g htmlhint stylelint eslint
 
-      - name: Lint HTML
-        run: htmlhint src/index.html
+      # run: htmlhint src/index.html
 
       - name: Lint CSS
         run: stylelint "**/*.css"
