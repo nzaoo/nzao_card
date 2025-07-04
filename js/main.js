@@ -148,7 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const ripple = document.createElement('span');
       ripple.className = 'ripple';
       const rect = btn.getBoundingClientRect();
-      ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+      ripple.style.width = ripple.style.height =
+        Math.max(rect.width, rect.height) + 'px';
       ripple.style.left = e.clientX - rect.left - rect.width / 2 + 'px';
       ripple.style.top = e.clientY - rect.top - rect.height / 2 + 'px';
       btn.appendChild(ripple);
