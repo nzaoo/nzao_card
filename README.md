@@ -33,7 +33,7 @@
      xdg-open index.html # Linux
      ```
 
-## 🌐 Deploy to GitHub Pages
+## 🌐 Deploy to GitHub Page
 
 1. Push code lên nhánh `main` hoặc `gh-pages`.
 2. Vào repo > Settings > Pages > Source: chọn branch chứa `index.html`.
