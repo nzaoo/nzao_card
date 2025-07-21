@@ -16,7 +16,7 @@
 - Starry night sky, glassmorphism, gradient & parallax effects
 - Audio feedback, theme toggle, sound control, live status
 - Skills, social media, QR code, one-click contact
-- Responsive design, cross-browser support
+- Responsive design, cross-browsers support
 
 ## 🚀 Quick Start
 
