@@ -48,6 +48,7 @@
 - **Instagram**: [zn_zaoo](https://instagram.com/zn_zaoo)
 - **TikTok**: [nzaoo103](https://tiktok.com/@nzaoo103)
 - **Zalo**: [0359511473](https://zalo.me/0359511473)
+- **Zalo**: [zaoo zaoo](https://zalo.me/0359511473https://locket.camera/links/AWqbNEQhR9LnRvYd7)
 
 ## 🛠️ Technologies
 
@@ -66,3 +67,10 @@ MIT License
 ---
 
 **Made with ❤️ by [nzaoo](https://github.com/nzaoo)**
+
+## 📊 GitHub Analytics
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=nzaoo&show_icons=true&theme=radical)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=nzaoo&layout=compact&theme=radical)
+![GitHub Streak](https://streak-stats.demolab.com?user=nzaoo&theme=radical)
+![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=nzaoo&theme=react-dark)
