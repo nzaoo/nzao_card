@@ -170,7 +170,8 @@ img {
 
 .identity-card {
   position: relative;
-  width: min(100%, var(--card-width));
+  width: 100%;
+  max-width: var(--card-width);
   padding: var(--space-5);
   overflow: hidden;
   isolation: isolate;
@@ -319,14 +320,19 @@ img {
   border-radius: inherit;
 }
 
-.avatar {
-  width: 100%;
-  height: 100%;
+.avatar-frame > .avatar {
   position: relative;
   z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
   border-radius: inherit;
   object-fit: cover;
+  object-position: center;
   filter: saturate(0.92) contrast(1.05);
+  box-shadow: none;
+  animation: none;
 }
 
 .eyebrow {
@@ -715,6 +721,30 @@ h1 {
 
   50% {
     transform: translateY(36px);
+  }
+}
+
+@media (width <= 480px) {
+  .page-shell {
+    align-items: start;
+    padding-block: 16px;
+  }
+
+  .identity-card {
+    width: 100%;
+    padding: clamp(18px, 5.5vw, var(--space-5));
+  }
+
+  .avatar-frame {
+    width: clamp(96px, 29vw, 112px);
+    height: clamp(96px, 29vw, 112px);
+    margin-inline: auto;
+  }
+
+  .connect-section {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
   }
 }
 
