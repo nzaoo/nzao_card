@@ -1,204 +1,115 @@
-// Main application entry point
-import { initAudio, initSoundToggle, playSound } from './audio.js';
-import {
-  initThemeToggle,
-  initLoadingScreen,
-  initGreeting,
-  initBioTyping,
-} from './theme.js';
-import {
-  initWindEffect,
-  createBubbles,
-  scheduleShootingStar,
-  toggleRainbowMode,
-} from './animations.js';
-import {
-  addNotificationStyles,
-  copyToClipboard,
-  generateQRCode,
-  updateFPS,
-  trackEvent,
-} from './utils.js';
+const CARD_URL = window.location.origin + window.location.pathname;
 
-// Initialize all modules
-function initApp() {
-  // Initialize audio system
-  initAudio();
-  initSoundToggle();
+function markReady() {
+  document.body.classList.add('is-ready');
+}
 
-  // Initialize theme and UI
-  initThemeToggle();
-  initLoadingScreen();
-  initGreeting();
-  initBioTyping();
+function updateGreeting() {
+  const greeting = document.getElementById('time-greeting');
 
-  // Initialize animations
-  initWindEffect();
-  createBubbles();
-  scheduleShootingStar();
+  if (!greeting) {
+    return;
+  }
 
-  // Initialize utilities
-  addNotificationStyles();
-  copyToClipboard();
+  const hour = new Date().getHours();
+
+  if (hour >= 5 && hour < 12) {
+    greeting.textContent = 'Good morning';
+    return;
+  }
+
+  if (hour >= 12 && hour < 18) {
+    greeting.textContent = 'Good afternoon';
+    return;
+  }
+
+  if (hour >= 18 && hour < 22) {
+    greeting.textContent = 'Good evening';
+    return;
+  }
+
+  greeting.textContent = 'Good night';
+}
+
+function generateQRCode() {
+  const container = document.getElementById('qr-container');
+
+  if (!container || !window.QRious) {
+    return;
+  }
+
+  const qr = new window.QRious({
+    value: CARD_URL,
+    size: 128,
+    background: '#f7f4ea',
+    foreground: '#090806',
+    level: 'H'
+  });
+
+  const image = document.createElement('img');
+  image.className = 'qr-image';
+  image.src = qr.toDataURL();
+  image.alt = 'QR code for nzaoo card';
+  image.width = 64;
+  image.height = 64;
+  image.decoding = 'async';
+
+  container.replaceChildren(image);
+}
+
+function initTilt() {
+  const card = document.querySelector('.identity-card');
+  const allowTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!card || !allowTilt || reduceMotion) {
+    return;
+  }
+
+  let frameId = 0;
+
+  function updateTilt(event) {
+    if (frameId) {
+      cancelAnimationFrame(frameId);
+    }
+
+    frameId = requestAnimationFrame(() => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+      card.style.setProperty('--tilt-x', `${(-y * 3).toFixed(2)}deg`);
+      card.style.setProperty('--tilt-y', `${(x * 4).toFixed(2)}deg`);
+      card.style.setProperty('--glare-x', `${((x + 0.5) * 100).toFixed(1)}%`);
+      card.style.setProperty('--glare-y', `${((y + 0.5) * 100).toFixed(1)}%`);
+    });
+  }
+
+  function resetTilt() {
+    if (frameId) {
+      cancelAnimationFrame(frameId);
+      frameId = 0;
+    }
+
+    card.style.setProperty('--tilt-x', '0deg');
+    card.style.setProperty('--tilt-y', '0deg');
+    card.style.setProperty('--glare-x', '50%');
+    card.style.setProperty('--glare-y', '0%');
+  }
+
+  card.addEventListener('pointermove', updateTilt);
+  card.addEventListener('pointerleave', resetTilt);
+}
+
+function initCard() {
+  markReady();
+  updateGreeting();
   generateQRCode();
-
-  // Start performance monitoring
-  updateFPS();
-
-  // Track app initialization
-  trackEvent('app_initialized');
-
-  // Add rainbow mode toggle to window for global access
-  window.toggleRainbowMode = toggleRainbowMode;
-
-  // App initialized successfully
+  initTilt();
 }
 
-// Initialize when DOM is ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApp);
+  document.addEventListener('DOMContentLoaded', initCard);
 } else {
-  initApp();
+  initCard();
 }
-
-// Export for potential external use
-export { initApp };
-
-// --- Hotkey & Easter Egg Logic ---
-
-// Admin mode toggle (Ctrl+Shift+Z)
-let adminMode = false;
-function toggleAdminMode() {
-  adminMode = !adminMode;
-  const indicator = document.getElementById('admin-mode-indicator');
-  if (indicator) {
-    indicator.style.display = adminMode ? 'block' : 'none';
-  }
-  if (adminMode) {
-    window.alert('Admin mode activated!');
-  } else {
-    window.alert('Admin mode deactivated!');
-  }
-}
-
-// Performance mode toggle (Ctrl+Shift+X)
-let performanceMode = false;
-function togglePerformanceMode() {
-  performanceMode = !performanceMode;
-  document.body.classList.toggle('performance-mode', performanceMode);
-  window.alert(
-    performanceMode ? 'Performance mode ON' : 'Performance mode OFF'
-  );
-}
-
-// Easter egg: click name 5 lần để hiện secret
-let nameClickCount = 0;
-let nameClickTimeout;
-function handleNameClick() {
-  nameClickCount++;
-  if (nameClickCount === 5) {
-    window.alert('🎉 Secret unlocked!');
-    nameClickCount = 0;
-  }
-  clearTimeout(nameClickTimeout);
-  nameClickTimeout = setTimeout(() => {
-    nameClickCount = 0;
-  }, 2000);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Hotkeys
-  document.addEventListener('keydown', e => {
-    if (e.ctrlKey && e.shiftKey && e.code === 'KeyZ') {
-      e.preventDefault();
-      toggleAdminMode();
-    }
-    if (e.ctrlKey && e.shiftKey && e.code === 'KeyX') {
-      e.preventDefault();
-      togglePerformanceMode();
-    }
-  });
-  // Easter egg
-  const nameEl = document.querySelector('.name');
-  if (nameEl) {
-    nameEl.addEventListener('click', handleNameClick);
-  }
-
-  // Phát âm thanh phím đàn khi hover/click các mục có data-sound
-  // Các tần số nốt nhạc piano (C4, D4, E4, F4, G4, A4, B4, C5)
-  const pianoNotes = [
-    261.63, 293.66, 329.63, 349.23, 392.0, 440.0, 493.88, 523.25,
-  ];
-  // Gán cho skill-item và info-row
-  const hoverEls = Array.from(
-    document.querySelectorAll('[data-sound="hover"]')
-  );
-  hoverEls.forEach((el, i) => {
-    const freq = pianoNotes[i % pianoNotes.length];
-    el.addEventListener('mouseenter', () => playSound(freq, 0.13));
-  });
-  // Click vẫn giữ nguyên
-  document.querySelectorAll('[data-sound="click"]').forEach(el => {
-    el.addEventListener('click', () => playSound(523, 0.12));
-  });
-
-  // Hiệu ứng ripple cho .action-btn
-  document.querySelectorAll('.action-btn').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      const ripple = document.createElement('span');
-      ripple.className = 'ripple';
-      const rect = btn.getBoundingClientRect();
-      ripple.style.width = ripple.style.height =
-        Math.max(rect.width, rect.height) + 'px';
-      ripple.style.left = e.clientX - rect.left - rect.width / 2 + 'px';
-      ripple.style.top = e.clientY - rect.top - rect.height / 2 + 'px';
-      btn.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 500);
-    });
-  });
-
-  // --- Info-row double click to open link logic ---
-  let pendingInfoRow = null;
-  let pendingTimeout = null;
-
-  // Double-tap/click to open info-row links
-  document.querySelectorAll('a.info-row').forEach(row => {
-    row.addEventListener('click', function (e) {
-      if (pendingInfoRow === row) {
-        // Lần nhấn thứ 2, mở link
-        pendingInfoRow = null;
-        clearTimeout(pendingTimeout);
-        row.classList.remove('pending');
-        // Mở link theo target
-        if (row.target === '_blank') {
-          window.open(row.href, '_blank');
-        } else {
-          window.location.href = row.href;
-        }
-      } else {
-        // Lần nhấn đầu, chỉ hiệu ứng
-        e.preventDefault();
-        if (pendingInfoRow) {
-          pendingInfoRow.classList.remove('pending');
-        }
-        pendingInfoRow = row;
-        row.classList.add('pending');
-        pendingTimeout = setTimeout(() => {
-          if (pendingInfoRow) {
-            pendingInfoRow.classList.remove('pending');
-            pendingInfoRow = null;
-          }
-        }, 2000);
-      }
-    });
-  });
-
-  // Nếu nhấn ra ngoài, reset trạng thái
-  document.addEventListener('click', e => {
-    if (pendingInfoRow && !e.target.closest('a.info-row')) {
-      pendingInfoRow.classList.remove('pending');
-      pendingInfoRow = null;
-      clearTimeout(pendingTimeout);
-    }
-  });
-});
