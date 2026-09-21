@@ -13,7 +13,10 @@
     />
     <meta name="author" content="Ngoc Giau" />
 
-    <meta property="og:title" content="nzaoo | Automation Engineer / Developer" />
+    <meta
+      property="og:title"
+      content="nzaoo | Automation Engineer / Developer"
+    />
     <meta
       property="og:description"
       content="Digital NFC identity card for nzaoo, automation engineer and developer."
@@ -26,7 +29,10 @@
     <meta property="og:type" content="profile" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="nzaoo | Automation Engineer / Developer" />
+    <meta
+      name="twitter:title"
+      content="nzaoo | Automation Engineer / Developer"
+    />
     <meta
       name="twitter:description"
       content="Digital NFC identity card for nzaoo, automation engineer and developer."
@@ -312,165 +318,136 @@
         margin: 0 auto 20px;
       }
 
-      /* Theme Toggle */
-      .theme-toggle {
+      /* Theme & sound toggles */
+      .utility-toggles {
         position: fixed;
         top: 20px;
         right: 20px;
+        z-index: 1000;
+        display: flex;
+        gap: 10px;
+      }
+
+      .theme-toggle,
+      .sound-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
         background: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 50px;
-        padding: 10px;
+        border-radius: 50%;
         cursor: pointer;
         backdrop-filter: blur(10px);
-        z-index: 1000;
         transition: all 0.3s ease;
         box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
       }
 
-      .theme-toggle:hover {
+      .theme-toggle:hover,
+      .sound-toggle:hover {
         background: rgba(255, 255, 255, 0.15);
         transform: scale(1.1);
         box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
       }
 
-      .theme-toggle .icon {
-        font-size: 1.5rem;
+      .theme-toggle .icon,
+      .sound-toggle .icon {
+        font-size: 1.2rem;
         color: gold;
         text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
       }
 
-      /* Light Theme - Bright background with dark text for readability */
+      /* Light theme: current identity-card design is built on CSS custom
+         properties, so re-defining them here re-skins the whole card. */
+      html:has(body.light-theme) {
+        background: #f6f1e4;
+      }
+
       body.light-theme {
-        background: linear-gradient(-45deg, #ffffff, #f8fafc, #f1f5f9, #ffffff);
-        color: #0f172a;
+        --color-bg: #f6f1e4;
+        --color-panel: rgb(255 255 255 / 0.7);
+        --color-panel-strong: rgb(20 16 8 / 0.05);
+        --color-border: rgb(180 132 45 / 0.3);
+        --color-border-strong: rgb(180 132 45 / 0.5);
+        --color-text: #201c14;
+        --color-secondary: #5b5344;
+        --color-muted: #8a8271;
+        --color-accent-soft: rgb(180 132 45 / 0.14);
+        color-scheme: light;
+        background:
+          radial-gradient(
+            circle at 50% 0%,
+            rgb(0 0 0 / 0.025),
+            transparent 34rem
+          ),
+          linear-gradient(145deg, #fdfaf1 0%, #f2ecdd 48%, #fdfaf1 100%);
       }
 
-      body.light-theme .card {
-        background: rgba(255, 255, 255, 0.9);
-        color: #0f172a;
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        box-shadow: 0 0 25px rgba(148, 163, 184, 0.1);
+      body.light-theme::before {
+        background:
+          linear-gradient(rgb(0 0 0 / 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgb(0 0 0 / 0.025) 1px, transparent 1px);
       }
 
-      body.light-theme .card:hover {
-        box-shadow: 0 0 35px rgba(148, 163, 184, 0.15);
+      body.light-theme .starfield,
+      body.light-theme .starfield::before,
+      body.light-theme .starfield::after {
+        opacity: 0.12;
       }
 
-      body.light-theme .name {
-        background: linear-gradient(45deg, #0f172a, #1e293b, #334155, #475569);
-        background-size: 300% 300%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      body.light-theme .avatar-frame {
+        background:
+          linear-gradient(160deg, rgb(216 180 92 / 0.28), transparent 46%),
+          #efe8d6;
       }
 
-      body.light-theme .subtitle {
-        color: #1e293b;
+      body.light-theme .action-link {
+        border-color: rgb(20 16 8 / 0.14);
       }
 
-      body.light-theme .bio {
-        color: #475569;
+      body.light-theme .social-link {
+        background: rgb(20 16 8 / 0.035);
+        border-color: rgb(20 16 8 / 0.09);
       }
 
-      body.light-theme .skills-section {
-        background: rgba(148, 163, 184, 0.05);
-        border: 1px solid rgba(148, 163, 184, 0.1);
+      body.light-theme .social-link img {
+        filter: none;
+        opacity: 0.68;
       }
 
-      body.light-theme .skills-title {
-        color: #1e293b;
+      body.light-theme .social-link:hover img,
+      body.light-theme .social-link:focus-visible img {
+        filter: brightness(0) saturate(100%) invert(46%) sepia(45%)
+          saturate(560%) hue-rotate(358deg) brightness(92%) contrast(92%);
+        opacity: 1;
       }
 
-      body.light-theme .skill-item {
-        background: rgba(148, 163, 184, 0.08);
-        border: 1px solid rgba(148, 163, 184, 0.15);
-        color: #0f172a;
+      body.light-theme .connect-section {
+        background: rgb(20 16 8 / 0.035);
+        border-color: rgb(20 16 8 / 0.09);
       }
 
-      body.light-theme .skill-item:hover {
-        background: rgba(148, 163, 184, 0.12);
-        box-shadow: 0 5px 15px rgba(148, 163, 184, 0.15);
-      }
-
-      body.light-theme .info-row {
-        background: rgba(148, 163, 184, 0.05);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        color: #0f172a;
-      }
-
-      body.light-theme .info-row:hover {
-        background: rgba(148, 163, 184, 0.08);
-        box-shadow: 0 5px 15px rgba(148, 163, 184, 0.1);
-      }
-
-      body.light-theme .info-row .label {
-        color: #1e293b;
-      }
-
-      body.light-theme .info-row a {
-        color: #0f172a;
-      }
-
-      body.light-theme .info-row a:hover {
-        color: #1e293b;
-      }
-
-      body.light-theme .action-btn {
-        border: 2px solid #475569;
-        color: #475569;
-      }
-
-      body.light-theme .action-btn:hover {
-        background: #475569;
-        color: white;
-        box-shadow: 0 10px 20px rgba(71, 85, 105, 0.2);
-      }
-
-      body.light-theme .action-btn.primary {
-        background: linear-gradient(45deg, #475569, #334155);
-        color: white;
-      }
-
-      body.light-theme .action-btn.primary:hover {
-        background: linear-gradient(45deg, #334155, #475569);
-      }
-
-      body.light-theme .status-indicator {
-        background: rgba(148, 163, 184, 0.08);
-        border: 1px solid rgba(148, 163, 184, 0.15);
-      }
-
-      body.light-theme .status-indicator:hover {
-        background: rgba(148, 163, 184, 0.12);
-      }
-
-      body.light-theme .status-text {
-        color: #0f172a;
+      body.light-theme .qr-frame {
+        border-color: rgb(20 16 8 / 0.16);
       }
 
       body.light-theme .theme-toggle,
       body.light-theme .sound-toggle {
-        background: rgba(148, 163, 184, 0.08);
-        border: 1px solid rgba(148, 163, 184, 0.15);
+        background: rgb(20 16 8 / 0.06);
+        border-color: rgb(20 16 8 / 0.15);
+        box-shadow: none;
       }
 
       body.light-theme .theme-toggle:hover,
       body.light-theme .sound-toggle:hover {
-        background: rgba(148, 163, 184, 0.12);
+        background: rgb(20 16 8 / 0.1);
       }
 
       body.light-theme .theme-toggle .icon,
       body.light-theme .sound-toggle .icon {
-        color: #1e293b;
-      }
-
-      body.light-theme .scroll-indicator {
-        background: rgba(148, 163, 184, 0.08);
-      }
-
-      body.light-theme .scroll-progress {
-        background: linear-gradient(90deg, #475569, #334155, #1e293b);
+        color: #8a6a1e;
+        text-shadow: none;
       }
 
       /* Admin Mode Indicator */
@@ -1113,38 +1090,6 @@
         }
       }
 
-      /* Sound Toggle */
-      .sound-toggle {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-        backdrop-filter: blur(10px);
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-      }
-
-      .sound-toggle:hover {
-        background: rgba(255, 255, 255, 0.15);
-        transform: scale(1.1);
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-      }
-
-      .sound-toggle .icon {
-        font-size: 1.2rem;
-        color: gold;
-        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-      }
-
       /* Interactive Background - Stars */
       .stars {
         position: fixed;
@@ -1394,6 +1339,25 @@
   <body>
     <div class="starfield" aria-hidden="true"></div>
 
+    <div class="utility-toggles">
+      <button
+        type="button"
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle light and dark theme"
+      >
+        <span class="icon" aria-hidden="true">🌙</span>
+      </button>
+      <button
+        type="button"
+        id="sound-toggle"
+        class="sound-toggle"
+        aria-label="Toggle interface sound effects"
+      >
+        <span class="icon" aria-hidden="true">🔊</span>
+      </button>
+    </div>
+
     <main class="page-shell" aria-label="nzaoo digital identity card">
       <article class="identity-card" aria-labelledby="profile-name">
         <div class="card-glow" aria-hidden="true"></div>
@@ -1414,12 +1378,16 @@
           <h1 id="profile-name">nzaoo</h1>
           <p class="role">Automation Engineer / Developer</p>
           <p class="bio">
-            Building clean automations and developer tools for smarter workflows.
+            Building clean automations and developer tools for smarter
+            workflows.
           </p>
         </header>
 
         <nav class="primary-actions" aria-label="Primary links">
-          <a class="action-link action-link-primary" href="https://zalo.me/0359511473">
+          <a
+            class="action-link action-link-primary"
+            href="https://zalo.me/0359511473"
+          >
             Contact
           </a>
           <a
@@ -1449,7 +1417,12 @@
             rel="noopener noreferrer"
             aria-label="Open Instagram"
           >
-            <img src="assets/icon/instagram.svg" alt="" width="20" height="20" />
+            <img
+              src="assets/icon/instagram.svg"
+              alt=""
+              width="20"
+              height="20"
+            />
           </a>
           <a
             class="social-link"
@@ -1481,14 +1454,23 @@
             <h2 id="connect-title">QR Connect</h2>
             <p>Scan or tap NFC to open this card.</p>
           </div>
-          <div class="qr-frame" id="qr-container" aria-label="QR code for this card">
+          <div
+            class="qr-frame"
+            id="qr-container"
+            aria-label="QR code for this card"
+          >
             <span class="qr-placeholder">QR</span>
           </div>
         </section>
       </article>
     </main>
 
-    <script defer src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"
+    ></script>
+    <script defer src="js/audio.js"></script>
+    <script defer src="js/theme.js"></script>
     <script defer src="js/main.js"></script>
   </body>
 </html>

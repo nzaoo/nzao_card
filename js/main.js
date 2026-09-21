@@ -1,3 +1,4 @@
+/* global initAudio, initThemeToggle, initSoundToggle */
 const CARD_URL = window.location.origin + window.location.pathname;
 
 function markReady() {
@@ -43,7 +44,7 @@ function generateQRCode() {
     size: 128,
     background: '#f7f4ea',
     foreground: '#090806',
-    level: 'H'
+    level: 'H',
   });
 
   const image = document.createElement('img');
@@ -59,8 +60,12 @@ function generateQRCode() {
 
 function initTilt() {
   const card = document.querySelector('.identity-card');
-  const allowTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const allowTilt = window.matchMedia(
+    '(hover: hover) and (pointer: fine)'
+  ).matches;
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
 
   if (!card || !allowTilt || reduceMotion) {
     return;
@@ -102,6 +107,9 @@ function initTilt() {
 }
 
 function initCard() {
+  initAudio();
+  initThemeToggle();
+  initSoundToggle();
   markReady();
   updateGreeting();
   generateQRCode();

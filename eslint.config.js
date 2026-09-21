@@ -47,6 +47,13 @@ export default [
     files: ['**/*.js', 'src/**/*.js'],
     ignores: ['node_modules/**', 'dist/**', 'build/**'],
   },
+  {
+    // Loaded as classic (non-module) <script> tags sharing one global scope.
+    files: ['js/audio.js', 'js/theme.js', 'js/main.js'],
+    languageOptions: {
+      sourceType: 'script',
+    },
+  },
   // Thêm cấu hình để tắt các rule xung đột với Prettier
   eslintConfigPrettier,
 ];

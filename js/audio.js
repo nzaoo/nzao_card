@@ -1,21 +1,25 @@
-// Audio Context for Sound Effects
-// let audioContext; // Removed unused variable
+/* exported initAudio, initSoundToggle */
 let soundEnabled = true;
 
-export function initAudio() {
-  try {
-    window.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  } catch (e) {
-    // Audio not supported
-  }
+function initAudio() {
+  soundEnabled = localStorage.getItem('sound') !== 'disabled';
 }
 
-export function playSound(frequency = 440, duration = 0.1) {
+function playSound(frequency = 440, duration = 0.1) {
+  if (!soundEnabled) {
+    return;
+  }
+
   try {
     const ctx =
       window.audioCtx ||
       (window.audioCtx = new (window.AudioContext ||
         window.webkitAudioContext)());
+
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
+
     const oscillator = ctx.createOscillator();
     const gain = ctx.createGain();
     oscillator.type = 'sine';
@@ -30,34 +34,24 @@ export function playSound(frequency = 440, duration = 0.1) {
       gain.disconnect();
     };
   } catch (e) {
-    // ignore
+    // Web Audio API not supported or blocked
   }
 }
 
-// Sound Toggle functionality
-export function initSoundToggle() {
+function initSoundToggle() {
   const soundToggle = document.getElementById('sound-toggle');
-  if (soundToggle) {
-    soundEnabled = localStorage.getItem('sound') !== 'disabled';
-    soundToggle.querySelector('.icon').textContent = soundEnabled ? '🔊' : '🔇';
 
-    soundToggle.addEventListener('click', () => {
-      soundEnabled = !soundEnabled;
-      soundToggle.querySelector('.icon').textContent = soundEnabled
-        ? '🔊'
-        : '🔇';
-      localStorage.setItem('sound', soundEnabled ? 'enabled' : 'disabled');
-      playSound(659, 0.1);
-    });
-
-    // Keyboard navigation
-    soundToggle.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        soundToggle.click();
-      }
-    });
+  if (!soundToggle) {
+    return;
   }
-}
 
-export { soundEnabled };
+  const icon = soundToggle.querySelector('.icon');
+  icon.textContent = soundEnabled ? '🔊' : '🔇';
+
+  soundToggle.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    icon.textContent = soundEnabled ? '🔊' : '🔇';
+    localStorage.setItem('sound', soundEnabled ? 'enabled' : 'disabled');
+    playSound(659, 0.1);
+  });
+}
