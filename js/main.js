@@ -1,4 +1,4 @@
-/* global initAudio, initThemeToggle, initSoundToggle */
+/* global initAudio, initThemeToggle, initSoundToggle, playSound */
 const CARD_URL = window.location.origin + window.location.pathname;
 
 function markReady() {
@@ -106,10 +106,52 @@ function initTilt() {
   card.addEventListener('pointerleave', resetTilt);
 }
 
+function buildVCard() {
+  const jsonLd = document.querySelector('script[type="application/ld+json"]');
+  const profile = jsonLd ? JSON.parse(jsonLd.textContent) : {};
+  const name = profile.name || document.title;
+  const email = (profile.email || '').replace('mailto:', '');
+  const url = profile.url || CARD_URL;
+
+  const lines = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    `FN:${name}`,
+    `N:;${name};;;`,
+    profile.jobTitle && `TITLE:${profile.jobTitle}`,
+    email && `EMAIL;TYPE=INTERNET:${email}`,
+    profile.telephone && `TEL;TYPE=CELL:${profile.telephone}`,
+    `URL:${url}`,
+    'END:VCARD',
+  ].filter(Boolean);
+
+  return lines.join('\r\n');
+}
+
+function initSaveContact() {
+  const button = document.getElementById('save-contact');
+
+  if (!button) {
+    return;
+  }
+
+  button.addEventListener('click', () => {
+    const blob = new Blob([buildVCard()], { type: 'text/vcard;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'nzaoo.vcf';
+    link.click();
+    URL.revokeObjectURL(url);
+    playSound(660, 0.12);
+  });
+}
+
 function initCard() {
   initAudio();
   initThemeToggle();
   initSoundToggle();
+  initSaveContact();
   markReady();
   updateGreeting();
   generateQRCode();

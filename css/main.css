@@ -51,7 +51,11 @@ body {
   font-family: var(--font-body);
   color: var(--color-text);
   background:
-    radial-gradient(circle at 50% 0%, rgb(255 255 255 / 0.035), transparent 34rem),
+    radial-gradient(
+      circle at 50% 0%,
+      rgb(255 255 255 / 0.035),
+      transparent 34rem
+    ),
     linear-gradient(145deg, #000 0%, #030303 48%, #000 100%);
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
@@ -77,8 +81,16 @@ body::after {
   pointer-events: none;
   content: '';
   background:
-    radial-gradient(circle at 18% 22%, rgb(216 180 92 / 0.065), transparent 24%),
-    radial-gradient(circle at 82% 28%, rgb(255 255 255 / 0.045), transparent 28%),
+    radial-gradient(
+      circle at 18% 22%,
+      rgb(216 180 92 / 0.065),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 82% 28%,
+      rgb(255 255 255 / 0.045),
+      transparent 28%
+    ),
     radial-gradient(circle at 50% 78%, rgb(216 180 92 / 0.04), transparent 30%);
   filter: blur(28px);
   opacity: 0.7;
@@ -103,12 +115,36 @@ a {
   z-index: 0;
   overflow: hidden;
   background:
-    radial-gradient(circle at 8% 18%, rgb(255 255 255 / 0.9) 0 1px, transparent 1.6px),
-    radial-gradient(circle at 24% 44%, rgb(255 255 255 / 0.72) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 42% 12%, rgb(255 255 255 / 0.86) 0 1.2px, transparent 1.8px),
-    radial-gradient(circle at 68% 34%, rgb(255 255 255 / 0.82) 0 1px, transparent 1.6px),
-    radial-gradient(circle at 82% 16%, rgb(255 255 255 / 0.74) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 92% 62%, rgb(255 255 255 / 0.7) 0 1px, transparent 1.5px);
+    radial-gradient(
+      circle at 8% 18%,
+      rgb(255 255 255 / 0.9) 0 1px,
+      transparent 1.6px
+    ),
+    radial-gradient(
+      circle at 24% 44%,
+      rgb(255 255 255 / 0.72) 0 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 42% 12%,
+      rgb(255 255 255 / 0.86) 0 1.2px,
+      transparent 1.8px
+    ),
+    radial-gradient(
+      circle at 68% 34%,
+      rgb(255 255 255 / 0.82) 0 1px,
+      transparent 1.6px
+    ),
+    radial-gradient(
+      circle at 82% 16%,
+      rgb(255 255 255 / 0.74) 0 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 92% 62%,
+      rgb(255 255 255 / 0.7) 0 1px,
+      transparent 1.5px
+    );
   background-size:
     260px 220px,
     340px 280px,
@@ -123,11 +159,31 @@ a {
 .starfield::before {
   content: '';
   background:
-    radial-gradient(circle at 16% 72%, rgb(255 255 255 / 0.95) 0 1.4px, transparent 2px),
-    radial-gradient(circle at 36% 26%, rgb(255 255 255 / 0.52) 0 0.8px, transparent 1.4px),
-    radial-gradient(circle at 56% 58%, rgb(255 255 255 / 0.78) 0 1px, transparent 1.6px),
-    radial-gradient(circle at 76% 78%, rgb(255 255 255 / 0.9) 0 1.2px, transparent 1.8px),
-    radial-gradient(circle at 88% 38%, rgb(255 255 255 / 0.5) 0 0.8px, transparent 1.3px);
+    radial-gradient(
+      circle at 16% 72%,
+      rgb(255 255 255 / 0.95) 0 1.4px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 36% 26%,
+      rgb(255 255 255 / 0.52) 0 0.8px,
+      transparent 1.4px
+    ),
+    radial-gradient(
+      circle at 56% 58%,
+      rgb(255 255 255 / 0.78) 0 1px,
+      transparent 1.6px
+    ),
+    radial-gradient(
+      circle at 76% 78%,
+      rgb(255 255 255 / 0.9) 0 1.2px,
+      transparent 1.8px
+    ),
+    radial-gradient(
+      circle at 88% 38%,
+      rgb(255 255 255 / 0.5) 0 0.8px,
+      transparent 1.3px
+    );
   background-size:
     460px 360px,
     280px 260px,
@@ -141,10 +197,26 @@ a {
 .starfield::after {
   content: '';
   background:
-    radial-gradient(circle at 12% 32%, rgb(255 255 255 / 0.34) 0 0.7px, transparent 1.2px),
-    radial-gradient(circle at 52% 22%, rgb(255 255 255 / 0.44) 0 0.8px, transparent 1.3px),
-    radial-gradient(circle at 72% 52%, rgb(255 255 255 / 0.36) 0 0.7px, transparent 1.2px),
-    radial-gradient(circle at 30% 84%, rgb(255 255 255 / 0.5) 0 0.9px, transparent 1.4px);
+    radial-gradient(
+      circle at 12% 32%,
+      rgb(255 255 255 / 0.34) 0 0.7px,
+      transparent 1.2px
+    ),
+    radial-gradient(
+      circle at 52% 22%,
+      rgb(255 255 255 / 0.44) 0 0.8px,
+      transparent 1.3px
+    ),
+    radial-gradient(
+      circle at 72% 52%,
+      rgb(255 255 255 / 0.36) 0 0.7px,
+      transparent 1.2px
+    ),
+    radial-gradient(
+      circle at 30% 84%,
+      rgb(255 255 255 / 0.5) 0 0.9px,
+      transparent 1.4px
+    );
   background-size:
     180px 160px,
     220px 190px,
@@ -289,8 +361,7 @@ img {
   border-radius: 50%;
   place-items: center;
   background:
-    linear-gradient(160deg, rgb(216 180 92 / 0.2), transparent 46%),
-    #080808;
+    linear-gradient(160deg, rgb(216 180 92 / 0.2), transparent 46%), #080808;
   box-shadow:
     0 0 0 8px rgb(255 255 255 / 0.025),
     0 18px 36px rgb(0 0 0 / 0.45);
@@ -352,7 +423,12 @@ img {
   height: 1px;
   margin: var(--space-2) auto 0;
   content: '';
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent),
+    transparent
+  );
   opacity: 0.72;
   animation: line-pulse 3.8s ease-in-out infinite;
 }
@@ -431,7 +507,12 @@ h1 {
 
 .action-link-primary {
   color: #090806;
-  background: linear-gradient(135deg, #f1d684, var(--color-accent) 58%, #a7782d);
+  background: linear-gradient(
+    135deg,
+    #f1d684,
+    var(--color-accent) 58%,
+    #a7782d
+  );
   border-color: rgb(255 232 161 / 0.64);
   box-shadow: 0 14px 28px rgb(216 180 92 / 0.14);
 }
@@ -454,6 +535,11 @@ h1 {
 .action-link-primary:focus-visible {
   color: #050403;
   background: linear-gradient(135deg, #f7e09c, #d8b45c 58%, #b98c38);
+}
+
+.action-link-wide {
+  grid-column: 1 / -1;
+  appearance: none;
 }
 
 .social-links {
