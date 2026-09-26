@@ -1,17 +1,17 @@
 {
   "name": "nzao-card",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Interactive personal business card website",
   "type": "module",
-  "main": "src/index.html",
   "scripts": {
-    "lint:js": "eslint js/*.js",
+    "lint:js": "eslint js/*.js sw.js",
     "lint:css": "stylelint css/*.css",
     "lint:html": "htmlhint *.html",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "echo \"No tests specified\" && exit 0",
+    "vendor": "node -e \"require('fs').copyFileSync('node_modules/qrious/dist/qrious.min.js','js/vendor/qrious.min.js')\""
   },
   "keywords": [
     "business-card",
@@ -26,7 +26,7 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.30.0",
-    "eslint": "^8.57.0",
+    "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.5",
     "globals": "^16.2.0",
     "htmlhint": "^1.1.4",

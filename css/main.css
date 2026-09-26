@@ -45,57 +45,110 @@ html {
 
 body {
   min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
-  overflow-x: hidden;
-  font-family: var(--font-body);
   color: var(--color-text);
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      rgb(255 255 255 / 0.035),
-      transparent 34rem
-    ),
-    linear-gradient(145deg, #000 0%, #030303 48%, #000 100%);
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
+  font-family: var(--font-body);
+  background: linear-gradient(
+    135deg,
+    #000 0%,
+    #0a0a0a 25%,
+    #1a1a1a 50%,
+    #0d0d0d 75%,
+    #000 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient-bg 15s ease infinite;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 body::before {
-  position: fixed;
   inset: 0;
   pointer-events: none;
-  content: '';
-  background:
-    linear-gradient(rgb(255 255 255 / 0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 0.012) 1px, transparent 1px);
-  background-size: 52px 52px;
   mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.35), transparent 70%);
-  animation: grid-drift 18s linear infinite;
+  content: '';
+  position: fixed;
+  background:
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgb(255 255 255 / 0.9), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgb(255 255 255 / 0.7), transparent),
+    radial-gradient(2px 2px at 160px 30px, #ddd, transparent),
+    radial-gradient(1px 1px at 200px 60px, rgb(255 255 255 / 0.8), transparent),
+    radial-gradient(3px 3px at 250px 20px, #fff, transparent),
+    radial-gradient(1px 1px at 300px 90px, rgb(255 255 255 / 0.6), transparent);
+  background-repeat: repeat;
+  background-size: 350px 200px;
+  animation: twinkle-stars 6s ease-in-out infinite;
+  z-index: -3;
 }
 
 body::after {
-  position: fixed;
-  inset: -28% -18%;
-  z-index: -1;
   pointer-events: none;
-  content: '';
-  background:
-    radial-gradient(
-      circle at 18% 22%,
-      rgb(216 180 92 / 0.065),
-      transparent 24%
-    ),
-    radial-gradient(
-      circle at 82% 28%,
-      rgb(255 255 255 / 0.045),
-      transparent 28%
-    ),
-    radial-gradient(circle at 50% 78%, rgb(216 180 92 / 0.04), transparent 30%);
   filter: blur(28px);
   opacity: 0.7;
   transform: translate3d(0, 0, 0);
-  animation: aurora-shift 16s ease-in-out infinite alternate;
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      transparent 30%,
+      rgb(255 255 255 / 0.9) 50%,
+      transparent 70%
+    ),
+    linear-gradient(
+      -135deg,
+      transparent 30%,
+      rgb(255 215 0 / 0.7) 50%,
+      transparent 70%
+    ),
+    linear-gradient(
+      120deg,
+      transparent 30%,
+      rgb(255 255 255 / 0.8) 50%,
+      transparent 70%
+    ),
+    linear-gradient(
+      -120deg,
+      transparent 30%,
+      rgb(255 215 0 / 0.6) 50%,
+      transparent 70%
+    ),
+    linear-gradient(
+      150deg,
+      transparent 30%,
+      rgb(255 255 255 / 0.7) 50%,
+      transparent 70%
+    ),
+    linear-gradient(
+      -150deg,
+      transparent 30%,
+      rgb(255 215 0 / 0.5) 50%,
+      transparent 70%
+    );
+  background-size:
+    300px 3px,
+    250px 2px,
+    280px 2.5px,
+    200px 1.5px,
+    320px 2px,
+    180px 1px;
+  background-position:
+    -300px 80px,
+    -250px 200px,
+    -280px 350px,
+    -200px 450px,
+    -320px 150px,
+    -180px 300px;
+  background-repeat: no-repeat;
+  animation: shooting-stars 12s linear infinite;
+  z-index: -2;
 }
 
 a {
@@ -451,10 +504,12 @@ h1 {
 
 .bio {
   max-width: 20rem;
-  margin: var(--space-3) 0 0;
+  margin: var(--space-3) 0 20px;
   font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--color-secondary);
+  font-style: italic;
+  line-height: 1.6;
+  color: #ccc;
+  text-shadow: 0 0 10px rgb(255 255 255 / 0.1);
 }
 
 .primary-actions {
@@ -681,13 +736,16 @@ h1 {
 
 .qr-placeholder {
   font-family: var(--font-display);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
+  font-style: italic;
   font-weight: 700;
-  color: #16130c;
+  color: #666;
+  text-align: center;
 }
 
 .action-link:focus-visible,
-.social-link:focus-visible {
+.social-link:focus-visible,
+.copy-chip:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
@@ -873,5 +931,371 @@ h1 {
 @supports not (backdrop-filter: blur(24px)) {
   .identity-card {
     background: rgb(18 18 20 / 0.94);
+  }
+}
+
+/* ---- Page background, toggles, light theme (moved from index.html) ---- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@keyframes gradient-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  25% {
+    background-position: 100% 50%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 0% 100%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes twinkle-stars {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes shooting-stars {
+  0% {
+    background-position:
+      -300px 80px,
+      -250px 200px,
+      -280px 350px,
+      -200px 450px,
+      -320px 150px,
+      -180px 300px;
+  }
+
+  100% {
+    background-position:
+      1200px 680px,
+      1150px 800px,
+      1180px 950px,
+      1100px 1050px,
+      1200px 750px,
+      1120px 900px;
+  }
+}
+
+/* Theme & sound toggles */
+.utility-toggles {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.theme-toggle,
+.sound-toggle,
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgb(255 255 255 / 0.1);
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgb(255 215 0 / 0.2);
+}
+
+.theme-toggle:hover,
+.sound-toggle:hover,
+.lang-toggle:hover {
+  background: rgb(255 255 255 / 0.15);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgb(255 215 0 / 0.4);
+}
+
+.theme-toggle .icon,
+.sound-toggle .icon,
+.lang-toggle .icon {
+  font-size: 1.2rem;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgb(255 215 0 / 0.5);
+}
+
+/* Light theme: current identity-card design is built on CSS custom
+   properties, so re-defining them here re-skins the whole card. */
+html:has(body.light-theme) {
+  background: #f6f1e4;
+}
+
+body.light-theme {
+  --color-bg: #f6f1e4;
+  --color-panel: rgb(255 255 255 / 0.7);
+  --color-panel-strong: rgb(20 16 8 / 0.05);
+  --color-border: rgb(180 132 45 / 0.3);
+  --color-border-strong: rgb(180 132 45 / 0.5);
+  --color-text: #201c14;
+  --color-secondary: #5b5344;
+  --color-muted: #8a8271;
+  --color-accent-soft: rgb(180 132 45 / 0.14);
+
+  color-scheme: light;
+  background:
+    radial-gradient(circle at 50% 0%, rgb(0 0 0 / 0.025), transparent 34rem),
+    linear-gradient(145deg, #fdfaf1 0%, #f2ecdd 48%, #fdfaf1 100%);
+}
+
+body.light-theme::before {
+  background:
+    linear-gradient(rgb(0 0 0 / 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 0 0 / 0.025) 1px, transparent 1px);
+}
+
+body.light-theme .starfield,
+body.light-theme .starfield::before,
+body.light-theme .starfield::after {
+  opacity: 0.12;
+}
+
+body.light-theme .avatar-frame {
+  background:
+    linear-gradient(160deg, rgb(216 180 92 / 0.28), transparent 46%), #efe8d6;
+}
+
+body.light-theme .action-link {
+  border-color: rgb(20 16 8 / 0.14);
+}
+
+body.light-theme .social-link {
+  background: rgb(20 16 8 / 0.035);
+  border-color: rgb(20 16 8 / 0.09);
+}
+
+body.light-theme .social-link img {
+  filter: none;
+  opacity: 0.68;
+}
+
+body.light-theme .social-link:hover img,
+body.light-theme .social-link:focus-visible img {
+  filter: brightness(0) saturate(100%) invert(46%) sepia(45%) saturate(560%)
+    hue-rotate(358deg) brightness(92%) contrast(92%);
+  opacity: 1;
+}
+
+body.light-theme .connect-section {
+  background: rgb(20 16 8 / 0.035);
+  border-color: rgb(20 16 8 / 0.09);
+}
+
+body.light-theme .qr-frame {
+  border-color: rgb(20 16 8 / 0.16);
+}
+
+body.light-theme .theme-toggle,
+body.light-theme .sound-toggle,
+body.light-theme .lang-toggle {
+  background: rgb(20 16 8 / 0.06);
+  border-color: rgb(20 16 8 / 0.15);
+  box-shadow: none;
+}
+
+body.light-theme .theme-toggle:hover,
+body.light-theme .sound-toggle:hover,
+body.light-theme .lang-toggle:hover {
+  background: rgb(20 16 8 / 0.1);
+}
+
+body.light-theme .theme-toggle .icon,
+body.light-theme .sound-toggle .icon,
+body.light-theme .lang-toggle .icon {
+  color: #8a6a1e;
+  text-shadow: none;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: block;
+  border: 3px solid #ffd700;
+  box-shadow: 0 0 20px rgb(255 215 0 / 0.5);
+  transition: all 0.3s ease;
+  animation: avatar-glow 2s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgb(255 215 0 / 0.3),
+    transparent
+  );
+  animation: rotate 3s linear infinite;
+  z-index: -1;
+}
+
+.avatar:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 30px rgb(255 215 0 / 0.8);
+  border-color: #ffd700;
+}
+
+@keyframes avatar-glow {
+  from {
+    box-shadow: 0 0 20px rgb(255 215 0 / 0.5);
+  }
+
+  to {
+    box-shadow: 0 0 30px rgb(255 215 0 / 0.8);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body.light-theme .bio {
+  color: var(--color-secondary);
+  text-shadow: none;
+}
+
+.lang-toggle .icon {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Copy-to-clipboard chips */
+.copy-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-top: var(--space-4);
+}
+
+.copy-chip {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-3);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--color-secondary);
+  cursor: pointer;
+  border: 1px solid rgb(255 255 255 / 0.09);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.03);
+  transition:
+    color var(--duration) ease,
+    border-color var(--duration) ease,
+    background var(--duration) ease;
+}
+
+.copy-chip img {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+}
+
+.copy-chip:hover,
+.copy-chip:focus-visible {
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+  background: var(--color-accent-soft);
+}
+
+body.light-theme .copy-chip {
+  border-color: rgb(20 16 8 / 0.12);
+  background: rgb(20 16 8 / 0.03);
+}
+
+body.light-theme .copy-chip img {
+  filter: none;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  z-index: 1100;
+  max-width: calc(100% - 32px);
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  pointer-events: none;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: rgb(18 18 20 / 0.92);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.35);
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition:
+    opacity var(--duration) ease,
+    transform var(--duration) ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+body.light-theme .toast {
+  background: rgb(255 255 255 / 0.95);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
+}
+
+/* On phones the fixed toggles would sit on top of the avatar, so keep them
+   in the page flow above the card instead. */
+@media (width <= 480px) {
+  .utility-toggles {
+    position: static;
+    justify-content: flex-end;
+    padding: 12px 16px 0;
+  }
+
+  .theme-toggle,
+  .sound-toggle,
+  .lang-toggle {
+    width: 40px;
+    height: 40px;
   }
 }

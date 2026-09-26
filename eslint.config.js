@@ -49,10 +49,20 @@ export default [
   },
   {
     // Loaded as classic (non-module) <script> tags sharing one global scope.
-    files: ['js/audio.js', 'js/theme.js', 'js/main.js'],
+    files: ['js/i18n.js', 'js/audio.js', 'js/theme.js', 'js/main.js'],
     languageOptions: {
       sourceType: 'script',
     },
+  },
+  {
+    files: ['sw.js'],
+    languageOptions: {
+      sourceType: 'script',
+      globals: globals.serviceworker,
+    },
+  },
+  {
+    ignores: ['js/vendor/**'],
   },
   // Thêm cấu hình để tắt các rule xung đột với Prettier
   eslintConfigPrettier,

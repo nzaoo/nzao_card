@@ -13,10 +13,12 @@
 
 ## ✨ Features
 
-- Starry night sky, glassmorphism, gradient & parallax effects
-- Audio feedback, theme toggle, sound control, live status
-- Skills, social media, QR code, one-click contact
-- Responsive design, cross-browsers support
+- Starry night sky, glassmorphism, gradient & tilt effects
+- Light/dark theme, sound toggle, song ngữ Tiếng Việt / English
+- Save contact (vCard), Share (Web Share API), copy phone/email with toast
+- QR code (QRious bundled locally), social links
+- Installable PWA that works offline (service worker)
+- Responsive design, cross-browser support
 
 ## 🚀 Quick Start
 
@@ -25,13 +27,32 @@
    git clone https://github.com/nzaoo/nzao_card.git
    cd nzao_card
    ```
-2. **Open in browser**
-   - Double click `index.html` hoặc dùng lệnh:
-     ```bash
-     start index.html # Windows
-     open index.html  # macOS
-     xdg-open index.html # Linux
-     ```
+2. **Run a local server** (service worker needs `http://`, not `file://`)
+   ```bash
+   npx serve -l 4173 .
+   ```
+   Then open http://localhost:4173
+
+## 🧰 Development
+
+```bash
+npm install          # linters + qrious
+npm run lint         # ESLint + Stylelint + HTMLHint
+npm run format       # Prettier
+npm run vendor       # re-copy qrious.min.js into js/vendor/
+```
+
+```
+index.html          # markup + SEO / JSON-LD profile
+css/main.css        # all styles (dark + light theme)
+js/i18n.js          # VI/EN strings and language toggle
+js/audio.js         # Web Audio click sounds
+js/theme.js         # light/dark toggle
+js/main.js          # greeting, QR, tilt, vCard, share, copy, SW register
+js/vendor/          # third-party scripts served locally
+sw.js               # offline cache (bump CACHE when adding files)
+manifest.json       # PWA manifest
+```
 
 ## 🌐 Deploy to GitHub Page
 
@@ -48,12 +69,12 @@
 - **Instagram**: [zn_zaoo](https://instagram.com/zn_zaoo)
 - **TikTok**: [nzaoo103](https://tiktok.com/@nzaoo103)
 - **Zalo**: [0359511473](https://zalo.me/0359511473)
-- **Zalo**: [zaoo zaoo](https://zalo.me/0359511473https://locket.camera/links/AWqbNEQhR9LnRvYd7)
+- **Locket**: [zaoo zaoo](https://locket.camera/links/AWqbNEQhR9LnRvYd7)
 
 ## 🛠️ Technologies
 
 - HTML5, CSS3, JavaScript (ES6+)
-- Web Audio API, CSS Animation, Flexbox, Grid
+- Web Audio API, Web Share API, Service Worker, CSS Animation, Flexbox, Grid
 
 ## 🤝 Contributing
 

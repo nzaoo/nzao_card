@@ -3,6 +3,7 @@
   "rules": {
     "color-named": "never",
     "alpha-value-notation": "number",
-    "font-family-name-quotes": "always-unless-keyword"
+    "font-family-name-quotes": "always-unless-keyword",
+    "no-descending-specificity": null
   }
 }
