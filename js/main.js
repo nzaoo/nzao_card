@@ -1,4 +1,4 @@
-/* global initAudio, initThemeToggle, initSoundToggle, playSound */
+/* global initAudio, initThemeToggle, initSoundToggle, initLanguageToggle, playSound, t */
 const CARD_URL = window.location.origin + window.location.pathname;
 
 function markReady() {
@@ -15,21 +15,114 @@ function updateGreeting() {
   const hour = new Date().getHours();
 
   if (hour >= 5 && hour < 12) {
-    greeting.textContent = 'Good morning';
+    greeting.textContent = t('greetingMorning');
     return;
   }
 
   if (hour >= 12 && hour < 18) {
-    greeting.textContent = 'Good afternoon';
+    greeting.textContent = t('greetingAfternoon');
     return;
   }
 
   if (hour >= 18 && hour < 22) {
-    greeting.textContent = 'Good evening';
+    greeting.textContent = t('greetingEvening');
     return;
   }
 
-  greeting.textContent = 'Good night';
+  greeting.textContent = t('greetingNight');
+}
+
+let toastTimer = 0;
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+
+  if (!toast) {
+    return;
+  }
+
+  toast.textContent = message;
+  toast.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2200);
+}
+
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  // Fallback for http:// and older browsers.
+  const field = document.createElement('textarea');
+  field.value = text;
+  field.setAttribute('readonly', '');
+  field.style.position = 'fixed';
+  field.style.opacity = '0';
+  document.body.appendChild(field);
+  field.select();
+  const ok = document.execCommand('copy');
+  field.remove();
+
+  if (!ok) {
+    throw new Error('copy failed');
+  }
+}
+
+function initCopyChips() {
+  document.querySelectorAll('[data-copy]').forEach(chip => {
+    chip.addEventListener('click', async () => {
+      try {
+        await copyText(chip.dataset.copy);
+        showToast(`${t('copied')}: ${chip.dataset.copy}`);
+        playSound(523, 0.12);
+      } catch {
+        showToast(t('copyFailed'));
+      }
+    });
+  });
+}
+
+function initShare() {
+  const button = document.getElementById('share-card');
+
+  if (!button) {
+    return;
+  }
+
+  button.addEventListener('click', async () => {
+    const data = { title: t('shareTitle'), url: CARD_URL };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(data);
+        playSound(784, 0.12);
+      } catch {
+        // User cancelled the share sheet.
+      }
+      return;
+    }
+
+    try {
+      await copyText(CARD_URL);
+      showToast(t('linkCopied'));
+      playSound(784, 0.12);
+    } catch {
+      showToast(t('copyFailed'));
+    }
+  });
+}
+
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator) || location.protocol === 'file:') {
+    return;
+  }
+
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {
+      // Offline support is optional; the card works without it.
+    });
+  });
 }
 
 function generateQRCode() {
@@ -149,14 +242,20 @@ function initSaveContact() {
 
 function initCard() {
   initAudio();
+  initLanguageToggle();
   initThemeToggle();
   initSoundToggle();
   initSaveContact();
+  initShare();
+  initCopyChips();
   markReady();
   updateGreeting();
+  document.addEventListener('languagechange', updateGreeting);
   generateQRCode();
   initTilt();
 }
+
+registerServiceWorker();
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initCard);

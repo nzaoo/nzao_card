@@ -33,7 +33,7 @@ function playSound(frequency = 440, duration = 0.1) {
       oscillator.disconnect();
       gain.disconnect();
     };
-  } catch (e) {
+  } catch {
     // Web Audio API not supported or blocked
   }
 }
