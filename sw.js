@@ -1,6 +1,6 @@
 /* Offline support: precache the card shell, serve pages network-first and
    everything else (CSS, JS, icons, fonts) stale-while-revalidate. */
-const CACHE = 'nzaoo-card-v2';
+const CACHE = 'nzaoo-card-v3';
 
 const PRECACHE = [
   './',
@@ -13,11 +13,11 @@ const PRECACHE = [
   'js/vendor/qrious.min.js',
   'manifest.json',
   'assets/icon/avata.jpg',
+  'assets/icon/favicon-32.png',
   'assets/icon/apple-touch-icon.png',
   'assets/icon/icon-192.png',
   'assets/icon/email.svg',
   'assets/icon/facebook.svg',
-  'assets/icon/github.svg',
   'assets/icon/instagram.svg',
   'assets/icon/phone.svg',
   'assets/icon/tiktok.svg',

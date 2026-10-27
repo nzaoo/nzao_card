@@ -207,7 +207,7 @@ function buildVCard() {
   const jsonLd = document.querySelector('script[type="application/ld+json"]');
   const profile = jsonLd ? JSON.parse(jsonLd.textContent) : {};
   const name = escapeVCard(profile.name || document.title);
-  const email = (profile.email || '').replace('mailto:', '');
+  const email = profile.email || '';
   const url = profile.url || CARD_URL;
 
   const lines = [
