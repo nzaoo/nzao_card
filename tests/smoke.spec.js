@@ -125,6 +125,32 @@ test('save contact downloads a vCard file', async ({ page }) => {
   expect(text).toContain('END:VCARD');
 });
 
+test('QR code encodes the ?src=qr URL', async ({ page }) => {
+  // Replace QRious with a stub that records the value it was asked to encode.
+  await page.addInitScript(() => {
+    window.qrValues = [];
+    Object.defineProperty(window, 'QRious', {
+      configurable: true,
+      get() {
+        return class {
+          constructor(options) {
+            window.qrValues.push(options.value);
+            this.toDataURL = () =>
+              'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+          }
+        };
+      },
+      set() {},
+    });
+  });
+
+  await page.goto('/');
+  const baseURL = test.info().project.use.baseURL;
+  const values = await page.evaluate(() => window.qrValues);
+
+  expect(values).toEqual([`${baseURL}/?src=qr`]);
+});
+
 test('low-power devices get the lite class', async ({ page }) => {
   await page.addInitScript(() => {
     Object.defineProperty(navigator, 'deviceMemory', { get: () => 2 });

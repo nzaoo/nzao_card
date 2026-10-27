@@ -1,5 +1,7 @@
 /* global initAudio, initThemeToggle, initSoundToggle, initLanguageToggle, playSound, t */
 const CARD_URL = window.location.origin + window.location.pathname;
+// Lets analytics tell QR scans apart from NFC taps (?src=nfc) and direct visits.
+const QR_URL = `${CARD_URL}?src=qr`;
 
 function updateGreeting() {
   const greeting = document.getElementById('time-greeting');
@@ -129,7 +131,7 @@ function generateQRCode() {
   }
 
   const qr = new window.QRious({
-    value: CARD_URL,
+    value: QR_URL,
     size: 128,
     background: '#f7f4ea',
     foreground: '#090806',

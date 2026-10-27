@@ -96,6 +96,12 @@ Sau đó vào Settings > Pages > Enable GitHub Pages
 - Bỏ lớp ánh sáng `body::after` (có `blur` lớn) nếu muốn nhẹ hơn
 - Tối ưu ảnh (WebP format)
 
+### **Đo lượt quét theo kênh:**
+
+- Ghi URL vào NFC tag dạng `https://<username>.github.io/nzao_card/?src=nfc`
+- Mã QR đã được mã hoá với `?src=qr`
+- Tham số `src` chỉ có ý nghĩa khi bạn cài analytics để đọc nó
+
 ### **Responsive design:**
 
 - Test trên mobile
