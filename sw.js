@@ -1,6 +1,6 @@
 /* Offline support: precache the card shell, serve pages network-first and
-   everything else (CSS, JS, icons, Google Fonts) stale-while-revalidate. */
-const CACHE = 'nzaoo-card-v1';
+   everything else (CSS, JS, icons, fonts) stale-while-revalidate. */
+const CACHE = 'nzaoo-card-v2';
 
 const PRECACHE = [
   './',
@@ -15,7 +15,6 @@ const PRECACHE = [
   'assets/icon/avata.jpg',
   'assets/icon/apple-touch-icon.png',
   'assets/icon/icon-192.png',
-  'assets/icon/icon-512.png',
   'assets/icon/email.svg',
   'assets/icon/facebook.svg',
   'assets/icon/github.svg',
@@ -23,6 +22,10 @@ const PRECACHE = [
   'assets/icon/phone.svg',
   'assets/icon/tiktok.svg',
   'assets/icon/zalo.svg',
+  'assets/fonts/inter-latin-wght-normal.woff2',
+  'assets/fonts/inter-vietnamese-wght-normal.woff2',
+  'assets/fonts/space-grotesk-latin-wght-normal.woff2',
+  'assets/fonts/space-grotesk-vietnamese-wght-normal.woff2',
 ];
 
 self.addEventListener('install', event => {
@@ -48,11 +51,7 @@ self.addEventListener('activate', event => {
 });
 
 function isCacheable(url) {
-  return (
-    url.origin === self.location.origin ||
-    url.hostname === 'fonts.googleapis.com' ||
-    url.hostname === 'fonts.gstatic.com'
-  );
+  return url.origin === self.location.origin;
 }
 
 async function networkFirst(request) {

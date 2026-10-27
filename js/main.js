@@ -195,10 +195,18 @@ function initTilt() {
   card.addEventListener('pointerleave', resetTilt);
 }
 
+// vCard 3.0 text values must escape backslash, comma, semicolon and newline.
+function escapeVCard(value) {
+  return String(value)
+    .replace(/\\/g, '\\\\')
+    .replace(/[,;]/g, match => `\\${match}`)
+    .replace(/\r?\n/g, '\\n');
+}
+
 function buildVCard() {
   const jsonLd = document.querySelector('script[type="application/ld+json"]');
   const profile = jsonLd ? JSON.parse(jsonLd.textContent) : {};
-  const name = profile.name || document.title;
+  const name = escapeVCard(profile.name || document.title);
   const email = (profile.email || '').replace('mailto:', '');
   const url = profile.url || CARD_URL;
 
@@ -207,7 +215,7 @@ function buildVCard() {
     'VERSION:3.0',
     `FN:${name}`,
     `N:;${name};;;`,
-    profile.jobTitle && `TITLE:${profile.jobTitle}`,
+    profile.jobTitle && `TITLE:${escapeVCard(profile.jobTitle)}`,
     email && `EMAIL;TYPE=INTERNET:${email}`,
     profile.telephone && `TEL;TYPE=CELL:${profile.telephone}`,
     `URL:${url}`,
@@ -230,10 +238,25 @@ function initSaveContact() {
     const link = document.createElement('a');
     link.href = url;
     link.download = 'nzaoo.vcf';
+    // Some browsers only start the download for a link that is in the page.
+    document.body.appendChild(link);
     link.click();
-    URL.revokeObjectURL(url);
+    link.remove();
+    // Safari can cancel the download if the URL is revoked straight away.
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
     playSound(660, 0.12);
   });
+}
+
+// A heuristic, not a benchmark. deviceMemory is Chromium-only; without it only
+// the core count is checked.
+function markLowPowerDevice() {
+  const cores = navigator.hardwareConcurrency;
+  const memory = navigator.deviceMemory;
+
+  if ((cores && cores <= 2) || (memory && memory <= 4)) {
+    document.body.classList.add('is-lite');
+  }
 }
 
 function initCard() {
@@ -247,6 +270,7 @@ function initCard() {
   updateGreeting();
   document.addEventListener('languagechange', updateGreeting);
   generateQRCode();
+  markLowPowerDevice();
   initTilt();
 }
 
