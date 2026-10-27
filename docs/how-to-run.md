@@ -2,7 +2,7 @@
 
 ## 📋 Bước 1: Chuẩn Bị
 
-- Cài đặt **Git** và **Node.js**
+- Cài đặt **Git** và **Node.js** (Node 20 trở lên, để chạy lint và test)
 - Có tài khoản **GitHub**
 - Biết cơ bản HTML, CSS, JavaScript
 
@@ -21,42 +21,46 @@ cd my-card
 ## 📁 Bước 3: Cấu Trúc File
 
 ```
-my-card/
-├── src/
-│   ├── index.html    # Trang chính
-├── styles.css    # CSS styles
-├── script.js     # JavaScript
-└── README.md     # Mô tả
+nzao_card/
+├── index.html        # Trang chính: nội dung, SEO, JSON-LD
+├── css/main.css      # Toàn bộ style (dark + light theme)
+├── js/               # i18n, audio, theme, main
+├── assets/icon/      # Ảnh avatar, icon PWA, icon mạng xã hội
+├── sw.js             # Service worker (chạy offline)
+├── manifest.json     # Cấu hình PWA (Add to Home Screen)
+└── tests/            # Smoke test Playwright
 ```
 
 ## ✏️ Bước 4: Tùy Chỉnh Nội Dung
 
-### **Thay đổi thông tin cá nhân trong `src/index.html`:**
+### **Thay đổi thông tin cá nhân trong `index.html`:**
 
-- Tên của bạn
-- Email, phone, social media
-- Ảnh đại diện
-- Skills & technologies
+- Tên, chức danh, lời giới thiệu (bio)
+- Email, số điện thoại, link mạng xã hội
+- Ảnh đại diện trong `assets/icon/`
+- Khối JSON-LD trong `<head>` cũng chứa tên, email, số điện thoại. Nút "Lưu danh bạ" đọc dữ liệu từ khối này, nên sửa ở đó để file `.vcf` đúng.
 
-### **Thay đổi màu sắc trong `styles.css`:**
+### **Thay đổi màu sắc trong `css/main.css`:**
 
 ```css
 :root {
-  --primary-gold: #your-color; /* Màu chính */
-  --secondary-orange: #your-color; /* Màu phụ */
-  --accent-pink: #your-color; /* Màu nhấn */
+  --color-accent: #d8b45c; /* Màu nhấn */
+  --color-bg: #030303; /* Nền */
+  --color-text: #f7f3e8; /* Chữ */
 }
 ```
+
+Chế độ sáng có bộ biến riêng trong `body.light-theme`.
 
 ## ✨ Bước 5: Thêm Hiệu Ứng (Tùy chọn)
 
 ### **Có sẵn:**
 
-- 🌟 Shooting stars
-- 🎨 Rainbow mode (Ctrl+R)
-- ⚡ Performance mode (Ctrl+Shift+X)
-- 🎵 Sound effects
-- 🌙 Dark/Light theme (Ctrl+T)
+- 🌟 Sao lấp lánh và sao băng (CSS)
+- Nghiêng thẻ theo chuột, chỉ trên thiết bị có chuột và khi không bật "giảm chuyển động"
+- Âm thanh click, bật/tắt bằng nút loa
+- Chế độ sáng/tối, bật/tắt bằng nút mặt trăng/mặt trời
+- Chuyển ngôn ngữ VI/EN bằng nút VI/EN
 
 ### **Thêm mới:**
 
@@ -88,8 +92,8 @@ Sau đó vào Settings > Pages > Enable GitHub Pages
 
 ### **Tối ưu hiệu suất:**
 
-- Giảm số lượng particles nếu lag
-- Dùng Ctrl+Shift+X để bật performance mode
+- Giảm số lớp sao trong `.starfield` (`css/main.css`) nếu máy yếu
+- Bỏ lớp ánh sáng `body::after` (có `blur` lớn) nếu muốn nhẹ hơn
 - Tối ưu ảnh (WebP format)
 
 ### **Responsive design:**
@@ -115,15 +119,17 @@ Sau đó vào Settings > Pages > Enable GitHub Pages
 
 ### **Lỗi thường gặp:**
 
-1. **Audio không hoạt động** → Kiểm tra browser permissions
-2. **Animations lag** → Giảm effects, bật performance mode
+1. **Audio không hoạt động** → Kiểm tra quyền âm thanh của trình duyệt và xem nút loa có đang tắt không
+2. **Animations lag** → Giảm hiệu ứng nền trong `css/main.css`. Khi người dùng bật "giảm chuyển động" của hệ điều hành, hiệu ứng sẽ tự tắt
 3. **Mobile không đẹp** → Kiểm tra viewport meta tag
 4. **Git push lỗi** → Kiểm tra authentication
+5. **Không hoạt động offline** → Service worker không chạy khi mở bằng `file://`. Dùng `npx serve -l 4173 .` rồi mở http://localhost:4173
 
 ### **Debug:**
 
 - F12 → Console tab để xem lỗi
 - F12 → Network tab để kiểm tra performance
+- Chạy test: `npm install`, `npx playwright install chromium` (một lần), rồi `npm test`
 - Test trên nhiều browser
 
 ## 🎉 Kết Quả

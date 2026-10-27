@@ -2,7 +2,11 @@
 let soundEnabled = true;
 
 function initAudio() {
-  soundEnabled = localStorage.getItem('sound') !== 'disabled';
+  try {
+    soundEnabled = localStorage.getItem('sound') !== 'disabled';
+  } catch {
+    // Storage blocked (private mode); keep sound on for this visit.
+  }
 }
 
 function playSound(frequency = 440, duration = 0.1) {
@@ -51,7 +55,11 @@ function initSoundToggle() {
   soundToggle.addEventListener('click', () => {
     soundEnabled = !soundEnabled;
     icon.textContent = soundEnabled ? '🔊' : '🔇';
-    localStorage.setItem('sound', soundEnabled ? 'enabled' : 'disabled');
+    try {
+      localStorage.setItem('sound', soundEnabled ? 'enabled' : 'disabled');
+    } catch {
+      // Ignore: the toggle still works for this visit.
+    }
     playSound(659, 0.1);
   });
 }

@@ -1,10 +1,6 @@
 /* global initAudio, initThemeToggle, initSoundToggle, initLanguageToggle, playSound, t */
 const CARD_URL = window.location.origin + window.location.pathname;
 
-function markReady() {
-  document.body.classList.add('is-ready');
-}
-
 function updateGreeting() {
   const greeting = document.getElementById('time-greeting');
 
@@ -248,7 +244,6 @@ function initCard() {
   initSaveContact();
   initShare();
   initCopyChips();
-  markReady();
   updateGreeting();
   document.addEventListener('languagechange', updateGreeting);
   generateQRCode();

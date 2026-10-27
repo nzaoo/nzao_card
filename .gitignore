@@ -4,3 +4,5 @@ Thumbs.db
 *.log
 .vscode/
 .claude/worktrees/
+test-results/
+playwright-report/

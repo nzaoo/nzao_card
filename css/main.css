@@ -310,12 +310,10 @@ img {
     0 1px 0 rgb(255 255 255 / 0.08) inset,
     0 0 42px rgb(216 180 92 / 0.08);
   backdrop-filter: blur(24px) saturate(135%);
-  opacity: 0;
   cursor: var(--sword-cursor), crosshair;
-  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))
-    translateY(14px) scale(0.985);
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  animation: card-in 420ms ease both;
   transition:
-    opacity 420ms ease,
     transform 420ms ease,
     border-color var(--duration) ease,
     box-shadow var(--duration) ease;
@@ -388,12 +386,6 @@ img {
   background: radial-gradient(circle, rgb(216 180 92 / 0.16), transparent 68%);
   filter: blur(18px);
   animation: glow-breathe 5s ease-in-out infinite;
-}
-
-.is-ready .identity-card {
-  opacity: 1;
-  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))
-    translateY(0) scale(1);
 }
 
 .hero {
@@ -748,6 +740,21 @@ h1 {
 .copy-chip:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
+}
+
+/* Runs without JavaScript, so the card shows even if a script fails. */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+    scale: 0.985;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
 }
 
 @keyframes border-shimmer {

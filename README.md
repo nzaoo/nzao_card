@@ -40,6 +40,7 @@ npm install          # linters + qrious
 npm run lint         # ESLint + Stylelint + HTMLHint
 npm run format       # Prettier
 npm run vendor       # re-copy qrious.min.js into js/vendor/
+npm test             # Playwright smoke tests (run `npx playwright install chromium` once)
 ```
 
 ```
@@ -52,6 +53,7 @@ js/main.js          # greeting, QR, tilt, vCard, share, copy, SW register
 js/vendor/          # third-party scripts served locally
 sw.js               # offline cache (bump CACHE when adding files)
 manifest.json       # PWA manifest
+tests/              # Playwright smoke tests (npm test)
 ```
 
 ## 🌐 Deploy to GitHub Page

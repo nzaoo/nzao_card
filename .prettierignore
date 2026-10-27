@@ -2,3 +2,5 @@ node_modules
 js/vendor
 package-lock.json
 .claude
+test-results
+playwright-report

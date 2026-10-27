@@ -10,7 +10,7 @@
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "echo \"No tests specified\" && exit 0",
+    "test": "playwright test",
     "vendor": "node -e \"require('fs').copyFileSync('node_modules/qrious/dist/qrious.min.js','js/vendor/qrious.min.js')\""
   },
   "keywords": [
@@ -26,6 +26,7 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.30.0",
+    "@playwright/test": "^1.63.0",
     "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.5",
     "globals": "^16.2.0",

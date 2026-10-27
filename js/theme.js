@@ -12,7 +12,13 @@ function initThemeToggle() {
   }
 
   const icon = themeToggle.querySelector('.icon');
-  let isLight = localStorage.getItem('theme') === 'light';
+  let isLight = false;
+
+  try {
+    isLight = localStorage.getItem('theme') === 'light';
+  } catch {
+    // Storage blocked (private mode); start in the dark theme.
+  }
 
   applyTheme(isLight);
   icon.textContent = isLight ? '☀️' : '🌙';
@@ -21,7 +27,11 @@ function initThemeToggle() {
     isLight = !isLight;
     applyTheme(isLight);
     icon.textContent = isLight ? '☀️' : '🌙';
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    try {
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    } catch {
+      // Ignore: the toggle still works for this visit.
+    }
     playSound(523, 0.1);
   });
 }
